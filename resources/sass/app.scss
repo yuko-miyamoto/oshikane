@@ -1,0 +1,28 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(239,124,142);
+  color: #000000;
+}
+
+.box_lo {
+    margin: 40px 0 0 0;
+    
+}
+
+.logo {
+  font-size: 28pt;
+  font-weight: normal;
+  font-family: 'Dela Gothic One', cursive;
+}
+
