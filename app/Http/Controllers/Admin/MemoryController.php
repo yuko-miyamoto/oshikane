@@ -52,10 +52,9 @@ class MemoryController extends Controller
             ->get();
         }
         
-        return view('admin.memory.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        return view('admin.memory.index', ['posts' => $posts, 'cond_title' => $cond_title,]);
     }
-    
-    
+   
     public function edit(Request $request)
     {
         $memory = Memory::find($request->id);

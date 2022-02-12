@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
-    Route::get('main', 'Admin\MainController@add');
+    Route::get('main/index', 'Admin\MainController@index');
     
     Route::get('oshi/create', 'Admin\OshiController@add');
     Route::post('oshi/create', 'Admin\OshiController@create');
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('memory/create', 'Admin\MemoryController@add');
     Route::post('memory/create', 'Admin\MemoryController@create');
-    Route::get('memory', 'Admin\MemoryController@index');
+    Route::get('memory/index/', 'Admin\MemoryController@index');
     Route::get('memory/edit', 'Admin\MemoryController@edit');
     Route::Post('memory/edit', 'Admin\MemoryController@update');
     Route::get('memory/delete', 'Admin\MemoryController@delete');
@@ -55,12 +55,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('profile/search', 'Admin\ProfileController@search');
     
 });
-
-Auth::routes();
-Route::get('/login', 'LoginController@index')->name('login');
-Route::get('/', 'LoginController@index');
-Route::get('/oshi', 'OshiController@index');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

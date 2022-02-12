@@ -49,11 +49,12 @@
                         <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                         @else
-                        <li><a class="dropdown-item" href="{{ Auth::user()->name }}"><span class="create"></span></a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementByID('logout-form').submit();">{{ __('Logout') }}</a></li>
-                        <form id="logout-form" action="{{ route('logout') }}" mrthod="POST" style="display: none;">
+                        <li><a class="dropdown-item" href="">{{ Auth::user()->name }}<span class="caret"></span></a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                        </li>
                         @endguest
                     </ul>
                 </li>
@@ -68,7 +69,6 @@
                 @yield('content')
         </main>
         </div>
-        
        
     </body>
 </html>

@@ -11,7 +11,7 @@ use Auth;
 class MainController extends Controller
 {
     //
-    public function add()
+    public function index()
     {
         $posts = Oshi::where('user_id', Auth::id())
         ->where('tentacles', '=', 100)
