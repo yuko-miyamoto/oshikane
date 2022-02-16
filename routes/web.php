@@ -45,14 +45,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('saving/create', 'Admin\SavingController@create');
     Route::get('saving', 'Admin\SavingController@index');
     
-    Route::get('yosan/create', 'Admin\YosanController@add');
-    Route::post('yosan/create', 'Admin\YosanController@create');
+    Route::get('budget/create', 'Admin\BudgetController@add');
+    Route::post('budget/create', 'Admin\BudgetController@create');
     
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::post('profile/create', 'Admin\ProfileController@create');
     Route::get('profile/edit', 'Admin\ProfileController@edit');
     Route::post('profile/edit', 'Admin\ProfileController@update');
     Route::get('profile/search', 'Admin\ProfileController@search');
+    Route::get('profile/followresult', 'Admin\ProfileController@followresult');
     
 });
 Auth::routes();

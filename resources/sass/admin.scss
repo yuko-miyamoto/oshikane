@@ -6,17 +6,38 @@ body {
 }
 
 header {
-  margin: 20px 0px 0px 40px;
+  margin: 20px 0px 0px 0px;
   
 }
 
-.logo {
+.navbar-brand {
   font-size: 28pt;
   font-weight: normal;
   font-family: 'Dela Gothic One', cursive;
+  
 }
 
-.title {
+.navbar .navbar-expand-lg .navbar-light {
+  background-color: rgb(250,232,224);
+}
+
+.navbar {
+  box-shadow: none;
+}
+
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
+}
+
+.container-fluid {
+  background-color: rgb(250,232,224);
+}
+
+
+title {
   font-family: 'Dela Gothic One', cursive;
 }
 
@@ -25,21 +46,14 @@ header {
   text-decoration: none;
 }
 
-ul {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  list-style: none;
-}
-
-ul .nav_menu {
+.nav_menu {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   list-style: none;
 }
 
-li {
+.nav-item2 {
   padding: 0 10px;
   border-right: none;
 }
@@ -80,11 +94,19 @@ li:last-child {
 
 a {
   color: #000 !important;
+  text-decoration: none;
 }
 
 
 .box {
   background-color: rgb(239,124,142);
+  border-radius: 10px;
+  padding: 40px 40px;
+  margin: 40px 0 0 0;
+}
+
+.box_ma {
+  background-color: rgb(182,226,211);
   border-radius: 10px;
   padding: 40px 40px;
   margin: 40px 0 0 0;
@@ -125,6 +147,11 @@ a {
 div .col {
   display: flex;
   flex-wrap: wrap;
+}
+
+div .card {
+  background-color: rgb(249,247,237);
+  border-radius: 10px;
 }
 
 .col-1o {

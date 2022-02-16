@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ 貯金登録')
 @section('header_sub')
-    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\ExpenseController@add') }}">支出<br>登録</a></li>
-    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\SavingController@add') }}">貯金<br>登録</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\ExpenseController@index') }}">お金<br>一覧</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\YosanController@add') }}">予算<br>登録</a></li>
+    <li class="nav-item2"><a class="nav-link" aria-current="page" href="{{ action('Admin\ExpenseController@add') }}">支出<br>登録</a></li>
+    <li class="nav-item2"><a class="nav-link" aria-current="page" href="{{ action('Admin\SavingController@add') }}">貯金<br>登録</a></li>
+    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\ExpenseController@index') }}">お金<br>一覧</a></li>
+    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\BudgetController@add') }}">予算<br>登録</a></li>
 @endsection
 @section('content')
 <hr>
@@ -111,7 +111,7 @@
                     <div class="form-row">
                         <label class="col-2">日付</label>
                         <div class="form-group col-3">
-                            <input name="date" type="date" />
+                            <input name="stocked_at" type="date" />
                         </div>
                     </div>
                     <br>

@@ -36,12 +36,10 @@ class ExpenseController extends Controller
     
     public function index(Request $request) 
     {
-        $oshis = Expense::with('oshi')->get();
+        $oshi = new Oshi();
+        $oshi->oshi_id = $oshi->id;
         
-        
-        $posts = Expense::where('user_id', Auth::id() )->select('oshi_id')->get();
-        
-        
+        dd($oshi);
         
         $stage_sum2 = Expense::where('date', 'like', '2022-02%')->where('oshi_id', '=', 1)->sum("stage");
         $concert_sum2 = Expense::where('date', 'like', '2022-02%')->where('oshi_id', '=', 1)->sum("concert");

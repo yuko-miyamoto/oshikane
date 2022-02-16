@@ -13,7 +13,6 @@ class Memory extends Model
         'stage_name' => 'required',
         'artist' => 'required',
         'place' => 'required',
-        'ticket' => 'required',
         'stage_memo' => 'required',
         );
 }

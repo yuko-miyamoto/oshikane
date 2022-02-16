@@ -23,7 +23,7 @@
                     @endforeach
                     <a href="" align="right"></a>
                 </div>
-                <div class="box_me_v">
+                <div class="box_ma">
                     <div class="row row-cols-1 row-cols-md-3 g-2">
                         @foreach($posts2 as $memory)
                         <div class="col">

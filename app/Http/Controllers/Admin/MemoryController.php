@@ -41,18 +41,22 @@ class MemoryController extends Controller
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
+        $user_id = $request->user_id;
+        $search_id = $request->get('id');
         if ($cond_title != '') {
             $posts = Memory::where('artist',  $cond_title)
             ->orwhere('place', $cond_title)
             ->where( 'user_id', Auth::id() )
             ->get();
+        } elseif ($search_id != '') {
+            $posts = Memory::where('id', '=', $search_id )->get();
         } else {
             $posts = Memory::where( 'user_id', Auth::id() )
             ->orderBy('created_at', 'desc')
             ->get();
         }
         
-        return view('admin.memory.index', ['posts' => $posts, 'cond_title' => $cond_title,]);
+        return view('admin.memory.index', ['posts' => $posts, 'cond_title' => $cond_title, 'search_id' => $search_id]);
     }
    
     public function edit(Request $request)

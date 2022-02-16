@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label class="col-2">チケット</label>
                                     <div class="col-10">
-                                        <input type="text" class="form-control" name="ticket" value="{{ old('ticket') }}">
+                                        <input type="text" class="form-control" name="stage" value="{{ old('stage') }}">
                                     </div>
                                 </div>
                                 <div class="form group">
@@ -109,7 +109,7 @@
                             <div class="form-group">
                                 <label class="col-2">チケット</label>
                                 <div class="col-10">
-                                    <input type="text" class="form-control" name="ticket" value="{{ old('ticket') }}">
+                                    <input type="text" class="form-control" name="concert" value="{{ old('concert') }}">
                                 </div>
                             </div>
                                 <div class="form-group">

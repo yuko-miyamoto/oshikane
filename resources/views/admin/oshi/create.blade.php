@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ 推し管理')
 @section('header_sub')
-    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\OshiController@add') }}">推し<br>登録</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\OshiController@index') }}">推し<br>一覧</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\GateController@add') }}">推し<br>布教</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\GateController@index') }}">布教<br>一覧</a></li>
+    <li class="nav-item2"><a class="nav-link" aria-current="page" href="{{ action('Admin\OshiController@add') }}">推し<br>登録</a></li>
+    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\OshiController@index') }}">推し<br>一覧</a></li>
+    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\GateController@add') }}">推し<br>布教</a></li>
+    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\GateController@index') }}">布教<br>一覧</a></li>
 @endsection
 @section('content')
     <hr>

@@ -11,7 +11,7 @@ class Expense extends Model
     public function oshi()
     {
         
-        return $this->belongsTo(Oshi::class);
+        return $this->belongsTo('App\Oshi');
     } 
     
     protected $guarded = array('id');

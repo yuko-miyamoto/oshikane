@@ -9,7 +9,7 @@ class Oshi extends Model
 {
     public function expenses ()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany('App/Expense');
     }
     //
     protected $guarded = array('id');

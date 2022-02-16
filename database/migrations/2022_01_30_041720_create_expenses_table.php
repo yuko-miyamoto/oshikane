@@ -37,7 +37,7 @@ class CreateExpensesTable extends Migration
             $table->string('toy_memo')->nullable();
             $table->string('others')->nullable();
             $table->string('others_memo')->nullable();
-            $table->string('date');
+            $table->string('paid_at');
             $table->string('user_id');
             $table->string('oshi_id');
             $table->timestamps();

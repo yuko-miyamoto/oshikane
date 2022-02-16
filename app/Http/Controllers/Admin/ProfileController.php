@@ -35,7 +35,6 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
     
-    
     public function search(Request $request)
     {
        $cond_title = $request->cond_title;
@@ -47,12 +46,21 @@ class ProfileController extends Controller
            $posts = Profile::where('user_id', '!=', Auth::id())
            ->get();
            }
-           
-        
+    
         return view('admin.profile.search', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }    
+    
+    public function followresult(Request $request)
+    {
+       $follower_id = $request->get('user_id');
+       if ($follower_id != '') {
+           $posts2 = Profile::where('user_id', '=', $follower_id)
+           ->get();
+        }
+       
+       return view('admin.profile.followresult', ['posts2' => $posts2]);
     }
-    
-    
+
     public function edit(Request $request)
     {
         $profile = Profile::find($request->id);

@@ -4,7 +4,7 @@
     <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\ExpenseController@add') }}">支出<br>登録</a></li>
     <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\SavingController@add') }}">貯金<br>登録</a></li>
     <li class="nav-item"><a class="nav-link" href="{{ action('Admin\ExpenseController@index') }}">お金<br>一覧</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\YosanController@add') }}">予算<br>登録</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\BudgetController@add') }}">予算<br>登録</a></li>
 @endsection
 @section('content')
     <hr>

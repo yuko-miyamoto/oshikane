@@ -13,7 +13,7 @@
         {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
             
@@ -22,7 +22,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
         
-         <!-- Styles -->
+        <!-- Styles -->
         {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -32,43 +32,64 @@
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
         
     </head>
-    <header>
-        <h1 class="logo"><a class="main-link" href="#">推しとお金と。</a></h1>
-    </header>
     <body>
         <div id="app">
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">推し</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">メモリー</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ action('Admin\ExpenseController@add') }}">お金</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">わたし</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ action('Admin\ProfileController@add') }}">なまえ</a></li>
-                        @guest
-                        <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                        @else
-                        <li><a class="dropdown-item" href="">{{ Auth::user()->name }}<span class="caret"></span></a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        </li>
-                        @endguest
-                    </ul>
-                </li>
-            </ul>
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">推しとお金と。</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="navbar-header" aria-expanded="false" aria-label="切り替え">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="Navber">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">推し</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">メモリー</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@add') }}">お金</a>
+                                </li>
+                                </ul>
+                                <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">わたし</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                                        <a class="dropdown-item" href="{{ action('Admin\ProfileController@add') }}">なまえ</a>
+                                        @guest
+                                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                                        @else
+                                        <a class="dropdown-item" href="">ユーザー<br>{{ Auth::user()->name }}
+                                        <span class="caret"></span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        @endguest
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            
             <hr>
-            <ul class="nav_menu" style="justify-content:flex-start;">
-            @yield('header_sub')
+            <ul class="nav_menu">
+                @yield('header_sub')
             </ul>
-    
-        <main>
-                {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-                @yield('content')
-        </main>
+            
+            <main>
+                    {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
+                    @yield('content')
+            </main>
+            
         </div>
-       
     </body>
 </html>
