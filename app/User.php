@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'nicname', 'oshi'
     ];
 
     /**
@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public static $rules = array (
+        'nickname' => 'required',
+        'oshi' => 'required',
+        );
+    
+     public function memories()
+    {
+        return $this->hasMany(Memory::class);
+    }
+    //usersテーブルからnameを取得する
+    public function getDate()
+    {
+        return $this->name;
+    }
+    //
+    public function followers() 
+    {
+        return $this->belongsTo(Follower::class);
+        
+    }
 }

@@ -78,6 +78,7 @@ class OshiController extends Controller
     {
         $this->validate($request, Oshi::$rules);
         $oshi = Oshi::find($request->id);
+        $oshi_form = $request->all();
         if ($request->remove == 'true') {
             $oshi_form['image_path'] = null;
         } elseif ($request->file('image')) {
@@ -92,6 +93,7 @@ class OshiController extends Controller
         unset($oshi_form['_token']);
         
         $oshi->fill($oshi_form)->save();
+        
         return redirect('admin/oshi/');
     }
     public function delete(Request $request)

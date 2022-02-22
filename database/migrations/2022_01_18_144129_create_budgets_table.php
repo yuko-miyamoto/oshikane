@@ -27,7 +27,8 @@ class CreateBudgetsTable extends Migration
             $table->string('travel')->nullable();
             $table->string('toy')->nullable();
             $table->string('others')->nullable();
-            $table->string('user_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('oshi_id')->unsigned();
             $table->timestamps();
         });
     }

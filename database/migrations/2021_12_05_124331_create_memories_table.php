@@ -15,21 +15,23 @@ class CreateMemoriesTable extends Migration
     {
         Schema::create('memories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('stage_name');
             $table->string('artist');
             $table->string('place');
-            $table->string('ticket');
+            $table->string('concert')->nullable();
+            $table->string('stage')->nullable();
             $table->string('stage_memo');
-            $table->string('s_list_01');
-            $table->string('s_list_02');
-            $table->string('s_list_03');
-            $table->string('s_list_04');
-            $table->string('s_list_05');
-            $table->string('s_list_06');
-            $table->string('s_list_07');
-            $table->string('s_list_08');
-            $table->string('s_list_09');
-            $table->string('s_list_10');
+            $table->string('s_list_01')->nullable();
+            $table->string('s_list_02')->nullable();
+            $table->string('s_list_03')->nullable();
+            $table->string('s_list_04')->nullable();
+            $table->string('s_list_05')->nullable();
+            $table->string('s_list_06')->nullable();
+            $table->string('s_list_07')->nullable();
+            $table->string('s_list_08')->nullable();
+            $table->string('s_list_09')->nullable();
+            $table->string('s_list_10')->nullable();
             $table->string('image_path')->nullable();
             $table->timestamps();
         });

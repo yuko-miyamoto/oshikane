@@ -34,8 +34,8 @@ class CreateSavingsTable extends Migration
             $table->string('others')->nullable();
             $table->string('others_memo')->nullable();
             $table->string('stocked_at');
-            $table->string('user_id');
-            $table->string('oshi_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('oshi_id')->unsigned();
             $table->timestamps();
         });
     }

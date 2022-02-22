@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('main/index', 'Admin\MainController@index');
+    Route::get('main/profile', 'Admin\MainController@profile');
     
     Route::get('oshi/create', 'Admin\OshiController@add');
     Route::post('oshi/create', 'Admin\OshiController@create');
@@ -29,7 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('gate/create', 'Admin\GateController@add');
     Route::Post('gate/create', 'Admin\GateController@update');
     Route::get('gate', 'Admin\GateController@index');
-    
+   
     Route::get('memory/create', 'Admin\MemoryController@add');
     Route::post('memory/create', 'Admin\MemoryController@create');
     Route::get('memory/index/', 'Admin\MemoryController@index');
@@ -48,12 +50,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('budget/create', 'Admin\BudgetController@add');
     Route::post('budget/create', 'Admin\BudgetController@create');
     
-    Route::get('profile/create', 'Admin\ProfileController@add');
-    Route::post('profile/create', 'Admin\ProfileController@create');
-    Route::get('profile/edit', 'Admin\ProfileController@edit');
-    Route::post('profile/edit', 'Admin\ProfileController@update');
-    Route::get('profile/search', 'Admin\ProfileController@search');
-    Route::get('profile/followresult', 'Admin\ProfileController@followresult');
+    Route::get('user/create', 'Admin\UserController@add');
+    Route::post('user/create', 'Admin\UserController@create');
+    Route::get('user/edit', 'Admin\UserController@edit');
+    Route::post('user/edit', 'Admin\UserController@update');
+    Route::get('user/search', 'Admin\UserController@search');
+    Route::post('user/search', 'Admin\UserController@search');
+    Route::get('user/followresult', 'Admin\UserController@followresult');
+    Route::post('user/search/', 'Admin\FollowerController@store');
+    Route::get('user/delete', 'Admin\FollowerController@delete');
+    Route::get('user/followlist/', 'Admin\UserController@follow_profiles');
+    
+    
+    
     
 });
 Auth::routes();

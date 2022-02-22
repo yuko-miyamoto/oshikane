@@ -6,24 +6,31 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Oshi;
 use App\Memory;
+use App\User;
 use Auth;
 
 class MainController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Oshi::where('user_id', Auth::id())
-        ->where('tentacles', '=', 100)
+        $posts = Oshi::where( 'id', Auth::id() )
+        ->where( 'tentacles', '=', 100 )
         ->get();
         
-        $posts2 = Memory::where('user_id', Auth::id())
+        $posts2 = Memory::where('user_id', '!=', Auth::id() )
         ->orderBy('created_at', 'desc')
         ->take(6)->get();
+        
         
         return view('admin.main.index', ['posts' => $posts, 'posts2' => $posts2]);
     }
     
-    
+    public function profile(request $request)
+    {
+        $user = User::find($request->id);
+        
+        return view('admin.main.profile', ['user' => $user]);
+    }
 
 }

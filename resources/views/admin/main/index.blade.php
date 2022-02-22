@@ -28,7 +28,7 @@
                         @foreach($posts2 as $memory)
                         <div class="col">
                             <div class="card">
-                                <a href="{{ action('Admin\MemoryController@index', ['id' => $memory->id]) }}">
+                                <a href="{{ action('Admin\MemoryController@index', ['id' => $memory->user_id]) }}">
                                     <img src="/storage/image/{{$memory->image_path}}" class="card-img-top" alt="card-grid-image">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ \Str::limit($memory->stage_name, 20) }}</h5>

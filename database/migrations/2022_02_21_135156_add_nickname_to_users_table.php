@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddConcertToMamoriesTable extends Migration
+class AddNicknameToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddConcertToMamoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('memories', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('nickname')->nullable();
             //
-            $table->string('concert');
         });
     }
 
@@ -26,7 +26,7 @@ class AddConcertToMamoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('memories', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

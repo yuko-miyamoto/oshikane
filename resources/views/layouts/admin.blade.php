@@ -57,7 +57,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">わたし</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                                        <a class="dropdown-item" href="{{ action('Admin\ProfileController@add') }}">なまえ</a>
+                                        <a class="dropdown-item" href="{{ action('Admin\UserController@add') }}">なまえ</a>
                                         @guest
                                         <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
                                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}

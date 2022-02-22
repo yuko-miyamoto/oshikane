@@ -12,7 +12,9 @@ $factory->define(Profile::class, function (Faker $faker) {
     return [
         'profile_name' => $faker->name,
         'profile_oshi' => $faker->name,
-        'user_id' => $faker->numberBetween(1,5),
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
+        },
         //
     ];
 });

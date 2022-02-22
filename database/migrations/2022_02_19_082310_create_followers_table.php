@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEventToMemoriesTable extends Migration
+class CreateFollowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddEventToMemoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('memories', function (Blueprint $table) {
-            $table->string('event');
-            //
+        Schema::create('followers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->BigInteger('follower_id')->nullable();
+            $table->BigInteger('followee_id')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddEventToMemoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('memories', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('followers');
     }
 }

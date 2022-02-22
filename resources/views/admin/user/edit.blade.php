@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-10 mx-auto">
                 <h2>わたし</h2>
-                <form action="{{ action('Admin\ProfileController@update') }}" method="post" entype="multipart/form-data">
+                <form action="{{ action('Admin\UserController@update') }}" method="post" entype="multipart/form-data">
                     @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -21,16 +21,16 @@
                         <div class="form-group">
                             <label class="col-2">わたしのなまえ</label>
                             <div class="col-10">
-                                <input type="text" class="form-control" name="profile_name" value="{{ optional($profile_form)->profile_name }}">
+                                <input type="text" class="form-control" name="nickname" value="{{ optional($user_form)->nickname }}">
                             </div>
                         </div>
                         <label class="col-2">いち推し</label>
                         <div class="col-10">
-                            <input type="text" class="form-control" name="profile_oshi" valu="{{ optional($profile_form)->profile_oshi }}">
+                            <input type="text" class="form-control" name="oshi" valu="{{ optional($user_form)->oshi }}">
                         </div>
                         <div class="form-group row">
                             <div class="col-md-10">
-                                <input type="hidden" name="id" value="{{ optional($profile_form)->id }}">
+                                <input type="hidden" name="id" value="{{ optional($user_form)->id }}">
                                 {{ csrf_field() }}
                                 <div class="form-group d-flex align-items-center justify-content-center">
                                     <input type="submit" class="btn btn-outline-dark bg-{color}" value="更　新">
@@ -39,7 +39,6 @@
                         </div>
                         <br><br><br>
                     </div>
-                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 </form>
             </div>
         </div>

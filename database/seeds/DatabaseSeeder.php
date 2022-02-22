@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         //    $this->call($seeder);
         //}
         //$this->call(MemoriesTableSeeder::class);
+        $this->call(ProfilesTableSeeder::class);
     }
 }

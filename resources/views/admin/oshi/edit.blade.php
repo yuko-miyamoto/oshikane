@@ -123,6 +123,7 @@
                             </div>
                         </div><br>
                     </div>
+                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                </form>
             </div>
         </div>

@@ -15,7 +15,7 @@ class CreateOshisTable extends Migration
     {
         Schema::create('oshis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('oshi_name');
             $table->string('birthday');
             $table->string('birthday_y');
@@ -31,10 +31,10 @@ class CreateOshisTable extends Migration
             $table->string('history_d');
             $table->string('tentacles');
             $table->string('oshi_memo');
-            $table->string('text_history');
-            $table->string('text_point');
-            $table->string('text_input');
-            $table->string('text_now');
+            $table->string('text_history')->nullable();
+            $table->string('text_point')->nullable();
+            $table->string('text_input')->nullable();
+            $table->string('text_now')->nullable();
             $table->string('image_path')->nullable();
             $table->timestamps();
         });

@@ -73,7 +73,6 @@
                                     <input type="submit" class="btn btn-outline-dark bg-{color} btn-lg" value="投　稿">
                                     <br><br>
                                 </div>
-                                <input type="hidden" name="event" value="stage">
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                             </form>
                         </div>
@@ -163,7 +162,6 @@
                                         <input type="submit" class="btn btn-outline-dark bg-{color} btn-lg" value="投　稿">
                                     <br><br>
                                     </div>
-                                    <input type="hidden" name="event" value="concert">
                                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                 </form>
                             </div>
