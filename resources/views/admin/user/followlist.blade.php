@@ -22,20 +22,38 @@
                                 <th scope="row">推しとものなまえ</th>
                                 <th>推しとものいち推し</th>
                                 <th>ともだちのへや</th>
+                                <th>おわかれする</th>
                             </tr>
-                            @foreach($followers as $followers)
+                            @foreach($followers as $follow)
                             <tr>
-                                <td scope="row" align="center">{{ \Str::limit($followers->profile_name, 20) }}</td>
-                                <td align="center">{{ \Str::limit($followers->profile_oshi, 20) }}</td>
+                                <td scope="row" align="center">{{ \Str::limit($follow->user->nickname, 20) }}</td>
+                                <td align="center">{{ \Str::limit($follow->user->oshi, 20) }}</td>
                                 <td align="center">
-                                    <form action="{{ action('Admin\MainController@profile',['id' => $followers->user_id]) }}" method="get">
+                                    <form action="{{ action('Admin\MainController@profile',['id' => $follow->followee_id]) }}" method="get">
                                     <button type="submit">
                                         test
                                     </button>
                                     </form>
                                 </td>
-                                <td>
-                                    
+                                <td align="center">
+                                    <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $follow->followee_id }}">さよなら</button>
+                                        <div class="modal fade" id="modal1{{ $follow->followee_id }}" tabindex="-1" aria-labelledby="modal1label{{ $follow->followee_id }}">
+                                            <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal1label{{ $follow->followee_id }}">さよならする？</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $follow->followee_id]) }}" role="botton">
+                                                            する
+                                                        </a>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">しない</button>
+                                                    </div>
+                                                    <div class="modal-footer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </td>
                             </tr>
                             @endforeach

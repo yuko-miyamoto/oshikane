@@ -8,10 +8,10 @@
 <hr>
     <div class="container">
         <div class="row　justify-content-center">
-            <div class="ccol-md-9 mx-auto">
+            <div class="col-md-9 mx-auto">
                 <h2>わたし</h2>
-                
-                <form action="{{ action('Admin\UserController@create') }}" method="post" entype="multipart/form-data">
+                @if($users->isEmpty())
+                <form action="{{ action('Admin\UserController@profile_create') }}" method="post" entype="multipart/form-data">
                     @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -20,7 +20,9 @@
                     </ul>
                     @endif
                     <div class="box_pro">
-                        <label class="col-md-6 mx-auto">なまえと推しの登録</label>
+                        <div class="d-flex justify-content-center">
+                            <label class="col-md-9" style="text-align: center;">なまえと推しの登録</label>
+                        </div>
                         <br>
                         <div class="form-group row">
                             <label class="col-md-2">わたしのなまえ</label>
@@ -37,14 +39,11 @@
                             <br>
                         </div>
                         <div style="text-align: center;">
-                        <input type="submit" class="btn btn-outline-dark bg-{color}" value="登　録">
+                            <input type="submit" class="btn btn-outline-dark bg-{color}" value="登　録">
                         </div>
-                        <br><br>
                     </div>
                 </form>
-                
-                <br><br>
-                
+                @endif
                 <div class="box_pro">
                     <br>
                     <div class="d-flex justify-content-center">
@@ -62,14 +61,12 @@
                             <tr>
                                 <td scope="row" align="center">{{ \Str::limit($user->nickname, 20) }}</td>
                                 <td align="center">{{ \Str::limit($user->oshi, 20) }}</td>
-                                <td align="center"> <a href="{{ action('Admin\UserController@edit', ['id' => $user->id]) }}">編集</a></td>
+                                <td align="center"><a href="{{ action('Admin\UserController@edit', ['id' => $user->id]) }}">編集</a></td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <br><br>
                 </div>
-                
             </div>
         </div>
     </div>

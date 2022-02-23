@@ -14,15 +14,16 @@ class UserController extends Controller
     public function add()
     {
         //認証ユーザーのid取得
-        $users = User::all();
-        return view('admin.user.create', ['users' => $users]);
+        $users = User::where('id', Auth::id() )->get();
+        
+        return view('admin.user.profile', ['users' => $users]);
     }
     
-    public function create(Request $request)
+    public function profile_create(Request $request)
     {
         $this->validate($request, User::$rules);
         
-        $user = new User;
+        $user = User::find(Auth::id() ); //登録するidを取得
         
         $form = $request->all();
         
@@ -31,20 +32,33 @@ class UserController extends Controller
         $user->fill($form);
         $user->save();
         
-        return redirect('admin/user/create');
+        return redirect('admin/user/profile');
     }
     
     public function search(Request $request)
     {
-       //リクエストを認証ユーザー以外から取得
+        $other_user = User::where('id', '!=', Auth::id() )->pluck('id'); //認証ユーザー以外の登録のあるユーザー
+        $followee = Follower::pluck('followee_id');　　　　　　　　　　　//認証ユーザーがフォローしているユーザー
+        //$unfollowee = array_diff($other_user, $followee);
+        //$result = array_intersect($other_user,$followee);
+        
+        
         $cond_title = $request->cond_title;
-       if ($cond_title != '') {
-           $user = User::where('oshi', 'like', '%' .$cond_title .'%')->where('id', '!=', Auth::user()->id)->get();
-           //該当がない場合は認証ユーザー以外のすべてのユーザーを取得
-           } else {
-               $user = User::where('id', '!=', Auth::user()->id)->get();
-            }
-        return view('admin.user.search', ['users' => $users, 'cond_title' => $cond_title]);
+        if ($cond_title != '') {
+            $users = User::where('oshi', 'like', '%' .$cond_title .'%')
+            ->where('id', '!=', Auth::user()->id)  //リクエストを認証ユーザー以外から取得
+            ->where('nickname', '!=', null)        //nicknameがnull以外のもの
+            ->get();
+            } else {
+                $users = User::where('id', '!=', Auth::user()->id)
+                ->where('nickname', '!=', null)
+                ->get(); //該当がない場合は認証ユーザー以外のすべてのユーザーを取得
+                }
+                return view('admin.user.search', [
+                    'users' => $users,
+                    'cond_title' => $cond_title,
+                    'followee' => $followee,
+                    'other_user' => $other_user]);
     }
     
     public function edit(Request $request)
@@ -64,12 +78,12 @@ class UserController extends Controller
         
         $user->fill($user_form)->save();
         
-        return redirect('admin/user/create');
+        return redirect('admin/user/profile');
     }
     
-    public function followers(Request $request)
+    public function index(Request $request)
     {
-        $followers = Auth::user()->followers;
+        $followers = Follower::where('follower_id', Auth::id() )->get();
         
         return view('admin.user.followlist',['followers' => $followers]);
     }

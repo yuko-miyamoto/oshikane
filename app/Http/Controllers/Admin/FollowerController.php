@@ -16,8 +16,8 @@ class FollowerController extends Controller
     public function store(Request $request)
     {
         $follower = new Follower;
-        $follower->follower_id = Auth::user()->id;
-        $follower->followee_id = $request->follower_id;
+        $follower->follower_id = Auth::user()->id; //フォローする人 = 認証ユーザー
+        $follower->followee_id = $request->followee_id; //フォローされる人
         $follower->save();
         
         
@@ -26,10 +26,9 @@ class FollowerController extends Controller
     
     public function delete(Request $request) 
     {
-        $user = User::find($request->$id);
-        
-        $user->delete();
-        
+        $user = Auth::user()->id;
+        $follower = Follower::where('followee_id', $request->id)->where('follower_id', $user)->first();
+        $follower->delete();
         
         return redirect('admin/user/followlist');
     }    //

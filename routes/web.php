@@ -50,8 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('budget/create', 'Admin\BudgetController@add');
     Route::post('budget/create', 'Admin\BudgetController@create');
     
-    Route::get('user/create', 'Admin\UserController@add');
-    Route::post('user/create', 'Admin\UserController@create');
+    Route::get('user/profile', 'Admin\UserController@add');
+    Route::post('user/profile', 'Admin\UserController@profile_create');
     Route::get('user/edit', 'Admin\UserController@edit');
     Route::post('user/edit', 'Admin\UserController@update');
     Route::get('user/search', 'Admin\UserController@search');
@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('user/followresult', 'Admin\UserController@followresult');
     Route::post('user/search/', 'Admin\FollowerController@store');
     Route::get('user/delete', 'Admin\FollowerController@delete');
-    Route::get('user/followlist/', 'Admin\UserController@follow_profiles');
+    Route::get('user/followlist/', 'Admin\UserController@index');
     
     
     
