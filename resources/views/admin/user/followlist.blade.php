@@ -1,14 +1,13 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ 推しとも一覧')
 @section('header_sub')
-    <li class="nav-item2"><a class="nav-link" aria-current="page" href="{{ action('Admin\UserController@add') }}">なまえ<br>登録</a></li>
-    <li class="nav-item2"><a class="nav-link" href="{{ action('Admin\UserController@search') }}">推しとも<br>検索</a></li>
+    
 @endsection
 @section('content')
-    <hr>
+    
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <h2>推しとも一覧</h2>
                 <div class="box_pro">
                     <br>
@@ -29,10 +28,11 @@
                                 <td scope="row" align="center">{{ \Str::limit($follow->user->nickname, 20) }}</td>
                                 <td align="center">{{ \Str::limit($follow->user->oshi, 20) }}</td>
                                 <td align="center">
-                                    <form action="{{ action('Admin\MainController@profile',['id' => $follow->followee_id]) }}" method="get">
-                                    <button type="submit">
-                                        test
-                                    </button>
+                                    <form action="{{ action('Admin\MainController@profile') }}" method="get">
+                                        <input type="hidden" name="id" value="{{ $follow->user->id }}">
+                                        <button type="submit" class="btn btn-outline-success bg-{color} btn-sm">
+                                            おじゃまする
+                                        </button>
                                     </form>
                                 </td>
                                 <td align="center">

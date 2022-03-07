@@ -40,9 +40,14 @@ class User extends Authenticatable
     public static $rules = array (
         'nickname' => 'required',
         'oshi' => 'required',
-        );
+    );
     
-     public function memories()
+    public function oshis()
+    {
+        return $this->hasMany(Oshi::class);
+    }
+    
+    public function memories()
     {
         return $this->hasMany(Memory::class);
     }
@@ -51,5 +56,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Follower::class, 'followee_id');
         
+    }
+    
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
     }
 }

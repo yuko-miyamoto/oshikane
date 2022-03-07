@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('expense/create', 'Admin\ExpenseController@add');
     Route::post('expense/create', 'Admin\ExpenseController@create');
     Route::get('expense', 'Admin\ExpenseController@index');
+    Route::get('ajax/expense', 'Admin\Ajax\ExpenseController@index');
+    Route::get('ajax/expense/{oshi_id}', 'Admin\Ajax\ExpenseController@index');
+    
     
     Route::get('saving/create', 'Admin\SavingController@add');
     Route::post('saving/create', 'Admin\SavingController@create');

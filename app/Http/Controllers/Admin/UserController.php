@@ -37,11 +37,7 @@ class UserController extends Controller
     
     public function search(Request $request)
     {
-        $other_user = User::where('id', '!=', Auth::id() )->pluck('id'); //認証ユーザー以外の登録のあるユーザー
-        $followee = Follower::pluck('followee_id');　　　　　　　　　　　//認証ユーザーがフォローしているユーザー
-        //$unfollowee = array_diff($other_user, $followee);
-        //$result = array_intersect($other_user,$followee);
-        
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
         
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
@@ -58,7 +54,7 @@ class UserController extends Controller
                     'users' => $users,
                     'cond_title' => $cond_title,
                     'followee' => $followee,
-                    'other_user' => $other_user]);
+                    ]);
     }
     
     public function edit(Request $request)

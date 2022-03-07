@@ -32,9 +32,9 @@ $factory->define(Expense::class,function (Faker $faker) {
             'toy_memo' => $faker->realText(10),
             'others' => $faker->numberBetween(5000,6000),
             'others_memo' => $faker->realText(10),
-            'paid_at' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+2 month')->format('Y-m-d'),
-            'user_id' => $faker->numberBetween(1,5),
-            'oshi_id' => $faker->numberBetween(1,5),
+            'paid_at' => $faker->dateTimeBetween($startDate = '-1year', $endDate = 'now')->format('Y-m-d'),
+            'user_id' => $faker->numberBetween(1,4),
+            'oshi_id' => $faker->numberBetween(1,3),
             'created_at' => $now,
             'updated_at' => $now,
         ];

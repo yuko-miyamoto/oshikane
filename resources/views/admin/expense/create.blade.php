@@ -22,13 +22,13 @@
                     @endif
                     <div class="box_mo_c">
                         <div class="form-row">
-                        <label class="col-2">カテゴリ</label>
+                        <label class="col-4">カテゴリ</label>
                         <lavel class="col-3" align="center">金額</lavel>
-                        <lavel class="col-6" align="center">メモ</lavel>
+                        <lavel class="col-3" align="center">メモ</lavel>
                     </div>
                     <br>
                     <div class="form-row">
-                        <label class="col-2">演劇</label>
+                        <label class="col-3">演劇</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="stage" value="">
                         </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">コンサート</label>
+                        <label class="col-3">コンサート</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="concert" value="">
                         </div>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">配信</label>
+                        <label class="col-3">配信</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="web" value="">
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">映画</label>
+                        <label class="col-3">映画</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="movie" value="">
                         </div>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">CD</label>
+                        <label class="col-3">CD</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="cd" value="">
                         </div>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">DVD</label>
+                        <label class="col-3">DVD</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="dvd" value="">
                         </div>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">雑誌</label>
+                        <label class="col-3">雑誌</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="magazine" value="">
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">交通費</label>
+                        <label class="col-3">交通費</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="train" value="">
                         </div>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">宿泊費</label>
+                        <label class="col-3">宿泊費</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="travel" value="">
                         </div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">ガチャ</label>
+                        <label class="col-3">ガチャ</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="toy" value="">
                         </div>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="col-2">その他</label>
+                        <label class="col-3">その他</label>
                         <div class="form-group col-3">
                             <input type="number" class="form-control" name="others" value="">
                         </div>

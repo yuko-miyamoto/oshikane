@@ -54,6 +54,25 @@ title {
   border-right: none;
 }
 
+.dropdown-menu {
+  background-color: #FAEEE8;
+}
+
+#second {
+  background-color: #B2D5F2;
+}
+
+#heart {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.list-group-item {
+  border-color: #B2D5F2;
+  background-color: #B2D5F2;
+}
+
 #myTab {
   display: flex;
   justify-content: flex-start;
@@ -208,11 +227,6 @@ select.form-control_mo {
 
 .table-dark {
   color: #fff;
-}
-
-.list-group-item {
-  border-color: #fff;
-  background-color: #000;
 }
 
 .login-box {

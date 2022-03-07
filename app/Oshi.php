@@ -7,9 +7,14 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Oshi extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function expenses ()
     {
-        return $this->hasMany('App/Expense');
+        return $this->hasMany(Expense::class);
     }
     //
     protected $guarded = array('id');

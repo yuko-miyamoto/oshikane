@@ -8,10 +8,15 @@ use Kyslik\ColumnSortable\Sortable;
 class Expense extends Model
 {
     //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function oshi()
     {
         
-        return $this->belongsTo('App\Oshi');
+        return $this->belongsTo(Oshi::class);
     } 
     
     protected $guarded = array('id');

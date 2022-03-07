@@ -22,76 +22,76 @@
                         @endif
                         <div class="box_yo">
                             <div class="form-group">
-                                <label class="col-md-2">総予算</label>
+                                <label class="col-md-3">総予算</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="total_budget">
                                 </div>
                             </div>
                             <br>
-                            <label class="col-md-2">カテゴリ別 予算</label>
+                            <label class="col-md-4">カテゴリ別 予算</label>
                             <br><br>
                             <div class="form-group row">
-                                <label class="col-md-2">演劇</label>
+                                <label class="col-md-3">演劇</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="stage">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">コンサート</label>
+                                <label class="col-md-3">コンサート</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="concert">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">配信</label>
+                                <label class="col-md-3">配信</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="web">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">映画</label>
+                                <label class="col-md-3">映画</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="movie">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">CD</label>
+                                <label class="col-md-3">CD</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="cd">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">DVD</label>
+                                <label class="col-md-3">DVD</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="dvd">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">雑誌</label>
+                                <label class="col-md-3">雑誌</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="magazine">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">交通費</label>
+                                <label class="col-md-3">交通費</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="train">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">宿泊費</label>
+                                <label class="col-md-3">宿泊費</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="travel">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">ガチャ</label>
+                                <label class="col-md-3">ガチャ</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="toy">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2">その他</label>
+                                <label class="col-md-3">その他</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="others">
                                 </div>

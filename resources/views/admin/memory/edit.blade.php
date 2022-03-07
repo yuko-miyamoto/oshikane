@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ メモリー編集')
 @section('header_sub')
-　　<li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\MemoryController@add') }}">メモリー<br>投稿</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">メモリー<br>一覧</a></li>
+　　
 @endsection
 @section('content')
     <hr>

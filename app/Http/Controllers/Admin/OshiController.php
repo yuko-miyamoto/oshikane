@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Oshi;
+use App\Follower;
+use App\User;
+use App\Expense;
 use Auth;
 use carbon\Carbon;
 use DateTime;
@@ -47,21 +50,33 @@ class OshiController extends Controller
     
     public function index(Request $request)
     {
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
+        $user_id = $request->get('user_id');
+        $value = $request->input('user_id');
         $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-            $posts = Oshi::where('oshi_name', $cond_title)
+        
+        if ($user_id != '') {
+            $oshis = Oshi::where('user_id', $user_id)
+            ->get();
+        } elseif ($cond_title != '' && $value != '') {
+            $oshis = Oshi::where('oshi_name', 'like', '%' .$cond_title . '%')
+            ->where('user_id', '!=', Auth::id() )
+            ->get();
+        } elseif ($cond_title != '') {
+            $oshis = Oshi::where('oshi_name', 'like', '%' .$cond_title . '%')
             ->where( 'user_id', Auth::id() )
             ->get();
         } else {
-            $posts = Oshi::where('user_id', Auth::id())
+            $oshis = Oshi::where('user_id', Auth::id())
             ->get()
             ->sortByDesc("tentacles");
-            
         }
-        
-        $date = Carbon::now();
-        
-        return view('admin.oshi.index', ['posts' => $posts, 'cond_title' => $cond_title, 'date' => $date]);
+        return view('admin.oshi.index', [
+            'oshis' => $oshis,
+            'cond_title' => $cond_title,
+            'followee' => $followee,
+            'value' => $value,
+            ]);
     }
     
    

@@ -1,14 +1,13 @@
 @extends('layouts.admin')
-@section('title', 'オシカネ わたしのなまえ')
+@section('title', 'オシカネ ワタシの名前')
 @section('header_sub')
-    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ action('Admin\UserController@add') }}">なまえ<br>登録</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ action('Admin\UserController@search') }}">推しとも<br>検索</a></li>
+    
 @endsection
 @section('content')
-<hr>
+
     <div class="container">
         <div class="row　justify-content-center">
-            <div class="col-md-9 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <h2>わたし</h2>
                 @if($users->isEmpty())
                 <form action="{{ action('Admin\UserController@profile_create') }}" method="post" entype="multipart/form-data">
@@ -25,7 +24,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label class="col-md-2">わたしのなまえ</label>
+                            <label class="col-md-2">わたしのあだな</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}">
                             </div>
@@ -44,28 +43,61 @@
                     </div>
                 </form>
                 @endif
-                <div class="box_pro">
+                <div class="box_me_v">
                     <br>
                     <div class="d-flex justify-content-center">
-                        <label class="col-md-9" style="text-align: center;">わたしのなまえといち推し</label>
+                        <label class="col-md-9" style="text-align: center;">わたしのこと</label>
                     </div>
                     <br>
-                    <table class="table">
+                    @foreach($users as $user)
+                    <div align="right">
+                        <a href="{{ action('Admin\UserController@edit', ['id' => $user->id]) }}">編集</a>
+                    </div>
+                    <table class="table table-borderless">
                         <tbody>
-                            <tr align="center">
-                                <th scope="row">わたしのなまえ</th>
-                                <th>わたしのいち推し</th>
-                                <th>へんこうする</th>
-                            </tr>
-                            @foreach($users as $user)
                             <tr>
-                                <td scope="row" align="center">{{ \Str::limit($user->nickname, 20) }}</td>
-                                <td align="center">{{ \Str::limit($user->oshi, 20) }}</td>
-                                <td align="center"><a href="{{ action('Admin\UserController@edit', ['id' => $user->id]) }}">編集</a></td>
+                                <th>
+                                    わたしのなまえ
+                                </th>
+                                <td>
+                                    {{ \Str::limit( $user->name, 20) }}
+                                </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <th>
+                                    わたしのあだな
+                                </th>
+                                <td>
+                                    {{ \Str::limit($user->nickname, 20) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    わたしのいち推し
+                                </th>
+                                <td>
+                                    {{ \Str::limit($user->oshi, 20) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    メールアドレス
+                                </th>
+                                <td>
+                                    {{ \Str::limit($user->email, 20) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    パスワード
+                                </th>
+                                <td>
+                                    {{ str_repeat("*", mb_strlen($user->password, "UTF8")) }}
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                    @endforeach
                 </div>
             </div>
         </div>

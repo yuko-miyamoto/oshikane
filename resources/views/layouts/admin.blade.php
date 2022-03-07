@@ -13,10 +13,12 @@
         {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-            
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+        
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -35,35 +37,72 @@
     <body>
         <div id="app">
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="navbar navbar-expand-lg navbar-light navbar-oshikane">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">推しとお金と。</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="navbar-header" aria-expanded="false" aria-label="切り替え">
+                        <a class="navbar-brand" href="{{ url('/') }}">推しとお金と。</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="Navber">
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">推し</a>
+                                    <a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">
+                                        <img src="{{ asset('storage/images/heart.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        推し
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">メモリー</a>
+                                    <a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">
+                                        <img src="{{ asset('storage/images/memo.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        メモリー
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@add') }}">お金</a>
+                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@add') }}">
+                                        <img src="{{ asset('storage/images/result.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        支出
+                                    </a>
                                 </li>
-                                </ul>
-                                <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Admin\SavingController@add') }}">
+                                        <img src="{{ asset('storage/images/pig.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        貯金
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Admin\UserController@index') }}">
+                                        <img src="{{ asset('storage/images/friend.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        推しとも
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                @guest
+                                <li>
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        {{ __('Login') }}
+                                    </a>
+                                </li>
+                                {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                                @else
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">わたし</a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                                        <a class="dropdown-item" href="{{ action('Admin\UserController@add') }}">なまえ</a>
-                                        @guest
-                                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                                        @else
-                                        <a class="dropdown-item" href="">ユーザー<br>{{ Auth::user()->name }}
-                                        <span class="caret"></span>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       <img src="{{ asset('storage/images/star.png') }}" width="40" height="40">
+                                        <br>
+                                        わたし
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ action('Admin\UserController@search') }}">
+                                            推しともを探す
+                                        </a>
+                                        <a class="dropdown-item" href="{{ action('Admin\UserController@add') }}">
+                                            {{ Auth::user()->name }}の設定
+                                            <span class="caret"></span>
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
@@ -71,14 +110,60 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
-                                        @endguest
+                                    </div>
+                                </li>
+                                @endguest
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <button type="button" class="btn btn-primary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="flase">
+                                        投稿する
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" id="second" aria-labelledby="dropdownMenuButton">
+                                        <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item">
+                                                <a class="dropdown-item" href="{{ action('Admin\OshiController@add') }}">
+                                                    <img src="{{ asset('storage/images/heart.png') }}" width="50" height="50" align="center">
+                                                    <br>
+                                                    推し
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a class="dropdown-item" href="{{ action('Admin\MemoryController@add') }}">
+                                                    <img src="{{ asset('storage/images/memo.png') }}" width="50" height="50" align="center">
+                                                    <br>
+                                                    メモリー
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a class="dropdown-item" href="{{ action('Admin\ExpenseController@add') }}">
+                                                    <img src="{{ asset('storage/images/result.png') }}" width="50" height="50" align="center">
+                                                    <br>
+                                                    支出
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a class="dropdown-item" href="{{ action('Admin\SavingController@add') }}">
+                                                    <img src="{{ asset('storage/images/pig.png') }}" width="50" height="50" align="center">
+                                                    <br>
+                                                    貯金
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a class="dropdown-item" href="{{ action('Admin\BudgetController@add') }}">
+                                                    <img src="{{ asset('storage/images/gama.png') }}" width="50" height="50" align="center">
+                                                    <br>
+                                                    予算
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-            </header>
+        </header>
             
             <hr>
             <ul class="nav_menu">

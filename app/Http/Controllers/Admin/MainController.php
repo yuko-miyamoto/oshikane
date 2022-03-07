@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Oshi;
 use App\Memory;
 use App\User;
+use App\Follower;
+use Carbon\carbon;
 use Auth;
 
 class MainController extends Controller
@@ -14,23 +16,30 @@ class MainController extends Controller
     //
     public function index(Request $request)
     {
-        $posts = Oshi::where( 'id', Auth::id() )
-        ->where( 'tentacles', '=', 100 )
-        ->get();
+        $dt = Carbon::now();
+        $historydays = Oshi::pluck('history')->toArray();
+        $days = $dt->diff($historydays[0]);
         
-        $posts2 = Memory::where('user_id', '!=', Auth::id() )
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid    
+        
+        $oshis = Oshi::where('user_id', '!=', Auth::id() )
+        ->where('tentacles', '>', 50)->get();
+        
+        $memories = Memory::where('user_id', '!=', Auth::id() )
         ->orderBy('created_at', 'desc')
         ->take(6)->get();
         
         
-        return view('admin.main.index', ['posts' => $posts, 'posts2' => $posts2]);
+        return view('admin.main.index', ['oshis' => $oshis, 'memories' => $memories, 'followee' => $followee]);
     }
     
     public function profile(request $request)
     {
-        $user = User::find($request->id);
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
+        $users = User::find($request->id);
         
-        return view('admin.main.profile', ['user' => $user]);
+        
+        return view('admin.main.profile', ['users' => $users, 'followee' => $followee]);
     }
 
 }
