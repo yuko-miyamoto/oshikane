@@ -49,4 +49,10 @@ class Expense extends Model
         'date' => 'required',
         
         );
+        
+        protected $dates = [
+        'paid_at',
+    ];
 }
+    
+    

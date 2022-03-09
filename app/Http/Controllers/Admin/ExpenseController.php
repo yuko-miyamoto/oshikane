@@ -38,8 +38,13 @@ class ExpenseController extends Controller
     public function index(Request $request) 
     {
         $login_user = User::find(Auth::id() );
+        $dates = Expense::pluck('paid_at');
+        foreach ($dates as $date) {
+            $array[] = $date->format('Y');
+        }
+        $years = collect($array)->unique()->sort()->reverse()->values();
         
-        return view('admin.expense.index',['login_user' => $login_user]);
+        return view('admin.expense.index',['login_user' => $login_user, 'years' => $years]);
     }
     
 }

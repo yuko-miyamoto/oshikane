@@ -151,7 +151,59 @@ $(document).ready(function(){
                         }
                     　　
         </script>
-   
+        const concertData = [];
+                const webData = [];
+                const movieData = [];
+                const cdData = [];
+                const dvdData = [];
+                const magazineData = [];
+                const trainData = [];
+                const travelData = [];
+                const toyData = [];
+                const othersData = [];
+        
+        
+        
+         $.each(data['concert'], function (index, value) {
+                        concertData.push(value);
+                        const concertsum = concertData.reduce((prev, current) => prev + current);
+                        $.each(data['web'], function (index, value) { 
+                            webData.push(value);
+                            const websum = webData.reduce((prev, current) => prev + current);
+                            $.each(data['movie'], function (index, value) { 
+                                movieData.push(value);
+                                const moviesum = movieData.reduce((prev, current) => prev + current);
+                                $.each(data['cd'], function (index, value) { 
+                                    cdData.push(value);
+                                    const cdsum = cdData.reduce((prev, current) => prev + current);
+                                    $.each(data['dvd'], function (index, value) { 
+                                        dvdData.push(value);
+                                        const dvdsum = dvdData.reduce((prev, current) => prev + current);
+                                        $.each(data['magazine'], function (index, value) { 
+                                            magazineData.push(value);
+                                            const magazinesum = magazineData.reduce((prev, current) => prev + current);
+                                            $.each(data['train'], function (index, value) { 
+                                                trainData.push(value);
+                                                const trainsum = trainData.reduce((prev, current) => prev + current);
+                                                $.each(data['travel'], function (index, value) { 
+                                                    travelData.push(value);
+                                                    const travelsum = travelData.reduce((prev, current) => prev + current);
+                                                    $.each(data['toy'], function (index, value) { 
+                                                        toyData.push(value);
+                                                        const toysum = toyData.reduce((prev, current) => prev + current);
+                                                        $.each(data['others'], function (index, value) { 
+                                                            othersData.push(value);
+                                                            const otherssum = othersData.reduce((prev, current) => prev + current);
+                                       });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
 
 @endsection
                 
