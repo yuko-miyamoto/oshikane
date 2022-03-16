@@ -151,19 +151,6 @@ $(document).ready(function(){
                         }
                     　　
         </script>
-        const concertData = [];
-                const webData = [];
-                const movieData = [];
-                const cdData = [];
-                const dvdData = [];
-                const magazineData = [];
-                const trainData = [];
-                const travelData = [];
-                const toyData = [];
-                const othersData = [];
-        
-        
-        
          $.each(data['concert'], function (index, value) {
                         concertData.push(value);
                         const concertsum = concertData.reduce((prev, current) => prev + current);
@@ -204,6 +191,39 @@ $(document).ready(function(){
                         });
                     });
                 });
+                
+                <script language="javascript" type="text/javascript">
+        document.getElementById("test").onclick = function() {
+            target = document.getElementById("test");
+            target.disabled = false;
+        }
+        $('#form').validate()
+        const inputText = document.getElementById('total_budget');
+    const button = document.getElementById('submit-btn');
+    inputText.addEventListener('keyup', (e) => {
+      if (5 <= e.target.value.length) {
+        //入力された文字が5文字以上なら実行される
+        button.disabled = false;
+      }
+      document.getElementById('submit-btn').onclick = function() {
+        target = document.getElementById('submit-btn');
+        target.preventDefault();
+        const totalBudget = document.querySelector('#total_budget');
+        console.log(totalBudget);
+        const errMsgBudget = document.querySelector('.err_msg_total_budget');
+        if(!totalBudget.value){
+            errMsgBudget.classList.add('form-invalid');
+            errMsgBudget.textContent = '総予算が入力されていません。';
+            totalBudget.classList.add('input-invalid');
+            return;
+        } 
+        else {
+            errMsgBudget.textContent = '';
+            totalBudget.classList.remove('input-invalid');
+        }
+    }
+    })
+    </script>
 
 @endsection
                 

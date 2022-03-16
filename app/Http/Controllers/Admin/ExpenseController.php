@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Expense;
+use App\Budget;
 use App\Oshi;
 use App\User;
 use carbon\Carbon;
@@ -15,9 +16,9 @@ class ExpenseController extends Controller
     //
     public function add()
     {
-        $posts = Oshi::where('user_id', Auth::id())->get();
+        $oshis = Oshi::where('user_id', Auth::id() )->get();
         
-        return view('admin.expense.create',['posts' => $posts,]);
+        return view('admin.expense.create',['oshis' => $oshis,]);
     }
     
      public function create(Request $request)
@@ -26,7 +27,7 @@ class ExpenseController extends Controller
         $expense = new Expense;
         $form = $request->all();
         
-        $posts = Oshi::find($request->id);
+        $oshis = Oshi::find($request->id);
         
         
         $expense->fill($form);
@@ -44,7 +45,16 @@ class ExpenseController extends Controller
         }
         $years = collect($array)->unique()->sort()->reverse()->values();
         
-        return view('admin.expense.index',['login_user' => $login_user, 'years' => $years]);
+        $budgets = Budget::find(Auth::id() )->toArray();
+        unset($budgets['id']);
+        unset($budgets['total_budget']);
+        unset($budgets['user_id']);
+        unset($budgets['oshi_id']);
+        unset($budgets['created_at']);
+        unset($budgets['updated_at']);
+        
+        
+        return view('admin.expense.index',['login_user' => $login_user, 'years' => $years, 'budgets' => $budgets]);
     }
     
 }

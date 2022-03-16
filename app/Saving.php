@@ -27,7 +27,11 @@ class Saving extends Model
         'media_memo' => 'nullable',
         'others' => 'numeric | nullable',
         'others_memo' => 'nullable',
-        'date' => 'required',
+        
         );
+        
+        protected $dates = [
+            'stocked_at',
+        ];
     //
 }

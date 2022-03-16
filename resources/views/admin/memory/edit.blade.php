@@ -1,13 +1,13 @@
 @extends('layouts.admin')
-@section('title', 'オシカネ メモリー編集')
+@section('title', 'オシカネ メモリーヘンシュウ')
 @section('header_sub')
 　　
 @endsection
 @section('content')
-    <hr>
+    
     <div class="container">
-        <div class="row">
-            <div class="col-10 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-md-12 mx-auto">
                 <h2>メモリー編集</h2>
                 <!-- タブ部分 -->
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -22,7 +22,7 @@
                 <div id="myTabContent" class="tab-content">
                     <div id="stage" class="tab-pane active" role="tabpanel" aria-labelledby="stage-tab">
                         <div class="box_me_c">
-                            <form action="{{ action('Admin\MemoryController@create') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ action('Admin\MemoryController@update') }}" method="post" enctype="multipart/form-data">
                                 @if (count($errors) > 0)
                                 <ul>
                                     @foreach($errors->all() as $e)
@@ -31,38 +31,38 @@
                                 </ul>
                                 @endif
                                 <div class="form-group">
-                                    <label class="col-2">公演名</label>
-                                    <div class="col-10">
+                                    <label class="col-md-3">公演名</label>
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="stage_name" value="{{ $memory_form->stage_name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-2">アーティスト</label>
-                                    <div class="col-10">
+                                    <label class="col-md-3">アーティスト</label>
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="artist" value="{{ $memory_form->artist }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-2">会場</label>
-                                    <div class="col-10">
+                                    <label class="col-md-3">会場</label>
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="place" value="{{ $memory_form->place }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-2">チケット</label>
-                                    <div class="col-10">
+                                    <label class="col-md-3">チケット</label>
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="ticket" value="{{ $memory_form->ticket }}">
                                     </div>
                                 </div>
-                                <div class="form group">
-                                    <label class="col-2">メモ</label>
-                                    <div class="col-10">
+                                <div class="form-group">
+                                    <label class="col-md-3">メモ</label>
+                                    <div class="col-md-10">
                                         <textarea class="form-control" name="stage_memo" rows="20">{{ $memory_form->stage_memo }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-2">画像</label>
-                                    <div class="col-6">
+                                    <label class="col-md-3">画像</label>
+                                    <div class="col-md-6">
                                         <input type="file" class="form-control-file" name="stage_image">
                                         <div class="form-text text-info">
                                             設定中： {{ $memory_form->image_path }}
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <input type="hidden" name="id" value="{{ $memory_form->id }}">
                                         {{ csrf_field() }}
                                         <div style="text-align: center;">
@@ -99,71 +99,71 @@
                                 </ul>
                             @endif
                             <div class="form-group">
-                                <label class="col-2">公演名</label>
-                                <div class="col-10">
+                                <label class="col-md-3">公演名</label>
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="stage_name" value="{{ $memory_form->stage_name }}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-2">アーティスト</label>
-                                <div class="col-10">
+                                <label class="col-md-3">アーティスト</label>
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="artist" value="{{ $memory_form->artist }}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-2">会場</label>
-                                <div class="col-10">
+                                <label class="col-md-3">会場</label>
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="place" value="{{ $memory_form->place }}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-2">チケット</label>
-                                <div class="col-10">
+                                <label class="col-md-3">チケット</label>
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="ticket" value="{{ $memory_form->ticket }}">
                                 </div>
                             </div>
                                 <div class="form-group">
-                                    <label class="col-2">セットリスト</label>
-                                    <div class="col-10">
+                                    <label class="col-md-3">セットリスト</label>
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="s_list_01" value="{{ $memory_form->s_list_01 }}" placeholder="曲名を入力">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="s_list_02" value="{{ $memory_form->s_list_02 }}"　placeholder="曲名を入力">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <input type="text" class="form-control" name="s_list_03" value="{{ $memory_form->s_list_03 }}"　placeholder="曲名を入力">
                                     </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_04" value="{{ $memory_form->s_list_04 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_05" value="{{ $memory_form->s_list_05 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_06" value="{{ $memory_form->s_list_06 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_07" value="{{ $memory_form->s_list_07 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_08" value="{{ $memory_form->s_list_08 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_09" value="{{ $memory_form->s_list_09 }}"　placeholder="曲名を入力">
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" name="s_list_10" value="{{ $memory_form->s_list_10 }}"　placeholder="曲名を入力">
                                         </div>
                                     </div>
-                                    <div class="form group">
-                                        <label class="col-2">メモ</label>
-                                        <div class="col-10">
+                                    <div class="form-group">
+                                        <label class="col-md-3">メモ</label>
+                                        <div class="col-md-10">
                                             <textarea class="form-control" name="stage_memo" rows="20">{{ $memory_form->stage_memo }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-2">画像</label>
-                                        <div class="col-6">
+                                        <label class="col-md-3">画像</label>
+                                        <div class="col-md-6">
                                             <input type="file" class="form-control-file" name="stage_image">
                                             <div class="form-text text-info">
                                             設定中： {{ $memory_form->image_path }}
@@ -176,8 +176,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <input type="hidden" name="id" value="{{ $memory_form->id }}">
+                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                         {{ csrf_field() }}
                                         <div style="text-align: center;">
                                             <input type="submit" class="btn btn-outline-dark bg-{color} btn-lg" value="編　集">

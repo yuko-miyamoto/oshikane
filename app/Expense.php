@@ -17,7 +17,12 @@ class Expense extends Model
     {
         
         return $this->belongsTo(Oshi::class);
-    } 
+    }
+    
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
     
     protected $guarded = array('id');
     
@@ -46,13 +51,11 @@ class Expense extends Model
         'others_memo' => 'nullable',
         'media' => 'numeric | nullable',
         'media_memo' => 'nullable',
-        'date' => 'required',
-        
         );
         
         protected $dates = [
-        'paid_at',
-    ];
+            'paid_at',
+        ];
 }
     
     

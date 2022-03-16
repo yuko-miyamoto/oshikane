@@ -60,17 +60,24 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@add') }}">
+                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@index') }}">
                                         <img src="{{ asset('storage/images/result.png') }}" width="40" height="40" align="center">
                                         <br>
                                         支出
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Admin\SavingController@add') }}">
+                                    <a class="nav-link" href="{{ action('Admin\SavingController@index') }}">
                                         <img src="{{ asset('storage/images/pig.png') }}" width="40" height="40" align="center">
                                         <br>
                                         貯金
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Admin\BudgetController@index') }}">
+                                        <img src="{{ asset('storage/images/gama.png') }}" width="40" height="40" align="center">
+                                        <br>
+                                        予算
                                     </a>
                                 </li>
                                 <li class="nav-item">

@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('oshi/create', 'Admin\OshiController@create');
     Route::get('oshi', 'Admin\OshiController@index');
     Route::get('oshi/edit', 'Admin\OshiController@edit');
-    Route::Post('oshi/edit', 'Admin\OshiController@update');
+    Route::post('oshi/edit', 'Admin\OshiController@update');
     Route::get('oshi/delete', 'Admin\OshiController@delete');
     
     Route::get('gate/create', 'Admin\GateController@add');
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('memory/create', 'Admin\MemoryController@create');
     Route::get('memory/index/', 'Admin\MemoryController@index');
     Route::get('memory/edit', 'Admin\MemoryController@edit');
-    Route::Post('memory/edit', 'Admin\MemoryController@update');
+    Route::post('memory/edit', 'Admin\MemoryController@update');
     Route::get('memory/delete', 'Admin\MemoryController@delete');
     
     Route::get('expense/create', 'Admin\ExpenseController@add');
@@ -47,9 +47,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('saving/create', 'Admin\SavingController@add');
     Route::post('saving/create', 'Admin\SavingController@create');
     Route::get('saving', 'Admin\SavingController@index');
+    Route::get('ajax/saving', 'Admin\Ajax\SavingController@index');
     
     Route::get('budget/create', 'Admin\BudgetController@add');
     Route::post('budget/create', 'Admin\BudgetController@create');
+    Route::get('budget/index', 'Admin\BudgetController@index');
+    Route::get('budget/edit', 'Admin\BudgetController@edit');
+    Route::post('budget/edit', 'Admin\BudgetController@update');
     
     Route::get('user/profile', 'Admin\UserController@add');
     Route::post('user/profile', 'Admin\UserController@profile_create');
