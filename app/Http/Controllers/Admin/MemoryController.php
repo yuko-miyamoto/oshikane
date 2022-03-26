@@ -53,11 +53,11 @@ class MemoryController extends Controller
         
         
         if ($memory_id != '' && $user_id != '') {                  
-            $memories = Memory::where('user_id', '=', $user_id)  // main/indexからmemory_idとuser_idを取得
+            $memories = Memory::where('user_id', $user_id)  // main/indexからmemory_idとuser_idを取得
             ->where('id', '=', $memory_id)
             ->get();  
         } elseif ($memory_id != '') {                             
-            $memories = Memory::where('id', '=', $memory_id)  // main/plofileからmemory_idのみ取得
+            $memories = Memory::where('id', $memory_id)  // main/plofileからmemory_idのみ取得
             ->get();
         } elseif ($user_id != '') {
             $memories = Memory::where('user_id', $user_id)  // main/plofileからuser_idのみ取得
@@ -101,21 +101,23 @@ class MemoryController extends Controller
     {
         $this->validate($request, Memory::$rules);
         $memory = Memory::find($request->id);
+        $memory_form = $request->all();
         if ($request->remove == 'true') {
             $memory_form['image_path'] = null;
-        } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image');
+        } elseif ($request->file('stage_image')) {
+            $path = $request->file('stage_image')->store('public/image');
+            $memory_form['image_path'] = basename($path);
         } else {
             $memory_form['image_path'] = $memory->image_path;
         }
         
-        unset($memory_form['image']);
+        unset($memory_form['stage_image']);
         unset($memory_form['remove']);
         unset($memory_form['_token']);
         
         $memory->fill($memory_form)->save();
         
-        return redirect('admin/memory/');
+        return redirect('admin/memory/index');
     }
     
     public function delete(Request $request)

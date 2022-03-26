@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3">チケット</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" name="ticket" value="{{ $memory_form->ticket }}">
+                                        <input type="text" class="form-control" name="stage" value="{{ $memory_form->stage }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -85,12 +85,13 @@
                                     </div>
                                 </div>
                                 <br>
+                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                             </form>
                         </div>
                     </div>
                     <div id="concert" class="tab-pane" role="tabpanel" aria-labelledby="concert-tab">
                         <div class="box_me_c">
-                            <form action="{{ action('Admin\MemoryController@create') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ action('Admin\MemoryController@update') }}" method="post" enctype="multipart/form-data">
                             @if (count($errors) > 0)
                                 <ul>
                                     @foreach($errors->all() as $e)
@@ -119,7 +120,7 @@
                             <div class="form-group">
                                 <label class="col-md-3">チケット</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" name="ticket" value="{{ $memory_form->ticket }}">
+                                    <input type="text" class="form-control" name="concert" value="{{ $memory_form->concert }}">
                                 </div>
                             </div>
                                 <div class="form-group">
@@ -178,15 +179,14 @@
                                 <div class="form-group row">
                                     <div class="col-md-10">
                                         <input type="hidden" name="id" value="{{ $memory_form->id }}">
-                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                         {{ csrf_field() }}
                                         <div style="text-align: center;">
                                             <input type="submit" class="btn btn-outline-dark bg-{color} btn-lg" value="編　集">
+                                            <br><br>
                                         </div>
                                     </div>
-                                    <br><br>
                                 </div>
-                                    
+                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                             </form>
                         </div>
                     </div>

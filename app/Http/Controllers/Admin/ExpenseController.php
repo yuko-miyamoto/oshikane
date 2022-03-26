@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Expense;
 use App\Budget;
+use App\Category;
 use App\Oshi;
 use App\User;
 use carbon\Carbon;
@@ -38,7 +39,15 @@ class ExpenseController extends Controller
     
     public function index(Request $request) 
     {
-        $login_user = User::find(Auth::id() );
+        $login_user = $request->get('user_id');
+        
+        if ($login_user != '') {
+            $oshis = User::find($login_user);
+        } else {
+            $oshis = user::find(Auth::id() );
+        }
+        
+        
         $dates = Expense::pluck('paid_at');
         foreach ($dates as $date) {
             $array[] = $date->format('Y');
@@ -54,7 +63,43 @@ class ExpenseController extends Controller
         unset($budgets['updated_at']);
         
         
-        return view('admin.expense.index',['login_user' => $login_user, 'years' => $years, 'budgets' => $budgets]);
+        return view('admin.expense.index',['oshis' => $oshis, 'years' => $years, 'budgets' => $budgets]);
     }
     
+    public function expenseindex(Request $request)
+    {
+        $category = new Category;
+        $categories = $category->getLists();
+        $category_id = $request->input('category_id');
+        $oshi_id = $request->input('oshi_id');
+        $login_user = $request->get('user_id');
+        
+        if ($login_user != '') {
+            $oshis = User::find($login_user);
+        } else {
+            $oshis = user::find(Auth::id() );
+        }
+        
+        $dates = Expense::pluck('paid_at');
+        foreach ($dates as $date) {
+            $array[] = $date->format('Y');
+        }
+        $years = collect($array)->unique()->sort()->reverse()->values();
+        
+        $query = Expense::query();
+        if (isset($category_id)) {
+            $query->where('category_id', $category_id);
+        } elseif (isset($years)) {
+            $query->whereYear('paid_at', $years);
+        } elseif (isset($oshi_id)) {
+            $query->where('oshi_id', $oshi_id);
+        }
+        
+        
+        $expenses = $query->orderBy('category_id', 'asc')->paginate(15);
+        
+        
+        
+        return view('admin.expense.expenseindex', ['categories' => $categories, 'category_id' => $category_id, 'oshi_id' => $oshi_id, 'oshis' => $oshis, 'years' => $years, 'expenses' => $expenses]);
+    }
 }

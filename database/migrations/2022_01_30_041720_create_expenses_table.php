@@ -15,6 +15,7 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('category_id')->unsigned();
             $table->string('stage')->nullable();
             $table->string('stage_memo')->nullable();
             $table->string('concert')->nullable();

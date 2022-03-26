@@ -35,6 +35,7 @@ $factory->define(Expense::class,function (Faker $faker) {
             'paid_at' => $faker->dateTimeBetween($startDate = '-1year', $endDate = 'now')->format('Y-m-d'),
             'user_id' => $faker->numberBetween(1,4),
             'oshi_id' => $faker->numberBetween(1,3),
+            'category_id' => $faker->numberBetween(1,3),
             'created_at' => $now,
             'updated_at' => $now,
         ];

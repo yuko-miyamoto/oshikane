@@ -44,7 +44,7 @@
                         <br>
                         <label class="col-md-3">血液型</label><br>
                         <select class="form-control" name="blood" style="display: inline; width: 20%;">
-                            <option value="">{{ $oshi_form->blood }}</option>
+                            <option value="{{ $oshi_form->blood }}">{{ $oshi_form->blood }}型</option>
                             <option value="A" @if(old('A')=='A')selected @endif>A型</option>
                             <option value="B" @if(old('B')=='B')selected @endif>B型</option>
                             <option value="O" @if(old('O')=='O')selected @endif>O型</option>

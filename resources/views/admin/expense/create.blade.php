@@ -28,6 +28,7 @@
                         <label class="col-md-3">演劇</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="stage" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="1">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="stage_memo">
@@ -37,6 +38,7 @@
                         <label class="col-md-3">コンサート</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="concert" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="2">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="concert_memo">
@@ -46,6 +48,7 @@
                         <label class="col-md-3">配信</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="web" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="3">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="web_memo">
@@ -55,6 +58,7 @@
                         <label class="col-md-3">映画</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="movie" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="4">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="movie_memo">
@@ -64,6 +68,7 @@
                         <label class="col-md-3">CD</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="cd" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="5">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="cd_memo">
@@ -73,6 +78,7 @@
                         <label class="col-md-3">DVD</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="dvd" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="6">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="dvd_memo">
@@ -82,6 +88,7 @@
                         <label class="col-md-3">雑誌</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="magazine" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="7">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="magazine_memo">
@@ -91,6 +98,7 @@
                         <label class="col-md-3">交通費</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="train" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="8">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="train_memo">
@@ -100,6 +108,7 @@
                         <label class="col-md-3">宿泊費</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="travel" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="9">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="travel_memo">
@@ -109,6 +118,7 @@
                         <label class="col-md-3">ガチャ</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="toy" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="10">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="toy_memo">
@@ -118,6 +128,7 @@
                         <label class="col-md-3">その他</label>
                         <div class="form-group col-md-3">
                             <input type="number" class="form-control" name="others" value="">
+                            <input type="hidden" class="form-control" name="category_id" value="11">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="others_memo">

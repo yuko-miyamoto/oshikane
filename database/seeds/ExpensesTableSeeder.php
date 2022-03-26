@@ -14,6 +14,6 @@ class ExpensesTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(Expense::class, 100)->create();
+        factory(Expense::class, 80)->create();
     }
 }

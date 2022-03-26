@@ -96,8 +96,8 @@ class OshiController extends Controller
         $oshi_form = $request->all();
         if ($request->remove == 'true') {
             $oshi_form['image_path'] = null;
-        } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image');
+        } elseif ($request->file('oshi_image')) {
+            $path = $request->file('oshi_image')->store('public/image');
             $oshi_form['image_path'] = basename($path);
         } else {
             $oshi_form['image_path'] = $oshi->image_path;
