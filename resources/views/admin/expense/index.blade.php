@@ -10,250 +10,91 @@
             <div class="col-md-12 mx-auto">
                 <h2>支出の一覧</h2>
                 <div class="row">
-                    <div class="form-row justify-content-end">
-                        <div class="form-group col-md-3">
-                            <select class="form-control" name="year" id="year">
-                                <option value="">年を選択</option>
-                                @foreach($years as $year)
-                                <option value="{{ $year }}">{{ $year }}年</option>
-                                @endforeach
-                            </select>
+                    <form action="{{ action('Admin\ExpenseController@index') }}" method="get">
+                        <div class="form-row justify-content-end">
+                            <div class="form-group col-md-3">
+                                <select class="form-control" name="year" id="year">
+                                    <option value="">年を選択</option>
+                                    @foreach($years as $year)
+                                    <option value="{{ $year }}">{{ $year }}年</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select class="form-control" name="category_id" id="category_id" value="{{ $category_id }}">
+                                    <option value="">カテゴリを選択</option>
+                                    @foreach($categories as $id => $category_name)
+                                    <option value="{{ $id }}">
+                                        {{ $category_name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select class="form-control" name="oshi_id" id="oshi_id" value="{{ $oshi_id }}">
+                                    <option value="">推しを選択</option>
+                                    <option value="all">全表示</option>
+                                    @foreach($oshis->oshis as $oshi)
+                                    <option value="{{ $oshi->id }}">{{ $oshi->oshi_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2 offset-1">
+                                <input type="hidden" name="user_id" value="{{ $user_id }}">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-outline-dark bg-{color} btn-sm" value="検索">
+                            </div>
                         </div>
-                        <div class="form-group col-md-3">
-                            <select class="form-control" name="oshi_id" id="oshi_id">
-                                <option value="">推しを選択</option>
-                                <option value="all">全表示</option>
-                                @foreach($oshis->oshis as $oshi)
-                                <option value="{{ $oshi->id }}">{{ $oshi->oshi_name }}くん</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-                <canvas id="myChart1"></canvas>
+                @if(!empty($expenses))
+                <p>全{{ $expenses->count() }}件</p>
+                <div class="box_mo_c">
+                    <div class="row">
+                        <label class="col-md-2">
+                            日付
+                        </label>
+                        <label class="col-md-2">
+                            カテゴリー
+                        </label>
+                        <label class="col-md-2">
+                            推し
+                        </label>
+                        <label class="col-md-2">
+                            金額
+                        </label>
+                        <label class="col-md-2">
+                            メモ
+                        </label>
+                    </div>
+                    @foreach($expenses as $expense)
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p><span>{{ $expense->paid_at->format('Y年m月d日') }}</span></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><span>{{ $expense->category->category_name }}</span></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><span>{{ $expense->oshi->oshi_name }}</span></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><span>{{ $expense->stage }}</span></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><span>{{ $expense->stage_memo }}</span></p>
+                        </div>
+                        
+                    </div>
+                    @endforeach
+                </div>
+                <div class="d-flex justify-content-center">
+                  {{-- appendsでカテゴリを選択したまま遷移 --}}
+                  {{ $expenses->appends(request()->input())->links() }}
+                </div>
+                @endif
             </div>
         </div>
     </div>
-    <script>
-        $(function(){ // 画面が読み込まれた
-            const userId = getParam('user_id');
-            function getParam(name, url) { 
-                if (!url) url = window.location.href; //url取得
-                name = name.replace(/[\[\]]/g, "\\$&"); // replace(置換) \はエスケープ処理判断->\\
-                const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), // 正規表現
-                results = regex.exec(url); // exec(最初に一致した文字列を抽出)
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
-            console.log(userId);
-            // セレクトボックスの切り替えで
-            $('#oshi_id, #year').change(function() {
-                const id = $('#oshi_id').val(); // 選択した値を取得
-                const year = $('#year').val();
-                function getData(callback) {
-                    $.ajax({
-                        typr: 'get', // HTTP通信の種類
-                        url: 'ajax/expense',
-                        data: {
-                            user_id : userId,
-                            oshi_id : id,
-                            year : year
-                        }, // Controllerに送る値
-                        dataType: 'json'
-                    })
-                    //通信が成功
-                    .done((data) => {
-                        console.log(userId);
-                        callback(data);
-                        if( id != "" ) {
-                                const stageData = []; // dataを配列に格納するために初期化
-                                $.each(data['stage'], function (index, value) { //dataの中身からvalueを取り出す
-                                    stageData.push(value); //　dataを格納する
-                                });
-                                const sum1 = stageData.reduce(function(a,b){return a + b;});
-                                const concertData = []; 
-                                $.each(data['concert'], function (index, value) { 
-                                    concertData.push(value); 
-                                });
-                                const sum2 = concertData.reduce(function(a,b){return a + b;});
-                                const webData = []; 
-                                $.each(data['web'], function (index, value) { 
-                                    webData.push(value); 
-                                });
-                                const sum3 = webData.reduce(function(a,b){return a + b;});
-                                const movieData = []; 
-                                $.each(data['movie'], function (index, value) { 
-                                    movieData.push(value); 
-                                });
-                                const sum4 = movieData.reduce(function(a,b){return a + b;});
-                                const cdData = []; 
-                                $.each(data['cd'], function (index, value) { 
-                                    cdData.push(value);
-                                });
-                                const sum5 = cdData.reduce(function(a,b){return a + b;});
-                                const dvdData = []; 
-                                $.each(data['dvd'], function (index, value) { 
-                                    dvdData.push(value);
-                                });
-                                const sum6 = dvdData.reduce(function(a,b){return a + b;});
-                                const magazineData = []; 
-                                $.each(data['magazine'], function (index, value) { 
-                                    magazineData.push(value); 
-                                });
-                                const sum7 = magazineData.reduce(function(a,b){return a + b;});
-                                const trainData = []; 
-                                $.each(data['train'], function (index, value) { 
-                                    trainData.push(value); 
-                                });
-                                const sum8 = trainData.reduce(function(a,b){return a + b;});
-                                const travelData = []; 
-                                $.each(data['travel'], function (index, value) { 
-                                    travelData.push(value); 
-                                });
-                                const sum9 = travelData.reduce(function(a,b){return a + b;});
-                                const toyData = []; 
-                                $.each(data['toy'], function (index, value) { 
-                                    toyData.push(value); 
-                                });
-                                const sum10 = toyData.reduce(function(a,b){return a + b;});
-                                const othersData = []; 
-                                $.each(data['others'], function (index, value) { 
-                                    othersData.push(value); 
-                                });
-                                const sum11 = othersData.reduce(function(a,b){return a + b;});
-                                const myData_1 = [sum1,sum2,sum3,sum4,sum5,sum6,sum7,sum8,sum9,sum10,sum11];
-                                const budget = @json($budgets);
-                                const myData_2 = [];
-                                $.each(budget, function (index, value) {
-                                    myData_2.push(value);
-                                });
-                                console.log(myData_2);
-                                console.log(myData_1);
-                                drawChart();
-                                function drawChart() {
-                                    const ctx = document.getElementById('myChart1').getContext('2d');
-                                    const myChart = new Chart( ctx, {
-                                        type: 'bar',
-                                        data: {
-                                            labels: ['演劇', 'コンサート', '配信', '映画', 'CD', 'DVD', '雑誌', '交通費', '宿泊費', 'ガチャ', 'その他'],
-                                            datasets: [
-                                                {
-                                                    type: 'line',  //折れ線グラフ
-                                                    label: '予算',
-                                                    data: myData_2,
-                                                    backgroundColor: 'rgba(100, 170, 100, 0.2)',
-                                                    borderColor: 'rgb(100, 170, 100)',
-                                                    borderWidth: 1.2, 
-                                                    pointBackgroundColor: 'rgba(100, 170, 100, 0.2)', //ポイントの背景色
-                                                    pointStyle: 'circle', //ポイントの形(circle[○],rect[□],triangle[△]等がある)
-                                                    radius: 4, //ポイントの半径
-                                                    pointHoverBackgroundColor: 'rgba(100, 170, 100, 0.2)', //ホバー時のポイント背景色
-                                                    pointHoverRadius: 6, //ホバー時のポイントの半径
-                                                    pointHoverBorderColor: 'rgb(100, 170, 100)', //ホバー時のポイント背景色
-                                                    pointHoverBorderWidth: 2, //ホバー時の先の太さ
-                                                    lineTension: 0, //ベジェ曲線の張力（0＝直線）
-                                                    fill: false, //線下を塗りつぶすかどうか
-                                                    
-                                                },
-                                                {
-                                                    type: 'bar',　// 棒グラフ
-                                                    label: '支出',
-                                                    data: myData_1,
-                                                    backgroundColor: [
-                                                        'rgb(255, 99, 132)',
-                                                    　　'rgb(54, 162, 235)',
-                                                        'rgb(255, 206, 86)',
-                                                        'rgb(75, 192, 192)',
-                                                        'rgb(153, 102, 255)',
-                                                        'rgb(255, 159, 64)',
-                                                        'rgb(248, 86, 252)',
-                                                        'rgb(86, 94, 252)',
-                                                        'rgb(252, 105, 86)',
-                                                        'rgb(86, 128, 252)',
-                                                        'rgb(157, 86, 252)'
-                                                    ],
-                                                    borderColor: [
-                                                        'rgb(255, 99, 132)',
-                                                        'rgb(54, 162, 235)',
-                                                        'rgb(255, 206, 86)',
-                                                        'rgb(75, 192, 192)',
-                                                        'rgb(153, 102, 255)',
-                                                        'rgb(255, 159, 64)',
-                                                        'rgb(248, 86, 252)',
-                                                        'rgb(86, 94, 252)',
-                                                        'rgb(252, 105, 86)',
-                                                        'rgb(86, 128, 252)',
-                                                        'rgb(157, 86, 252)'
-                                                    ],
-                                                    borderWidth: 1, // バーの境界線の太さ
-                                                    yAxisID: 'y-axis-1'
-                                                }
-                                                
-                                            ]
-                                        },
-                                        options: {
-                                            responsive: true,
-                                            title: {
-                                                display: true,
-                                            },
-                                            legend: {
-                                            position: 'top'
-                                            },
-                                            scales: {
-                                                yAxes: [
-                                                    {
-                                                        id: "y-axis-1",         // Ｙ左軸の定義
-                                                        position: "left",     //
-                                                        gridLines: {
-                                                            color: "rgba(255, 0, 0, 0.2)"
-                                                        },
-                                                        scaleLabel: {         // 軸ラベル設定
-                                                            display: true,          //表示設定
-                                                            fontColor: "red",
-                                                            fontSize: 14               //フォントサイズ
-                                                        },                 
-                                                        ticks: {
-                                                            fontColor: "black",             
-                                                            beginAtZero: true,
-                                                            suggestedMax: 50000,
-                                                            suggestedMin: 1000,
-                                                            stepSize: 5000
-                                                        }
-                                                    }
-                                                ],
-                                                xAxes: [
-                                                    {
-                                                        ticks: {
-                                                            min: 1,
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                        
-                                    });
-                                    document.getElementById('myChart1').addEventListener('click', e => {
-                                        const elements = myChart.getElementAtEvent(e);
-                                        if (elements.length) {
-                                            window.location.href = 'https://e95645ce6c3349418fbdca573e7bd407.vfs.cloud9.us-east-2.amazonaws.com/admin/expense/expenseindex'
-                                        }
-                                    });
-                                }
-                                
-                            }
-                            
-                        })
-                        //通信が失敗
-                        .fail((error) => {
-                            console.log(error.ststusText);
-                        });
-                    }
-                    getData(function (data) {
-                        const chartData = data;
-                    });
-                })
-            })
-            
-    </script>
+    
 @endsection

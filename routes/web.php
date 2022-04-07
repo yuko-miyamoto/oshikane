@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('main/index', 'Admin\MainController@index');
     Route::get('main/profile', 'Admin\MainController@profile');
-    Route::get('main/test', 'Admin\Ajax\MainController@profile');
+    Route::get('main/profilechart', 'Admin\Ajax\MainController@profile');
     
     Route::get('oshi/create', 'Admin\OshiController@add');
     Route::post('oshi/create', 'Admin\OshiController@create');
@@ -42,9 +42,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('expense/create', 'Admin\ExpenseController@add');
     Route::post('expense/create', 'Admin\ExpenseController@create');
-    Route::get('expense', 'Admin\ExpenseController@index');
-    Route::get('ajax/expense', 'Admin\Ajax\ExpenseController@index');
-    Route::get('expense/expenseindex', 'Admin\ExpenseController@expenseindex');
+    Route::get('expense/index', 'Admin\ExpenseController@index');
+    
+    Route::get('balancepayment', 'Admin\BalancepaymentController@chartindex');
+    Route::get('ajax/balancepayment', 'Admin\Ajax\BalancepaymentController@chartindex');
     
     Route::get('saving/create', 'Admin\SavingController@add');
     Route::post('saving/create', 'Admin\SavingController@create');

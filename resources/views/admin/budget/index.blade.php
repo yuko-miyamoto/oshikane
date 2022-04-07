@@ -10,6 +10,13 @@
             <div class="col-md-12 mx-auto">
                     <h2>予算・カテゴリ予算の一覧</h2>
                     <div class="box_yo">
+                        <div class="col-md-3">
+                            <span>
+                                <h3>
+                                    {{ $date->month }}月の予算
+                                </h3>
+                            </span>
+                        </div>
                         <div class="row">
                             <label class="col-md-3">総予算</label>
                             <div class="col-md-6">

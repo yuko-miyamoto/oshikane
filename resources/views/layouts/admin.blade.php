@@ -39,7 +39,7 @@
             <header>
                 <nav class="navbar navbar-expand-lg navbar-light navbar-oshikane">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="{{ url('/') }}">推しとお金と。</a>
+                        <a class="navbar-brand" href="{{ url('/admin/main/index') }}">推しとお金と。</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -60,7 +60,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Admin\ExpenseController@index') }}">
+                                    <a class="nav-link" href="{{ action('Admin\BalancepaymentController@chartindex') }}">
                                         <img src="{{ asset('storage/images/result.png') }}" width="40" height="40" align="center">
                                         <br>
                                         支出

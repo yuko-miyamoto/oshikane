@@ -12,9 +12,14 @@ class Oshi extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function expenses ()
+    public function expenses()
     {
         return $this->hasMany(Expense::class);
+    }
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
     //
     protected $guarded = array('id');

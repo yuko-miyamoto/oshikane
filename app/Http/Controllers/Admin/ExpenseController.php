@@ -9,7 +9,7 @@ use App\Budget;
 use App\Category;
 use App\Oshi;
 use App\User;
-use carbon\Carbon;
+use Carbon\carbon;
 use Auth;
 
 class ExpenseController extends Controller
@@ -30,76 +30,99 @@ class ExpenseController extends Controller
         
         $oshis = Oshi::find($request->id);
         
-        
         $expense->fill($form);
         $expense->save();
         
         return redirect('admin/expense/create');
     }
     
-    public function index(Request $request) 
-    {
-        $login_user = $request->get('user_id');
-        
-        if ($login_user != '') {
-            $oshis = User::find($login_user);
-        } else {
-            $oshis = user::find(Auth::id() );
-        }
-        
-        
-        $dates = Expense::pluck('paid_at');
-        foreach ($dates as $date) {
-            $array[] = $date->format('Y');
-        }
-        $years = collect($array)->unique()->sort()->reverse()->values();
-        
-        $budgets = Budget::find(Auth::id() )->toArray();
-        unset($budgets['id']);
-        unset($budgets['total_budget']);
-        unset($budgets['user_id']);
-        unset($budgets['oshi_id']);
-        unset($budgets['created_at']);
-        unset($budgets['updated_at']);
-        
-        
-        return view('admin.expense.index',['oshis' => $oshis, 'years' => $years, 'budgets' => $budgets]);
-    }
-    
-    public function expenseindex(Request $request)
+    public function index(Request $request)
     {
         $category = new Category;
         $categories = $category->getLists();
-        $category_id = $request->input('category_id');
-        $oshi_id = $request->input('oshi_id');
-        $login_user = $request->get('user_id');
+        $category_id = $request->get('category_id');
+        $get_year = $request->get('year');
+        $oshi_id = $request->get('oshi_id');
+        $user_id = $request->get('user_id');
         
-        if ($login_user != '') {
-            $oshis = User::find($login_user);
+        if ($user_id != '') {
+            
+            $oshis = User::find($user_id);
+            
         } else {
+            
             $oshis = user::find(Auth::id() );
         }
         
         $dates = Expense::pluck('paid_at');
+        
         foreach ($dates as $date) {
+            
             $array[] = $date->format('Y');
         }
+        
         $years = collect($array)->unique()->sort()->reverse()->values();
         
         $query = Expense::query();
-        if (isset($category_id)) {
-            $query->where('category_id', $category_id);
-        } elseif (isset($years)) {
-            $query->whereYear('paid_at', $years);
-        } elseif (isset($oshi_id)) {
-            $query->where('oshi_id', $oshi_id);
+        
+        if(isset($category_id) && $user_id != '') {
+            
+            $query->where('category_id', $category_id)->where('user_id', $user_id);
+                
+        } elseif(isset($category_id) && $user_id == '') {
+            
+            $query->where('category_id', $category_id)->where('user_id', Auth::id() );
+            
+        } elseif(isset($get_year) && $user_id != '') {
+            
+            $query->whereYear('paid_at', $get_year)->where('user_id', $user_id);
+            
+        } elseif(isset($get_year) && $user_id == '') {
+            
+            $query->whereYear('paid_at', $get_year)->where('user_id', Auth::id() );
+            
+        } elseif($oshi_id != 'all' && $user_id != '') {
+            
+            $query->where('oshi_id', $oshi_id)->where('user_id', $user_id);
+            
+        } elseif($oshi_id != 'all' && $user_id == '') {
+            
+            $query->where('oshi_id', $oshi_id)->where('user_id', Auth::id() );
+            
+        } elseif(isset($category_id) && isset($get_year) && $user_id != '') {
+            
+            $query->where('category_id', $category_id)->whereYear('paid_at', $get_year)->where('user_id', $user_id);
+            
+        } elseif(isset($category_id) && isset($get_year) && $user_id == '') {
+            
+            $query->where('category_id', $category_id)->whereYear('paid_at', $get_year)->where('user_id', Auth::id() );
+            
+        } elseif(isset($category_id) && isset($oshi_id) && $user_id != '') {
+            
+            $query->where('category_id', $category_id)->where('oshi_id', $oshi_id)->where('user_id', $user_id);
+            
+        } elseif(isset($category_id) && isset($oshi_id) && $user_id == '') {
+            
+            $query->where('category_id', $category_id)->where('oshi_id', $oshi_id)->where('user_id', Auth::id() );
+            
+        } elseif($user_id != '') {
+            
+            $query->where('user_id', $user_id);
+        
+        } else {
+            
+            $query->where('user_id', Auth::id() );
         }
         
+        $expenses = $query->orderBy('category_id', 'asc')->orderBy('paid_at', 'desc')->paginate(15);
         
-        $expenses = $query->orderBy('category_id', 'asc')->paginate(15);
-        
-        
-        
-        return view('admin.expense.expenseindex', ['categories' => $categories, 'category_id' => $category_id, 'oshi_id' => $oshi_id, 'oshis' => $oshis, 'years' => $years, 'expenses' => $expenses]);
+        return view('admin.expense.index', [
+            'user_id' => $user_id,
+            'categories' => $categories,
+            'category_id' => $category_id,
+            'oshi_id' => $oshi_id,
+            'oshis' => $oshis,
+            'years' => $years,
+            'expenses' => $expenses]);
     }
 }

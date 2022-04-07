@@ -159,10 +159,10 @@
                                 </h2>
                             </div>
                             <div class="col justify-content-end">
-                                <form action="{{ action('Admin\ExpenseController@index') }}" method="get">
+                                <form action="{{ action('Admin\BalancepaymentController@chartindex') }}" method="get">
                                     <input type="hidden" name="user_id" value="{{ $users->id }}">
                                     <button type="submit" class="btn btn-outline-dark bg-{color}">
-                                        支出一覧
+                                        グラフへ
                                     </button>
                                 </form>
                             </div>
@@ -186,7 +186,7 @@
                 }
                 $.ajax({
                     type: 'get',
-                    url: 'test',
+                    url: 'profilechart',
                     data: {
                         id : id
                     },

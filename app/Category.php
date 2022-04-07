@@ -17,5 +17,15 @@ class Category extends Model
     {
         return $this->hasMany(Expense::class);
     }
+    
+    public function oshis()
+    {
+        return $thi->hasMany(Oshi::class);
+    }
+    
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
     //
 }

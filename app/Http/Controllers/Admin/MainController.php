@@ -16,9 +16,9 @@ class MainController extends Controller
     //
     public function index(Request $request)
     {
-        $dt = Carbon::now();
+        $now = Carbon::now();
         $historydays = Oshi::pluck('history')->toArray();
-        $days = $dt->diff($historydays[0]);
+        $days = $now->diff($historydays[0]);
         
         $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid    
         
@@ -28,7 +28,6 @@ class MainController extends Controller
         $memories = Memory::where('user_id', '!=', Auth::id() )
         ->orderBy('created_at', 'desc')
         ->take(6)->get();
-        
         
         return view('admin.main.index', ['oshis' => $oshis, 'memories' => $memories, 'followee' => $followee]);
     }

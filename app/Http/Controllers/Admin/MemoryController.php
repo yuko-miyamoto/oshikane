@@ -68,7 +68,7 @@ class MemoryController extends Controller
             ->get();
         } elseif ($cond_title != '' && $user_id != '') {
             $memories = Memory::where('artist', 'like', '%' .$cond_title . '%') // memory/indexからcond_titleとuser_idを取得
-            ->where('user_id', '=', $value)
+            ->where('user_id', $user_id)
             ->orwhere('place', 'like', '%' .$cond_title . '%')
             ->get();
         } else {

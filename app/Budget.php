@@ -9,7 +9,9 @@ class Budget extends Model
     //
     protected $guarded = array('id');
     
-    public static $rules = array();
+    public static $rules = array(
+        'register_month' => 'unique:budgets',
+    );
     
     public function user()
     {
@@ -20,5 +22,6 @@ class Budget extends Model
     {
         return $this->hasMany(Expense::class);
     }
-        
+    
+    
 }

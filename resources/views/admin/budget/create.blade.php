@@ -107,6 +107,22 @@
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-md-3">予算の登録年月</label>
+                                <div class="col-md-3">
+                                    <select  class="form-control" name="register_year">
+                                        <option value="{{ $date->year }}">{{ $date->year }}年</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="register_month">
+                                        @for ($i = 1; $i <= 12; $i++)
+                                        <option value="{{ $i }}"@if(old('register_month') == $i) selected @endif>{{ $i }}月</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
                             {{ csrf_field() }}
                             <br>
                             <div style="text-align: center;">

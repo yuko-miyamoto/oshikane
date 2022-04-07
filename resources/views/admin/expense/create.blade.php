@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12 mx-auto">
             <h2>支出の登録</h2>
-                <form action="{{ action('Admin\ExpenseController@create') }}" method="post" oninput="result.value = Number(stage.value) + Number(concert.value) + Number(web.value) + Number(movie.value) + Number(cd.value) + Number(dvd.value) + Number(magazine.value) + Number(train.value) + Number(travel.value) + Number(toy.value) + Number(others.value);" enctype="multipart/form-data">
+                <form action="{{ action('Admin\ExpenseController@create') }}" method="post" name="expense_form" id="expense_form" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -27,8 +27,7 @@
                     <div class="form-row">
                         <label class="col-md-3">演劇</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="stage" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="1">
+                            <input type="text" class="cat form-control" name="stage">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="stage_memo">
@@ -37,8 +36,7 @@
                     <div class="form-row">
                         <label class="col-md-3">コンサート</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="concert" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="2">
+                            <input type="text" class="cat form-control" name="concert">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="concert_memo">
@@ -47,8 +45,7 @@
                     <div class="form-row">
                         <label class="col-md-3">配信</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="web" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="3">
+                            <input type="text" class="cat form-control" name="web">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="web_memo">
@@ -57,8 +54,7 @@
                     <div class="form-row">
                         <label class="col-md-3">映画</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="movie" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="4">
+                            <input type="text" class="cat form-control" name="movie">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="movie_memo">
@@ -67,8 +63,7 @@
                     <div class="form-row">
                         <label class="col-md-3">CD</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="cd" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="5">
+                            <input type="text" class="cat form-control" name="cd">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="cd_memo">
@@ -77,8 +72,7 @@
                     <div class="form-row">
                         <label class="col-md-3">DVD</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="dvd" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="6">
+                            <input type="text" class="cat form-control" name="dvd">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="dvd_memo">
@@ -87,8 +81,7 @@
                     <div class="form-row">
                         <label class="col-md-3">雑誌</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="magazine" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="7">
+                            <input type="text" class="cat form-control" name="magazine">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="magazine_memo">
@@ -97,8 +90,7 @@
                     <div class="form-row">
                         <label class="col-md-3">交通費</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="train" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="8">
+                            <input type="text" class="cat form-control" name="train">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="train_memo">
@@ -107,8 +99,7 @@
                     <div class="form-row">
                         <label class="col-md-3">宿泊費</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="travel" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="9">
+                            <input type="text" class="cat form-control" name="travel">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="travel_memo">
@@ -117,8 +108,7 @@
                     <div class="form-row">
                         <label class="col-md-3">ガチャ</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="toy" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="10">
+                            <input type="text" class="cat form-control" name="toy">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="toy_memo">
@@ -127,15 +117,14 @@
                     <div class="form-row">
                         <label class="col-md-3">その他</label>
                         <div class="form-group col-md-3">
-                            <input type="number" class="form-control" name="others" value="">
-                            <input type="hidden" class="form-control" name="category_id" value="11">
+                            <input type="text" class="cat form-control" name="others">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="others_memo">
                         </div>
                     </div>
                     <br><br>
-                    <h3>合計金額　　　<output name="result"></output>　　　円</h3>
+                    <h3>合計金額　　　<span id="total_sum_value"></span>　　　円</h3>
                     <br><br>
                     <div class="form-row">
                         <label class="col-md-3" for="date">日付</label>
@@ -157,10 +146,42 @@
                         <input type="submit" class="btn btn-outline-dark bg-{color} btn-lg" value="登　録">
                         <br><br>
                     </div>
+                    <input type="hidden" id="category_id" name="category_id" value="">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $("#expense_form").on('input', ".cat", function() {
+            let value = $(this).val();
+            value = value
+            .replace(/[０-９]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) - 65248);
+            })
+            .replace(/[^0-9]/g, '');
+            $(this).val(value);
+        });
+        $("#expense_form").on('input', ".cat", function() {
+            let expense_sum = 0;
+            console.log(expense_sum);
+            $('#expense_form .cat').each(function () {
+                var get_value = $(this).val();
+                if( $.isNumeric(get_value)) {
+                    expense_sum += parseFloat(get_value);
+                }
+            });
+            $('#total_sum_value').html(expense_sum);
+        });
+        $("#expense_form").on('input', function() {
+            const stage_value = $("input[name='stage']").val()
+            const category_id = 1;
+            if(stage_value.length){
+                document.getElementById('category_id').value = category_id;
+            } 
+        });
+    })
+</script>
 @endsection

@@ -14,30 +14,41 @@ class BudgetController extends Controller
     //
     public function add()
     {
-        return view('admin.budget.create');
+        $date = Carbon::now();
+        
+        return view('admin.budget.create',['date' => $date]);
     }
     
     public function create(Request $request)
     {
+        $date = Carbon::now();
+        
+        $check_month = Budget::where('register_month', $date->month)->select('register_month')->get();
+        
         $this->validate($request, Budget::$rules);
         $budget = new Budget;
         $form = $request->all();
         
-        $date = Carbon::now();
-        $budget->register_year = $date->year;
-        $budget->register_month = $date->month;
+        unset($form['_token']);
         
-        $budget->fill($form);
-        $budget->save();
+        if( $check_month < $form['register_month'] ) {
+            
+            $budget->fill($form);
+            $budget->save();
+        
+        } else {
+            false;
+        }
         
         return redirect('admin/budget/index');
     }
     
     public function index(Request $request)
     {
+        $date = Carbon::now();
         $budgets = Budget::latest('updated_at')->first();
         
-        return view('admin.budget/index', ['budgets' => $budgets]);
+        return view('admin.budget/index', ['budgets' => $budgets, 'date' => $date]);
     }
     
     public function edit(Request $request)

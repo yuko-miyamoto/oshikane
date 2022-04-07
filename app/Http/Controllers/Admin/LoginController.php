@@ -10,12 +10,12 @@ class LoginController extends Controller
     //
     public function add()
     {
-        return view('admin.main.create');
+        return view('admin.main.index');
     }
     
      public function create()
     {
-        return redirect('admin/main/create');
+        return redirect('admin/main/index');
     }
 
 }
