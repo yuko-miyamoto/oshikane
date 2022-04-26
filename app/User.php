@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nickname', 'oshi'
+        'name', 'email', 'password', 'nickname', 'oshi', 'profile_image_path',
     ];
 
     /**
@@ -38,8 +38,9 @@ class User extends Authenticatable
     ];
     
     public static $rules = array (
-        'nickname' => 'required',
-        'oshi' => 'required',
+        'nickname' => 'required | string | max:10',
+        'oshi' => 'required | string | max:10',
+        'profile_image' => 'required|max:2048',
     );
     
     public function oshis()
@@ -68,8 +69,8 @@ class User extends Authenticatable
         return $this->belongsTo(Budget::class);
     }
     
-    public function category()
+    public function savings()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Saving::class);
     }
 }

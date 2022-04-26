@@ -15,7 +15,6 @@ class Expense extends Model
     
     public function oshi()
     {
-        
         return $this->belongsTo(Oshi::class);
     }
     
@@ -24,38 +23,33 @@ class Expense extends Model
         return $this->belongsTo(Budget::class);
     }
     
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-    
     protected $guarded = array('id');
     
     public static $rules = array(
         'stage' => 'numeric | nullable',
-        'stage_memo' => 'nullable',
+        'stage_memo' => 'max:20 | nullable',
         'concert' => 'numeric | nullable',
-        'concert_memo' => 'nullable',
+        'concert_memo' => 'max:20 | nullable',
         'web' => 'numeric | nullable',
-        'web_memo' => 'nullable',
+        'web_memo' => 'max:20 | nullable',
         'movie' => 'numeric | nullable',
-        'movie_memo' => 'nullable',
+        'movie_memo' => 'max:20 | nullable',
         'cd' => 'numeric | nullable',
-        'cd_memo' => 'nullable',
+        'cd_memo' => 'max:20 | nullable',
         'dvd' => 'numeric | nullable',
-        'dvd_memo' => 'nullable',
+        'dvd_memo' => 'max:20 | nullable',
         'magazine' => 'numeric | nullable',
-        'magazine_memo' => 'nullable',
+        'magazine_memo' => 'max:20 | nullable',
         'train' => 'numeric | nullable',
-        'train_memo' => 'nullable',
+        'train_memo' => 'max:20 | nullable',
         'travel' => 'numeric | nullable',
-        'travel_memo' => 'nullable',
+        'travel_memo' => 'max:20 | nullable',
         'toy' => 'numeric | nullable',
-        'toy_memo' => 'nullable',
+        'toy_memo' => 'max:20 | nullable',
         'others' => 'numeric | nullable',
-        'others_memo' => 'nullable',
+        'others_memo' => 'max:20 | nullable',
         'media' => 'numeric | nullable',
-        'media_memo' => 'nullable',
+        'media_memo' => 'max:20 | nullable',
         );
         
         protected $dates = [

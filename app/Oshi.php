@@ -17,15 +17,15 @@ class Oshi extends Model
         return $this->hasMany(Expense::class);
     }
     
-    public function category()
+    public function savings()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Saving::class);
     }
     //
     protected $guarded = array('id');
     
     public static $rules = array(
-        'oshi_name' => 'required',
+        'oshi_name' => 'required | string | max:10',
         'birthday' => 'date',
         'birthday_y' => 'required',
         'birthday_m' => 'required',
@@ -38,7 +38,7 @@ class Oshi extends Model
         'history_m' => 'required',
         'history_d' => 'required',
         'tentacles' => 'required',
-        'oshi_memo' => 'required',
+        'oshi_memo' => 'required | string | max:255',
         
         );
     

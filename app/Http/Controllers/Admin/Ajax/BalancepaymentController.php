@@ -16,97 +16,61 @@ class BalancepaymentController extends Controller
     {
         // プルダウン絞り込み1
         $years = $request->get('year');
-        
         // プルダウン絞り込み2
         $oshi_id = $request->get('oshi_id'); 
-        
         // パラメーターでの絞り込み
         $user_id = $request->get('user_id'); 
+        // 自分の支出と予算のグラフ画面を表示する場合はログインidを格納
+        if($user_id == '') {
+            $user_id = Auth::id();
+        }
+        // 選択された年度で予算が登録されている月を取得
+        $month = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('register_month');
+        // 選択された年度で登録されている予算を取得
+        $stagebudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('stage');
+        $concertbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('concert');
+        $webbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('web');
+        $moviebudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('movie');
+        $cdbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('cd');
+        $dvdbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('dvd');
+        $magazinebudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('magazine');
+        $trainbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('train');
+        $travelbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('travel');
+        $toybudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('toy');
+        $othersbudgets = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('others');
         
-        $now = Carbon::now();
+        // 選択された年度より前で直近の予算を取得
+        $beforemonth = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->first();
+       
+        $beforestagebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('stage')->first();
+        $beforeconcertbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('concert')->first();
+        $beforewebbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('web')->first();
+        $beforemoviebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('movie')->first();
+        $beforecdbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('cd')->first();
+        $beforedvdbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('dvd')->first();
+        $beforemagazinebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('magazine')->first();
+        $beforetrainbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('train')->first();
+        $beforetravelbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('travel')->first();
+        $beforetoybudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('toy')->first();
+        $beforeothersbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('others')->first();
         
-        if($user_id != '') {
-            // 選択された年度で予算が登録されている月を取得
-            $month = Budget::where('register_year', $years)->where('user_id', $user_id)->pluck('register_month');
-            
-            // 選択された年度で登録されている予算を取得
-            $stagebudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('stage');
-            $concertbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('concert');
-            $webbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('web');
-            $moviebudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('movie');
-            $cdbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('cd');
-            $dvdbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('dvd');
-            $magazinebudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('magazine');
-            $trainbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('train');
-            $travelbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('travel');
-            $toybudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('toy');
-            $othersbudgets = Budget::where('register_year',$years)->where('user_id', $user_id)->pluck('others');
-            
-            // 選択された年度より前で直近の予算を取得
-            $beforemonth = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->first();
-           
-            $beforestagebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('stage')->first();
-            $beforeconcertbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('concert')->first();
-            $beforewebbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('web')->first();
-            $beforemoviebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('movie')->first();
-            $beforecdbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('cd')->first();
-            $beforedvdbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('dvd')->first();
-            $beforemagazinebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('magazine')->first();
-            $beforetrainbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('train')->first();
-            $beforetravelbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('travel')->first();
-            $beforetoybudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('toy')->first();
-            $beforeothersbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('others')->first();
-            
-        } else {
-            // 選択された年度で予算が登録されている月を取得
-            $month = Budget::where('register_year', $years)->where('user_id', Auth::id() )->pluck('register_month');
-            
-            // 選択された年度で登録されている予算を取得
-            $stagebudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('stage');
-            $concertbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('concert');
-            $webbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('web');
-            $moviebudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('movie');
-            $cdbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('cd');
-            $dvdbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('dvd');
-            $magazinebudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('magazine');
-            $trainbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('train');
-            $travelbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('travel');
-            $toybudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('toy');
-            $othersbudgets = Budget::where('register_year',$years)->where('user_id', Auth::id() )->pluck('others');
-            
-            // 選択された年度より前で直近の予算を取得
-            $beforemonth = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->first();
-           
-            $beforestagebudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('stage')->first();
-            $beforeconcertbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('concert')->first();
-            $beforewebbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('web')->first();
-            $beforemoviebudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('movie')->first();
-            $beforecdbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('cd')->first();
-            $beforedvdbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('dvd')->first();
-            $beforemagazinebudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('magazine')->first();
-            $beforetrainbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('train')->first();
-            $beforetravelbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('travel')->first();
-            $beforetoybudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('toy')->first();
-            $beforeothersbudgets = Budget::where('register_year', '<', $years )->where('user_id', Auth::id() )->orderBy('id', 'desc')->pluck('others')->first();
-        }    
-            // 各月の予算を格納する配列
-            $years_budgets = [];
-            
-            
-            // 年間予算配列に格納するための月ごとのカテゴリ予算
-            $get_year_budget = [
-                "budget_stage" => 0,
-                "budget_concert" => 0,
-                "budget_web" => 0,
-                "budget_movie" => 0,
-                "budget_cd" => 0,
-                "budget_dvd" => 0,
-                "budget_magazine" => 0,
-                "budget_train" => 0,
-                "budget_travel" => 0,
-                "budget_toy" => 0,
-                "budget_others" => 0
-            ];
+        // 各月の予算を格納する配列
+        $years_budgets = [];
+        
+        // 年間予算配列に格納するための月ごとのカテゴリ予算
+        $get_year_budget = [
+            "budget_stage" => 0,
+            "budget_concert" => 0,
+            "budget_web" => 0,
+            "budget_movie" => 0,
+            "budget_cd" => 0,
+            "budget_dvd" => 0,
+            "budget_magazine" => 0,
+            "budget_train" => 0,
+            "budget_travel" => 0,
+            "budget_toy" => 0,
+            "budget_others" => 0
+        ];
             
         if( !empty($beforemonth)) {
             // 前年度より前の直近の予算登録が有る場合の一時変数
@@ -157,7 +121,7 @@ class BalancepaymentController extends Controller
         
         for($i = 1; $i <= 12; $i++) {
             // 
-            if ($user_id != '' && $oshi_id != 'all' && $years != '') {
+            if($user_id != '' && $oshi_id != 'all' && $years != '') {
                 
                 $stage_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("stage");
                 $concert_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("concert");
@@ -171,7 +135,7 @@ class BalancepaymentController extends Controller
                 $toy_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("toy");
                 $others_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("others");
                     
-            } elseif ($user_id != '' && $years != '') {
+            } elseif($user_id != '' && $years != '') {
                 
                 $stage_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->sum("stage");
                 $concert_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->sum("concert");
@@ -184,34 +148,6 @@ class BalancepaymentController extends Controller
                 $travel_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->sum("travel");
                 $toy_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->sum("toy");
                 $others_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', $user_id)->sum("others");
-                    
-            } elseif ($oshi_id != 'all') {
-            
-                $stage_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("stage");
-                $concert_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("concert");
-                $web_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("web");
-                $movie_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("movie");
-                $cd_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("cd");
-                $dvd_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("dvd");
-                $magazine_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("magazine");
-                $train_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("train");
-                $travel_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("travel");
-                $toy_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("toy");
-                $others_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->where('oshi_id', $oshi_id)->sum("others");
-                
-            }  else {
-                
-                $stage_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("stage");
-                $concert_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("concert");
-                $web_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("web");
-                $movie_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("movie");
-                $cd_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("cd");
-                $dvd_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("dvd");
-                $magazine_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("magazine");
-                $train_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("train");
-                $travel_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("travel");
-                $toy_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("toy");
-                $others_sum["sum$i"] = Expense::whereYear('paid_at', $years)->whereMonth('paid_at', $i)->where('user_id', Auth::id() )->sum("others");
                     
             }
             $balance_payments = [

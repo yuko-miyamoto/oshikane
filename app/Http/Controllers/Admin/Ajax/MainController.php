@@ -13,9 +13,10 @@ class MainController extends Controller
 {
      public function profile(Request $request)
     {
+        // パラメーターからidを取得
         $user_id = $request->get('id');
+        // 現在日時を取得
         $now = Carbon::now();
-        
         
         for($i = 1; $i <= 12; $i++) {
             

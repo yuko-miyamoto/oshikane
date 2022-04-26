@@ -1,8 +1,5 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ ヨサントウロク')
-@section('header_sub')
-    
-@endsection
 @section('content')
     
     <div class="container">
@@ -116,7 +113,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" name="register_month">
+                                    <select class="form-control" name="register_month" id="register_month">
                                         @for ($i = 1; $i <= 12; $i++)
                                         <option value="{{ $i }}"@if(old('register_month') == $i) selected @endif>{{ $i }}月</option>
                                         @endfor
@@ -126,7 +123,7 @@
                             {{ csrf_field() }}
                             <br>
                             <div style="text-align: center;">
-                                <input type="submit" id="submit-btn" class="btn btn-outline-dark bg-{color} btn-sm" value="登　録">
+                                <input type="submit" id="submit-btn" class="btn btn-outline-dark bg-{color} btn-lg" value="登　録">
                             </div>
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         </div>
@@ -147,8 +144,21 @@
             $(this).val(value);
         });
         $('#budget_form').submit(function() {
+            const register_month = $('#register_month').val();
+            let month = 0;
+            const check_month = @json($check_month);
+            $.each(check_month, function(index, value) {
+                month = value;
+            });
+            if(month == register_month){
+                alert('選択した月の予算は既に登録されています。');
+                return false;
+            } else if(register_month < month) {
+                alert('選択した月より前の月の予算は登録できません。');
+                return false;
+            }
+            console.log(month);
             const sum = $(".cat").get().reduce((s, e) => +e.value + s, 0);
-            
             if ($("input[name='total_budget']").val() == "") {
                 alert('総予算が入力されていません。');
                 console.log($("input[name='total_budget']").val());

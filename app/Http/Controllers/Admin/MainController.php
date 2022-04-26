@@ -15,26 +15,19 @@ class MainController extends Controller
 {
     //
     public function index(Request $request)
-    {
-        $now = Carbon::now();
-        $historydays = Oshi::pluck('history')->toArray();
-        $days = $now->diff($historydays[0]);
+    {   //認証ユーザーがフォローしているユーザーid
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray();     
         
-        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid    
+        $oshis = Oshi::where('user_id', '!=', Auth::id() )->where('tentacles', '>', 50)->get();
         
-        $oshis = Oshi::where('user_id', '!=', Auth::id() )
-        ->where('tentacles', '>', 50)->get();
-        
-        $memories = Memory::where('user_id', '!=', Auth::id() )
-        ->orderBy('created_at', 'desc')
-        ->take(6)->get();
+        $memories = Memory::where('user_id', '!=', Auth::id() )->orderBy('created_at', 'desc')->take(6)->get();
         
         return view('admin.main.index', ['oshis' => $oshis, 'memories' => $memories, 'followee' => $followee]);
     }
     
     public function profile(request $request)
-    {
-        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
+    {   //認証ユーザーがフォローしているユーザーid
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); 
         $users = User::find($request->id);
         
         

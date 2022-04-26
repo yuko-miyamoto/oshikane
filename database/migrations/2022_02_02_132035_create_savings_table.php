@@ -15,6 +15,8 @@ class CreateSavingsTable extends Migration
     {
         Schema::create('savings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('oshi_id')->unsigned();
             $table->string('stage')->nullable();
             $table->string('stage_memo')->nullable();
             $table->string('concert')->nullable();
@@ -34,8 +36,6 @@ class CreateSavingsTable extends Migration
             $table->string('others')->nullable();
             $table->string('others_memo')->nullable();
             $table->string('stocked_at');
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('oshi_id')->unsigned();
             $table->timestamps();
         });
     }

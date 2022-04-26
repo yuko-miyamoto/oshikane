@@ -6,27 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 
 class Saving extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function oshi()
+    {
+        return $this->belongsTo(Oshi::class);
+    }
+    
     protected $guarded = array('id');
     
     public static $rules = array(
         'stage' => 'numeric | nullable',
-        'stage_memo' => 'nullable',
+        'stage_memo' => 'string | max:20 | nullable',
         'concert' => 'numeric | nullable',
-        'concert_memo' => 'nullable',
+        'concert_memo' => 'string | max:20 | nullable',
         'web' => 'numeric | nullable',
-        'web_memo' => 'nullable',
+        'web_memo' => 'string | max:20 | nullable',
         'movie' => 'numeric | nullable',
-        'movie_memo' => 'nullable',
+        'movie_memo' => 'string | max:20 | nullable',
         'cd' => 'numeric | nullable',
-        'cd_memo' => 'nullable',
+        'cd_memo' => 'string | max:20 | nullable',
         'dvd' => 'numeric | nullable',
-        'dvd_memo' => 'nullable',
+        'dvd_memo' => 'string | max:20 | nullable',
         'magazine' => 'numeric | nullable',
-        'magazine_memo' => 'nullable',
+        'magazine_memo' => 'string | max:20 | nullable',
         'media' => 'numeric | nullable',
-        'media_memo' => 'nullable',
+        'media_memo' => 'string | max:20 | nullable',
         'others' => 'numeric | nullable',
-        'others_memo' => 'nullable',
+        'others_memo' => 'string | max:20 | nullable',
         
         );
         

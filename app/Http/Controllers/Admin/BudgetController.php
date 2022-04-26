@@ -16,29 +16,22 @@ class BudgetController extends Controller
     {
         $date = Carbon::now();
         
-        return view('admin.budget.create',['date' => $date]);
+        $check_month = Budget::where('register_year', $date->year)->where('user_id', Auth::id() )->select('register_month')->orderBy('id', 'desc')->first();
+        
+        
+        return view('admin.budget.create',['date' => $date, 'check_month' => $check_month]);
     }
     
     public function create(Request $request)
     {
-        $date = Carbon::now();
-        
-        $check_month = Budget::where('register_month', $date->month)->select('register_month')->get();
-        
         $this->validate($request, Budget::$rules);
         $budget = new Budget;
         $form = $request->all();
         
         unset($form['_token']);
-        
-        if( $check_month < $form['register_month'] ) {
             
-            $budget->fill($form);
-            $budget->save();
-        
-        } else {
-            false;
-        }
+        $budget->fill($form);
+        $budget->save();
         
         return redirect('admin/budget/index');
     }
@@ -46,9 +39,17 @@ class BudgetController extends Controller
     public function index(Request $request)
     {
         $date = Carbon::now();
-        $budgets = Budget::latest('updated_at')->first();
         
-        return view('admin.budget/index', ['budgets' => $budgets, 'date' => $date]);
+        $budget_message = "予算を登録してください。";
+            
+        $budgets = Budget::where('user_id', Auth::id() )->orderBy('id', 'desc')->first();
+        
+        if(isset($budgets)) {
+            $budgets = Budget::where('user_id', Auth::id() )->orderBy('id', 'desc')->first();
+        } else {
+            $budget_message;
+        }
+        return view('admin.budget.index', ['budgets' => $budgets, 'date' => $date, 'budget_message' => $budget_message]);
     }
     
     public function edit(Request $request)
@@ -70,6 +71,14 @@ class BudgetController extends Controller
         unset($budget_form['_token']);
         
         $budgets->fill($budget_form)->save();
+        
+        return redirect('admin/budget/index');
+    }
+    
+    public function delete(Request $request)
+    {
+        $budgets = Budget::find($request->id);
+        $budgets->delete();
         
         return redirect('admin/budget/index');
     }

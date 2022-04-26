@@ -42,39 +42,29 @@ class MemoryController extends Controller
     
     public function index(Request $request)
     {
-        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
-        
+        //認証ユーザーがフォローしているユーザーidを取得
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray();
         //index.viewで一覧と詳細でtitleを置き換える
         [ $index, $detail ] = ["メモリー一覧", "メモリー詳細" ];
-        
-        $cond_title = $request->cond_title; 
-        $memory_id = $request->get('id'); //idで取得
+        // キーワード検索
+        $cond_title = $request->cond_title;
+        // パラメーターからメモリーidを取得する
+        $memory_id = $request->get('id');
+        // パラメーターからuser_idを取得する
         $user_id = $request->get('user_id');
-        
-        
-        if ($memory_id != '' && $user_id != '') {                  
-            $memories = Memory::where('user_id', $user_id)  // main/indexからmemory_idとuser_idを取得
-            ->where('id', '=', $memory_id)
-            ->get();  
-        } elseif ($memory_id != '') {                             
-            $memories = Memory::where('id', $memory_id)  // main/plofileからmemory_idのみ取得
-            ->get();
-        } elseif ($user_id != '') {
-            $memories = Memory::where('user_id', $user_id)  // main/plofileからuser_idのみ取得
-            ->get();
-        } elseif ($cond_title != '') {
-            $memories = Memory::where('artist', 'like', '%' .$cond_title . '%') // memory/indexからcond_titleを取得
-            ->orwhere('place', 'like', '%' .$cond_title . '%')
-            ->get();
-        } elseif ($cond_title != '' && $user_id != '') {
-            $memories = Memory::where('artist', 'like', '%' .$cond_title . '%') // memory/indexからcond_titleとuser_idを取得
-            ->where('user_id', $user_id)
-            ->orwhere('place', 'like', '%' .$cond_title . '%')
-            ->get();
-        } else {
-            $memories = Memory::where('user_id', Auth::id() )
-            ->orderBy('created_at', 'desc')->get();
+        // 自分の投稿メモリーを表示する場合はログインidを格納
+        if($user_id == '') {
+            $user_id = Auth::id();
         }
+        
+        if($memory_id != '' && $user_id != '') {                  
+            $memories = Memory::where('user_id', $user_id)->where('id', $memory_id)->get();  
+        } elseif($cond_title != '' && $user_id != '') {
+            $memories = Memory::where('artist', 'like', '%' .$cond_title . '%')->where('user_id', $user_id)->orwhere('place', 'like', '%' .$cond_title . '%')->get();
+        } else {
+            $memories = Memory::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+        }
+        
         return view('admin.memory.index', [
             'memories' => $memories,
             'cond_title' => $cond_title,
@@ -86,10 +76,10 @@ class MemoryController extends Controller
             ]);
     }
     
-   
     public function edit(Request $request)
     {
         $memory = Memory::find($request->id);
+        
         if (empty($memory)) {
             abort(404);
         }
@@ -102,6 +92,7 @@ class MemoryController extends Controller
         $this->validate($request, Memory::$rules);
         $memory = Memory::find($request->id);
         $memory_form = $request->all();
+        
         if ($request->remove == 'true') {
             $memory_form['image_path'] = null;
         } elseif ($request->file('stage_image')) {
@@ -125,7 +116,7 @@ class MemoryController extends Controller
         $memory = Memory::find($request->id);
         $memory->delete();
         
-        return redirect('admin/memory/');
+        return redirect('admin/memory/index');
     }
     
 }

@@ -15,6 +15,9 @@ class CreateBudgetsTable extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('register_year');
+            $table->string('register_month');
             $table->string('total_budget')->nullable();
             $table->string('stage')->nullable();
             $table->string('concert')->nullable();
@@ -27,9 +30,6 @@ class CreateBudgetsTable extends Migration
             $table->string('travel')->nullable();
             $table->string('toy')->nullable();
             $table->string('others')->nullable();
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('register_year');
-            $table->string('register_month');
             $table->timestamps();
         });
     }

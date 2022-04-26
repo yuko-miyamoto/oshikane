@@ -39,7 +39,9 @@
             <header>
                 <nav class="navbar navbar-expand-lg navbar-light navbar-oshikane">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="{{ url('/admin/main/index') }}">推しとお金と。</a>
+                        <a class="navbar-brand" href="{{ url('/admin/main/index') }}">
+                            推しとお金と。
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -90,35 +92,35 @@
                             </ul>
                             <ul class="navbar-nav">
                                 @guest
-                                <li>
-                                    <a class="nav-link" href="{{ route('login') }}">
-                                        {{ __('Login') }}
-                                    </a>
-                                </li>
-                                {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                                    <li>
+                                        <a class="nav-link" href="{{ route('login') }}">
+                                            {{ __('Login') }}
+                                        </a>
+                                    </li>
+                                    {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                                 @else
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       <img src="{{ asset('storage/images/star.png') }}" width="40" height="40">
-                                        <br>
-                                        わたし
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ action('Admin\UserController@search') }}">
-                                            推しともを探す
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           <img src="{{ asset('storage/images/star.png') }}" width="40" height="40">
+                                            <br>
+                                            わたし
                                         </a>
-                                        <a class="dropdown-item" href="{{ action('Admin\UserController@add') }}">
-                                            {{ Auth::user()->name }}の設定
-                                            <span class="caret"></span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ action('Admin\UserController@search') }}">
+                                                推しともを探す
+                                            </a>
+                                            <a class="dropdown-item" href="{{ action('Admin\UserController@add') }}">
+                                                {{ Auth::user()->name }}の設定
+                                                <span class="caret"></span>
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
                                 @endguest
                             </ul>
                             <ul class="navbar-nav">
@@ -170,18 +172,15 @@
                         </div>
                     </div>
                 </nav>
-        </header>
-            
+            </header>
             <hr>
-            <ul class="nav_menu">
-                @yield('header_sub')
-            </ul>
-            
             <main>
-                    {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-                    @yield('content')
+                {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
+                @yield('content')
             </main>
-            
         </div>
     </body>
+    <footer>
+        @yield('footer')
+    </footer>
 </html>

@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Memory::class, function (Faker $faker) {
     return [
-        'stage_name' => $faker->realText(10),
+        'stage_name' => $faker->realText(20),
         'artist' => $faker->name,
         'stage' => $faker->numberBetween(5000,6000),
         'place' => $faker->city,

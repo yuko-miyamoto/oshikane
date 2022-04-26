@@ -37,63 +37,61 @@ class OshiController extends Controller
         
         $form['history'] = $form['history_y'] . str_pad($form['history_m'], 2, 0, STR_PAD_LEFT) . str_pad($form['history_d'], 2, 0, STR_PAD_LEFT);
         
-        
         unset($form['_token']);
         unset($form['oshi_image']);
         
         $oshi->fill($form);
         $oshi->save();
         
-        
         return redirect('admin/oshi/create');
     }
     
     public function index(Request $request)
     {
-        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray(); //認証ユーザーがフォローしているユーザーid
-        $user_id = $request->get('user_id');
-        $value = $request->input('user_id');
+        //認証ユーザーがフォローしているユーザーidを取得
+        $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray();
+        // キーワード検索
         $cond_title = $request->cond_title;
-        
-        if ($user_id != '') {
-            $oshis = Oshi::where('user_id', $user_id)
-            ->get();
-        } elseif ($cond_title != '' && $value != '') {
-            $oshis = Oshi::where('oshi_name', 'like', '%' .$cond_title . '%')
-            ->where('user_id', '!=', Auth::id() )
-            ->get();
-        } elseif ($cond_title != '') {
-            $oshis = Oshi::where('oshi_name', 'like', '%' .$cond_title . '%')
-            ->where( 'user_id', Auth::id() )
-            ->get();
-        } else {
-            $oshis = Oshi::where('user_id', Auth::id())
-            ->get()
-            ->sortByDesc("tentacles");
+        // パラメーターからuser_idを取得する
+        $user_id = $request->get('user_id');
+        // 自分の推しを表示する場合はログインidを格納
+        if($user_id == '') {
+            $user_id = Auth::id();
         }
+        
+        if($cond_title != '' && $user_id != '') {
+            $oshis = Oshi::where('oshi_name', 'like', '%' .$cond_title . '%')->where('user_id', $user_id)->get();
+        } else {
+            $oshis = Oshi::where('user_id', $user_id)->get()->sortByDesc('tentacles');
+        }
+        
         return view('admin.oshi.index', [
             'oshis' => $oshis,
             'cond_title' => $cond_title,
             'followee' => $followee,
-            'value' => $value,
+            'user_id' => $user_id
             ]);
     }
-    
    
     public function edit(Request $request)
     {
         $oshi = Oshi::find($request->id);
+        
         if (empty($oshi)) {
             abort(404);
         }
+        
         return view('admin.oshi.edit', ['oshi_form' => $oshi]);
     }
     
     public function update(Request $request)
     {
         $this->validate($request, Oshi::$rules);
+        
         $oshi = Oshi::find($request->id);
+        
         $oshi_form = $request->all();
+        
         if ($request->remove == 'true') {
             $oshi_form['image_path'] = null;
         } elseif ($request->file('oshi_image')) {
@@ -109,12 +107,15 @@ class OshiController extends Controller
         
         $oshi->fill($oshi_form)->save();
         
-        return redirect('admin/oshi/');
+        return redirect('admin/oshi/index');
     }
+    
     public function delete(Request $request)
     {
         $oshi = Oshi::find($request->id);
+        
         $oshi->delete();
-        return redirect('admin/oshi/');
+        
+        return redirect('admin/oshi/index');
     }
 }

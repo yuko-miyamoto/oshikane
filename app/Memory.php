@@ -14,9 +14,21 @@ class Memory extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'stage_name' => 'required',
-        'artist' => 'required',
-        'place' => 'required',
-        'stage_memo' => 'required',
-        );
+        'stage_name' => 'required | string | max:30',
+        'artist' => 'required | string | max:30',
+        'place' => 'required | string | max:20',
+        'stage_memo' => 'required | string | max:255',
+        'concert' => 'string | max:10',
+        'stage' => 'string | max:10',
+        's_list_01' => 'string | max:30',
+        's_list_02' => 'string | max:30',
+        's_list_03' => 'string | max:30',
+        's_list_04' => 'string | max:30',
+        's_list_05' => 'string | max:30',
+        's_list_06' => 'string | max:30',
+        's_list_07' => 'string | max:30',
+        's_list_08' => 'string | max:30',
+        's_list_09' => 'string | max:30',
+        's_list_10' => 'string | max:30'
+    );
 }

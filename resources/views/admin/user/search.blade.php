@@ -1,10 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'オシカネ 推しともをさがす')
-@section('header_sub')
-    
-@endsection
+@section('title', 'オシカネ オシトモサガシ')
 @section('content')
-    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 mx-auto">
@@ -27,7 +23,7 @@
                     </div>
                     <br>
                     @if($users->isEmpty())
-                    <p align="center">推しともは見つかりませんでした。</p>
+                        <p align="center">推しともは見つかりませんでした。</p>
                     @endif
                     <table class="table">
                         <tbody>
@@ -38,57 +34,61 @@
                             </tr>
                             @if(Auth::check() )
                                 @foreach($users as $user)
-                                <tr>
-                                    <td scope="row" align="center">{{ \Str::limit($user->nickname, 20) }}</td>
-                                    <td align="center">{{ \Str::limit($user->oshi, 20) }}</td>
-                                    <td align="center">
-                                        <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">こんにちは</button>
-                                        <div class="modal fade" id="modal1{{ $user->id }}" tabindex="-1" aria-labelledby="modal1label{{ $user->id }}">
-                                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal1label{{ $user->id }}">推しともになる？</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <tr>
+                                        <td scope="row" align="center">
+                                            <div class="profile_icon_top">
+                                                <img src="{{ asset('/storage/image/'.$user->profile_image_path) }}">    
+                                            </div>
+                                            {{ \Str::limit($user->nickname, 20) }}
+                                        </td>
+                                        <td align="center">{{ \Str::limit($user->oshi, 20) }}</td>
+                                        <td align="center">
+                                            @if(in_array($user->id, $followee))
+                                                <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">さよなら</button>
+                                            @else
+                                                <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">こんにちは</button>
+                                            @endif
+                                            <div class="modal fade" id="modal1{{ $user->id }}" tabindex="-1" aria-labelledby="modal1label{{ $user->id }}">
+                                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modal1label{{ $user->id }}">推しともになる？</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if(in_array($user->id, $followee))
+                                                                <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $user->id]) }}" role="botton">
+                                                                    ともだち解除
+                                                                </a>
+                                                            @else
+                                                                <form action="{{ action('Admin\FollowerController@store') }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="followee_id" value="{{ $user->id }}">
+                                                                    <input type="hidden" name="follower_id" value="{{ Auth::id() }}">
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        なる！
+                                                                    </button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ならない</button>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer"></div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        @if(in_array($user->id, $followee))
-                                                        <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $user->id]) }}" role="botton">
-                                                            ともだち解除
-                                                        </a>
-                                                        @else
-                                                        <form action="{{ action('Admin\FollowerController@store') }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="followee_id" value="{{ $user->id }}">
-                                                            <input type="hidden" name="follower_id" value="{{ Auth::id() }}">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                なる！
-                                                            </button>
-                                                        </form>
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ならない</button>
-                                                        @endif
-                                                    </div>
-                                                    <div class="modal-footer"></div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             @endif
                         </tbody>
                     </table>
-                </div>
-                    @if($users->isEmpty())
-                    <div style="text-align: center;">
-                        <button type="button" class="btn btn-outline-dark"><a href="{{ action('Admin\UserController@search') }}">もどる</a></button>
-                    </div>
-                    @endif
-                    @if(($cond_title) === null)
-                    <div style="text-align: center;">
-                        <button type="button" class="btn btn-outline-dark"><a href="{{ action('Admin\UserController@profile_create') }}">もどる</a></button>
-                    </div>
-                    @endif
-                </div>
+                </div>    
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
+@section('footer')
+    <div style="text-align: center;">
+        <button type="button" class="btn btn-outline-dark bg-{color} btn-lg" onClick="history.back()">戻る</button>
+    </div>
+@endsection

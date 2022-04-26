@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'オシカネ シシュツ')
+@section('title', 'オシカネ チョキンイチラン')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 mx-auto">
-                <h2>支出の一覧</h2>
+                <h2>貯金の一覧</h2>
                 <div class="row">
-                    <form action="{{ action('Admin\ExpenseController@index') }}" method="get">
+                    <form action="{{ action('Admin\SavingController@detail_index') }}" method="get">
                         <div class="form-row justify-content-end">
                             <div class="form-group col-md-2">
                                 <select class="form-control" name="year" id="year">
@@ -31,9 +31,7 @@
                                         <option value="cd">CD</option>
                                         <option value="dvd">DVD</option>
                                         <option value="magazine">雑誌</option>
-                                        <option value="train">交通費</option>
-                                        <option value="travel">宿泊費</option>
-                                        <option value="toy">ガチャ</option>
+                                        <option value="media">メディア出演</option>
                                         <option value="others">その他</option>
                                     </select>
                                 </div>
@@ -55,16 +53,16 @@
                         @endif
                     </form>
                 </div>
-                <p>全{{ $expenses->count() }}件</p>
-                @foreach($expenses as $expense)
+                <p>全{{ $savings->count() }}件</p>
+                @foreach($savings as $saving)
                     <div class="box_mo_c">
                         <div align="right">
-                            @if (Auth::check() && Auth::user()->id === $expense->user_id)
+                            @if (Auth::check() && Auth::user()->id === $saving->user_id)
                                 <div class="col-md-2">
-                                    <a href="{{ action('Admin\ExpenseController@edit', ['id' => $expense->id]) }}">
+                                    <a href="{{ action('Admin\SavingController@edit', ['id' => $saving->id]) }}">
                                         編集
                                     </a>
-                                    <a href="{{ action('Admin\ExpenseController@delete', ['id' => $expense->id]) }}">
+                                    <a href="{{ action('Admin\SavingController@delete', ['id' => $saving->id]) }}">
                                         削除
                                     </a>
                                 </div>
@@ -80,10 +78,10 @@
                         </div>
                         <div class="row justify-content-start">
                             <div class="col-md-3" align="center">
-                                <p><span class="detail_content">{{ $expense->paid_at->format('Y年m月d日') }}</span></p>
+                                <p><span class="detail_content">{{ $saving->stocked_at->format('Y年m月d日') }}</span></p>
                             </div>
                             <div class="col-md-4" align="center">
-                                <p><span class="detail_content">{{ $expense->oshi->oshi_name }}</span></p>
+                                <p><span class="detail_content">{{ $saving->oshi->oshi_name }}</span></p>
                             </div>
                         </div>
                         <div class="row">
@@ -102,24 +100,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2" align="right">
-                                @if($expense->stage != null)
-                                    <p><span class="detail_content">{{ $expense->stage }}円</span></p>
+                                @if($saving->stage != null)
+                                    <p><span class="detail_content">{{ $saving->stage }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->stage_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->stage_memo }}</span></p>
                             </div>
                             <div class="col-md-2" align="right">
-                                @if($expense->concert != null)
-                                    <p><span class="detail_content">{{ $expense->concert }}円</span></p>
+                                @if($saving->concert != null)
+                                    <p><span class="detail_content">{{ $saving->concert }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->concert_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->concert_memo }}</span></p>
                             </div>
                         </div>
                         <div class="row">
@@ -138,24 +136,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2" align="right">
-                                @if($expense->web != null)
-                                    <p><span class="detail_content">{{ $expense->web }}円</span></p>
+                                @if($saving->web != null)
+                                    <p><span class="detail_content">{{ $saving->web }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->web_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->web_memo }}</span></p>
                             </div>
                             <div class="col-md-2" align="right">
-                                @if($expense->movie != null)
-                                    <p><span class="detail_content">{{ $expense->movie }}円</span></p>
+                                @if($saving->movie != null)
+                                    <p><span class="detail_content">{{ $saving->movie }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->movie_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->movie_memo }}</span></p>
                             </div>
                         </div>
                         <div class="row">
@@ -174,24 +172,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2" align="right">
-                                @if($expense->cd != null)
-                                    <p><span class="detail_content">{{ $expense->cd }}円</span></p>
+                                @if($saving->cd != null)
+                                    <p><span class="detail_content">{{ $saving->cd }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->cd_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->cd_memo }}</span></p>
                             </div>
                             <div class="col-md-2" align="right">
-                                @if($expense->dvd != null)
-                                    <p><span class="detail_content">{{ $expense->dvd }}円</span></p>
+                                @if($saving->dvd != null)
+                                    <p><span class="detail_content">{{ $saving->dvd }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->dvd_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->dvd_memo }}</span></p>
                             </div>
                         </div>
                         <div class="row">
@@ -202,7 +200,7 @@
                                 メモ
                             </label>
                             <label class="col-md-2" align="center">
-                                交通費
+                                メディア出演
                             </label>
                             <label class="col-md-4" align="center">
                                 メモ
@@ -210,60 +208,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2" align="right">
-                                @if($expense->magazine != null)
-                                    <p><span class="detail_content">{{ $expense->magazine }}円</span></p>
+                                @if($saving->magazine != null)
+                                    <p><span class="detail_content">{{ $saving->magazine }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->magazine_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->magazine_memo }}</span></p>
                             </div>
                             <div class="col-md-2" align="right">
-                                @if($expense->train != null)
-                                    <p><span class="detail_content">{{ $expense->train }}円</span></p>
+                                @if($saving->media != null)
+                                    <p><span class="detail_content">{{ $saving->media }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->train_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                宿泊費
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                ガチャ
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->travel != null)
-                                    <p><span class="detail_content">{{ $expense->travel }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->travel_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->toy != null)
-                                    <p><span class="detail_content">{{ $expense->toy }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->toy_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->media_memo }}</span></p>
                             </div>
                         </div>
                         <div class="row">
@@ -276,21 +238,21 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2" align="right">
-                                @if($expense->others != null)
-                                    <p><span class="detail_content">{{ $expense->others }}円</span></p>
+                                @if($saving->others != null)
+                                    <p><span class="detail_content">{{ $saving->others }}円</span></p>
                                 @else
                                     <p><span class="detail_content">0円</span></p>
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->others_memo }}</span></p>
+                                <p><span class="detail_content">{{ $saving->others_memo }}</span></p>
                             </div>
                         </div>
                     </div>
                 @endforeach
                 <div class="d-flex justify-content-center">
                     {{-- appendsでカテゴリを選択したまま遷移 --}}
-                    {{ $expenses->appends(request()->input())->links() }}
+                    {{ $savings->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

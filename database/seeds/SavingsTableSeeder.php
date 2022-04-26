@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Expense;
+use App\Saving;
 use Faker\Factory as Faker;
 
-class ExpensesTableSeeder extends Seeder
+class SavingsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class ExpensesTableSeeder extends Seeder
      */
     public function run()
     {
+        factory(Saving::class, 10)->create();
         //
-        factory(Expense::class, 10)->create();
     }
 }

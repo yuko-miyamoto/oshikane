@@ -24,14 +24,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('oshi/create', 'Admin\OshiController@add');
     Route::post('oshi/create', 'Admin\OshiController@create');
-    Route::get('oshi', 'Admin\OshiController@index');
+    Route::get('oshi/index', 'Admin\OshiController@index');
     Route::get('oshi/edit', 'Admin\OshiController@edit');
     Route::post('oshi/edit', 'Admin\OshiController@update');
     Route::get('oshi/delete', 'Admin\OshiController@delete');
     
-    Route::get('gate/create', 'Admin\GateController@add');
-    Route::Post('gate/create', 'Admin\GateController@update');
-    Route::get('gate', 'Admin\GateController@index');
+    Route::get('notify/oshiadd', 'Admin\NotifyController@add');
+    Route::Post('notify/oshiadd', 'Admin\NotifyController@oshiadd');
+    Route::get('notify/index', 'Admin\NotifyController@index');
+    Route::get('notify/edit', 'Admin\NotifyController@edit');
+    Route::post('notify/edit', 'Admin\NotifyController@update');
    
     Route::get('memory/create', 'Admin\MemoryController@add');
     Route::post('memory/create', 'Admin\MemoryController@create');
@@ -43,13 +45,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('expense/create', 'Admin\ExpenseController@add');
     Route::post('expense/create', 'Admin\ExpenseController@create');
     Route::get('expense/index', 'Admin\ExpenseController@index');
+    Route::get('expense/edit', 'Admin\ExpenseController@edit');
+    Route::post('expense/edit', 'Admin\ExpenseController@update');
+    Route::get('expense/delete', 'Admin\ExpenseController@delete');
     
     Route::get('balancepayment', 'Admin\BalancepaymentController@chartindex');
     Route::get('ajax/balancepayment', 'Admin\Ajax\BalancepaymentController@chartindex');
     
     Route::get('saving/create', 'Admin\SavingController@add');
     Route::post('saving/create', 'Admin\SavingController@create');
-    Route::get('saving', 'Admin\SavingController@index');
+    Route::get('saving/index', 'Admin\SavingController@index');
+    Route::get('saving/detail_index', 'Admin\SavingController@detail_index');
+    Route::get('saving/edit', 'Admin\SavingController@edit');
+    Route::post('saving/edit', 'Admin\SavingController@update');
+    Route::get('saving/delete', 'Admin\SavingController@delete');
     Route::get('ajax/saving', 'Admin\Ajax\SavingController@index');
     
     Route::get('budget/create', 'Admin\BudgetController@add');
@@ -57,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('budget/index', 'Admin\BudgetController@index');
     Route::get('budget/edit', 'Admin\BudgetController@edit');
     Route::post('budget/edit', 'Admin\BudgetController@update');
+    Route::get('budget/delete', 'Admin\BudgetController@delete');
     
     Route::get('user/profile', 'Admin\UserController@add');
     Route::post('user/profile', 'Admin\UserController@profile_create');

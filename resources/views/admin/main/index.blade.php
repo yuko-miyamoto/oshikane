@@ -16,7 +16,9 @@
                                             <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                                 <input type="hidden" name="id" value="{{ $oshi->user->id }}">
                                                 <button type="sbmit" id="heart">
-                                                    <img src="{{ asset('/storage/images/hito.png') }}" width="30" height="30">
+                                                    <div class="profile_icon_top">
+                                                        <img src="{{ asset('/storage/image/'.$oshi->user->profile_image_path) }}">
+                                                    </div>
                                                     投稿者：{{ $oshi->user->nickname }}
                                                 </button>
                                             </form>
@@ -98,9 +100,11 @@
                                     <div class="card-body">
                                         <p class="card-text">
                                             <form action="{{ action('Admin\MainController@profile') }}" method="get">
-                                                <input type="hidden" name="user_id" value="{{ $memory->user->id }}">
+                                                <input type="hidden" name="id" value="{{ $memory->user->id }}">
                                                 <button type="sbmit" id="heart">
-                                                    <img src="{{ asset('/storage/images/hito.png') }}" width="30" height="30">
+                                                    <div class="profile_icon_top">
+                                                        <img src="{{ asset('/storage/image/'.$memory->user->profile_image_path) }}">
+                                                    </div>
                                                     投稿者：{{ $memory->user->nickname }}
                                                 </button>
                                             </form>

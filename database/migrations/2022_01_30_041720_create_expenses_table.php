@@ -15,7 +15,8 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('oshi_id')->unsigned();
             $table->string('stage')->nullable();
             $table->string('stage_memo')->nullable();
             $table->string('concert')->nullable();
@@ -39,8 +40,6 @@ class CreateExpensesTable extends Migration
             $table->string('others')->nullable();
             $table->string('others_memo')->nullable();
             $table->string('paid_at');
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('oshi_id')->unsigned();
             $table->timestamps();
         });
     }
