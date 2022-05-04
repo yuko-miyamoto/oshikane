@@ -11,6 +11,7 @@ use App\Expense;
 use Auth;
 use carbon\Carbon;
 use DateTime;
+use Storage;
 
 class OshiController extends Controller
 {
@@ -27,8 +28,8 @@ class OshiController extends Controller
         $form = $request->all();
         
         if (isset($form['oshi_image'])) {
-            $path = $request->file('oshi_image')->store('public/image');
-            $oshi->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$oshi_form['oshi_image'],'public');
+            $oshi->image_path = Storage::disk('s3')->url($path);
         } else {
             $oshi->image_path = null;
         }
@@ -95,8 +96,8 @@ class OshiController extends Controller
         if ($request->remove == 'true') {
             $oshi_form['image_path'] = null;
         } elseif ($request->file('oshi_image')) {
-            $path = $request->file('oshi_image')->store('public/image');
-            $oshi_form['image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$oshi_form['oshi_image'],'public');
+            $oshi_form['image_path'] = Storage::disk('s3')->url($path);
         } else {
             $oshi_form['image_path'] = $oshi->image_path;
         }

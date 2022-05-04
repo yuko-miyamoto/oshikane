@@ -42,14 +42,14 @@
                             <div class="col">
                                 @if(Auth::check() && Auth::user()->id === $memory->user_id)
                                     <div class="profile_icon_memory">
-                                        <img src="{{ asset('/storage/image/'.$memory->user->profile_image_path) }}">
+                                        <img src="{{ $memory->user->profile_image_path }}">
                                     </div>
                                 @else
                                     <div class="profile_icon_memory">
                                         <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                             <input type="hidden" name="id" value="{{ $memory->user->id }}">
                                             <button type="submit" id="heart">
-                                                <img src="{{ asset('/storage/image/'.$memory->user->profile_image_path) }}">
+                                                <img src="{{ $memory->user->profile_image_path }}">
                                             </button>
                                         </form>    
                                     </div>
@@ -108,7 +108,7 @@
                             @if($memory->image_path == null)
                                 <img src="/storage/noimage.png" class="rounded mx-auto d-block">
                             @else
-                                <img src="/storage/image/{{ $memory->image_path }}" class="img-fluid rounded mx-auto d-block">
+                                <img src="{{ $memory->image_path }}" class="img-fluid rounded mx-auto d-block">
                             @endif
                         </div>
                         <table class="memory_table">

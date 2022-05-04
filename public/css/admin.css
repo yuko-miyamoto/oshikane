@@ -230,6 +230,10 @@ a {
   cursor: pointer;
 }
 
+.money_table thead {
+  background-color: #c2707f;
+}
+
 .money_table tr:hover {
   background-color: #FAE8E0;
 }

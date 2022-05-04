@@ -68,35 +68,41 @@
                                 </div>
                             @endif
                         </div>
+                        <div class="row">
+                            <div class="col">    
+                                日付
+                            </div>
+                            <div class="col">    
+                                推しの名前
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ $saving->stocked_at->format('Y年m月d日') }}
+                            </div>
+                            <div class="col">
+                                {{ $saving->oshi->oshi_name }}
+                            </div>
+                        </div>    
                         <table class="money_table">
                             <thead>
                                 <tr>
                                     <th>
+                                        カテゴリ
+                                    </th>
+                                    <th>
                                         日付
                                     </th>
                                     <th>
-                                        推しのなまえ
+                                        メモ
                                     </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ $saving->stocked_at->format('Y年m月d日') }}
-                                    </th>
-                                    <th>
-                                        {{ $saving->oshi->oshi_name }}
-                                    </th>
-                                </tr>
+                                </tr>    
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
                                         演劇
                                     </td>
-                                    <td>
-                                        メモ
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->stage != null)
                                             {{ $saving->stage }}円
@@ -112,9 +118,6 @@
                                     <td>
                                         コンサート
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->concert != null)
                                             {{ $saving->concert }}円
@@ -130,9 +133,6 @@
                                     <td>
                                         配信
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->web != null)
                                             {{ $saving->web }}円
@@ -148,9 +148,6 @@
                                     <td>
                                         映画
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->movie != null)
                                             {{ $saving->movie }}円
@@ -166,9 +163,6 @@
                                     <td>
                                         CD
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->cd != null)
                                             {{ $saving->cd }}円
@@ -184,9 +178,6 @@
                                     <td>
                                         DVD
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->dvd != null)
                                             {{ $saving->dvd }}円
@@ -202,9 +193,6 @@
                                     <td>
                                         雑誌
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->magazine != null)
                                             {{ $saving->magazine }}円
@@ -220,9 +208,6 @@
                                     <td>
                                         メディア出演
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->media != null)
                                             {{ $saving->media }}円
@@ -238,9 +223,6 @@
                                     <td>
                                         その他
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($saving->others != null)
                                             {{ $saving->others }}円

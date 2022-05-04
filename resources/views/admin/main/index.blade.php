@@ -10,14 +10,14 @@
                             @foreach($oshis as $oshi)
                             <div class="col">
                                 <div class="card">
-                                    <img src="/storage/image/{{$oshi->image_path}}" class="card-img-top" alt="card-grid-image">
+                                    <img src="{{ $oshi->image_path }}" class="card-img-top" alt="card-grid-image">
                                     <div class="card-body">
                                         <P class="card-text">
                                             <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                                 <input type="hidden" name="id" value="{{ $oshi->user->id }}">
                                                 <button type="sbmit" id="heart">
                                                     <div class="profile_icon_top">
-                                                        <img src="{{ asset('/storage/image/'.$oshi->user->profile_image_path) }}">
+                                                        <img src="{{ $oshi->user->profile_image_path }}">
                                                     </div>
                                                     投稿者：{{ $oshi->user->nickname }}
                                                 </button>
@@ -96,14 +96,14 @@
                             @foreach($memories as $memory)
                             <div class="col">
                                 <div class="card">
-                                    <img src="/storage/image/{{$memory->image_path}}" class="card-img-top" alt="card-grid-image">
+                                    <img src="{{ $memory->image_path }}" class="card-img-top" alt="card-grid-image">
                                     <div class="card-body">
                                         <p class="card-text">
                                             <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                                 <input type="hidden" name="id" value="{{ $memory->user->id }}">
                                                 <button type="sbmit" id="heart">
                                                     <div class="profile_icon_top">
-                                                        <img src="{{ asset('/storage/image/'.$memory->user->profile_image_path) }}">
+                                                        <img src="{{ $memory->user->profile_image_path }}">
                                                     </div>
                                                     投稿者：{{ $memory->user->nickname }}
                                                 </button>

@@ -38,14 +38,14 @@
                             <div class="col">
                                 @if(Auth::check() && Auth::user()->id === $oshi->user_id)
                                     <div class="profile_icon_memory">
-                                        <img src="{{ asset('/storage/image/'.$oshi->user->profile_image_path) }}">
+                                        <img src="{{ $oshi->user->profile_image_path }}">
                                     </div>
                                 @else
                                     <div class="profile_icon_memory">
                                         <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                             <input type="hidden" name="id" value="{{ $oshi->user->id }}">
                                             <button type="submit" id="heart">
-                                                <img src="{{ asset('/storage/image/'.$oshi->user->profile_image_path) }}">
+                                                <img src="{{ $oshi->user->profile_image_path }}">
                                             </button>
                                         </form>
                                     </div>
@@ -101,7 +101,7 @@
                             @endif
                         </div>
                         <div class="image" align="center">
-                            <img src="/storage/image/{{$oshi->image_path}}" class="img-fluid rounded mx-auto d-block">
+                            <img src="{{ $oshi->image_path }}" class="img-fluid rounded mx-auto d-block">
                         </div>
                         <table class="oshi_table">
                             <tbody>

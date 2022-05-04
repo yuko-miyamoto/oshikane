@@ -17,7 +17,7 @@
                             </div>
                         @endif       
                         <div class="notify">
-                            <img class="notifyimg" src="{{ secure_asset('storage/image/'.$oshi->image_path) }}">
+                            <img class="notifyimg" src="{{ $oshi->image_path }}">
                             <span class="box_bottom_center">
                                 {{ $oshi->oshi_name }}
                             </span>

@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>
                                             <div class="profile_icon_top">
-                                                <img src="{{ asset('/storage/image/'.$user->profile_image_path) }}">    
+                                                <img src="{{ $user->profile_image_path }}">    
                                             </div>
                                             {{ \Str::limit($user->nickname, 20) }}
                                         </td>

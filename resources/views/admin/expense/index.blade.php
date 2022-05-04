@@ -70,22 +70,33 @@
                                 </div>
                             @endif
                         </div>
+                        <div class="row">
+                            <div class="col">    
+                                日付
+                            </div>
+                            <div class="col">    
+                                推しの名前
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">    
+                                {{ $expense->paid_at->format('Y年m月d日') }}
+                            </div>
+                            <div class="col">    
+                                {{ $expense->oshi->oshi_name }}
+                            </div>
+                        </div>
                         <table class="money_table">
                             <thead>
                                 <tr>
                                     <th>
-                                        日付
+                                        カテゴリ
                                     </th>
                                     <th>
-                                        推しのなまえ
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ $expense->paid_at->format('Y年m月d日') }}
+                                        金額    
                                     </th>
                                     <th>
-                                        {{ $expense->oshi->oshi_name }}
+                                        メモ    
                                     </th>
                                 </tr>
                             </thead>
@@ -94,11 +105,6 @@
                                     <td>
                                         演劇
                                     </td>
-                                    <td>
-                                        メモ
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->stage != null)
                                             {{ $expense->stage }}円
@@ -114,9 +120,6 @@
                                     <td>
                                         コンサート
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->concert != null)
                                             {{ $expense->concert }}円
@@ -132,9 +135,6 @@
                                     <td>
                                         配信
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->web != null)
                                             {{ $expense->web }}円
@@ -150,9 +150,6 @@
                                     <td>
                                         映画
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->movie != null)
                                             {{ $expense->movie }}円
@@ -168,9 +165,6 @@
                                     <td>
                                         CD
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->cd != null)
                                             {{ $expense->cd }}円
@@ -186,9 +180,6 @@
                                     <td>
                                         DVD
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->dvd != null)
                                             {{ $expense->dvd }}円
@@ -204,9 +195,6 @@
                                     <td>
                                         雑誌
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->magazine != null)
                                             {{ $expense->magazine }}円
@@ -222,9 +210,6 @@
                                     <td>
                                         交通費
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->train != null)
                                             {{ $expense->train }}円
@@ -240,9 +225,6 @@
                                     <td>
                                         宿泊費
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->travel != null)
                                             {{ $expense->travel }}円
@@ -258,9 +240,6 @@
                                     <td>
                                         ガチャ
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->toy != null)
                                             {{ $expense->toy }}円
@@ -276,9 +255,6 @@
                                     <td>
                                         その他
                                     </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td>
                                         @if($expense->others != null)
                                             {{ $expense->others }}円

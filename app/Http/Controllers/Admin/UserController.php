@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Follower;
 use Auth;
-
+use Storage;
 
 class UserController extends Controller
 {
@@ -61,8 +61,8 @@ class UserController extends Controller
         if($request->remove == 'true') {
             $user_form['profile_image_path'] = null;
         } elseif($request->file('profile_image')) {
-            $path = $request->file('profile_image')->store('public/image');
-            $user_form['profile_image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$user_form['profile_image'],'public');
+            $user_form['profile_image_path'] = Storage::disk('s3')->url($path);
         } else {
             $user_form['profile_image_path'] = $user->profile_image_path;
         }

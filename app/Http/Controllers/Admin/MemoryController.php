@@ -9,6 +9,7 @@ use App\User;
 use App\Follower;
 use Auth;
 use Carbon\Carbon;
+use Storage;
 
 class MemoryController extends Controller
 {
@@ -25,8 +26,8 @@ class MemoryController extends Controller
         $form = $request->all();
         
         if (isset($form['stage_image'])) {
-            $path = $request->file('stage_image')->store('public/image');
-            $memory->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$memory_form['stage_image'],'public');
+            $memory->image_path = Storage::disk('s3')->url($path);
         } else {
             $memory->image_path = null;
         }
@@ -96,8 +97,8 @@ class MemoryController extends Controller
         if ($request->remove == 'true') {
             $memory_form['image_path'] = null;
         } elseif ($request->file('stage_image')) {
-            $path = $request->file('stage_image')->store('public/image');
-            $memory_form['image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$memory_form['stage_image'],'public');
+            $memory_form['image_path'] = Storage::disk('s3')->url($path);
         } else {
             $memory_form['image_path'] = $memory->image_path;
         }

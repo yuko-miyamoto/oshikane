@@ -8,7 +8,7 @@
                     <div class="row row-cols-auto align-items-center">
                         <div class="col">
                             <div class="profile_icon">
-                                <img src="{{ asset('/storage/image/'.$users->profile_image_path) }}">
+                                <img src="{{ $users->profile_image_path }}">
                             </div>
                         </div>
                         <div class="col">
@@ -79,7 +79,7 @@
                     </div>
                     @foreach($users->oshis as $oshi)
                         <div class="image" align="center">
-                            <img src="/storage/image/{{$oshi->image_path}}" class="img-fluid rounded mx-auto d-block">
+                            <img src="{{ $oshi->image_path }}" class="img-fluid rounded mx-auto d-block">
                         </div>
                         <table class="oshi_table">
                             <tbody>
@@ -125,7 +125,7 @@
                         @foreach($users->memories as $memory)
                             <div class="col">
                                 <div class="card">
-                                    <img src="/storage/image/{{$memory->image_path}}" class="card-img-top" alt="card-grid-image">
+                                    <img src="{{ $memory->image_path }}" class="card-img-top" alt="card-grid-image">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             {{ \Str::limit($memory->stage_name, 20) }}
