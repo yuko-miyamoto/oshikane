@@ -49,42 +49,42 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item" align="center">
                                     <a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">
-                                        <img src="{{ asset('storage/images/heart.png') }}" width="40" height="40">
+                                        <img src="heart.png" width="40" height="40">
                                         <br>
                                         推し
                                     </a>
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\MemoryController@index') }}">
-                                        <img src="{{ asset('storage/images/memo.png') }}" width="40" height="40">
+                                        <img src="memo.png" width="40" height="40">
                                         <br>
                                         メモリー
                                     </a>
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\BalancepaymentController@chartindex') }}">
-                                        <img src="{{ asset('storage/images/result.png') }}" width="40" height="40">
+                                        <img src="result.png" width="40" height="40">
                                         <br>
                                         支出
                                     </a>
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\SavingController@index') }}">
-                                        <img src="{{ asset('storage/images/pig.png') }}" width="40" height="40">
+                                        <img src="pig.png" width="40" height="40">
                                         <br>
                                         貯金
                                     </a>
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\BudgetController@index') }}">
-                                        <img src="{{ asset('storage/images/gama.png') }}" width="40" height="40">
+                                        <img src="gama.png" width="40" height="40">
                                         <br>
                                         予算
                                     </a>
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\UserController@index') }}">
-                                        <img src="{{ asset('storage/images/friend.png') }}" width="40" height="40">
+                                        <img src="friend.png" width="40" height="40">
                                         <br>
                                         推しとも
                                     </a>
@@ -101,7 +101,7 @@
                                 @else
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                           <img src="{{ asset('storage/images/star.png') }}" width="40" height="40">
+                                           <img src="star.png" width="40" height="40">
                                             <br>
                                             わたし
                                         </a>
@@ -132,35 +132,35 @@
                                         <ul class="list-group list-group-horizontal">
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\OshiController@add') }}">
-                                                    <img src="{{ asset('storage/images/heart.png') }}" width="50" height="50">
+                                                    <img src="heart.png" width="50" height="50">
                                                     <br>
                                                     推し
                                                 </a>
                                             </li>
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\MemoryController@add') }}">
-                                                    <img src="{{ asset('storage/images/memo.png') }}" width="50" height="50">
+                                                    <img src="memo.png" width="50" height="50">
                                                     <br>
                                                     メモリー
                                                 </a>
                                             </li>
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\ExpenseController@add') }}">
-                                                    <img src="{{ asset('storage/images/result.png') }}" width="50" height="50">
+                                                    <img src="result.png" width="50" height="50">
                                                     <br>
                                                     支出
                                                 </a>
                                             </li>
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\SavingController@add') }}">
-                                                    <img src="{{ asset('storage/images/pig.png') }}" width="50" height="50">
+                                                    <img src="pig.png" width="50" height="50">
                                                     <br>
                                                     貯金
                                                 </a>
                                             </li>
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\BudgetController@add') }}">
-                                                    <img src="{{ asset('storage/images/gama.png') }}" width="50" height="50">
+                                                    <img src="gama.png" width="50" height="50">
                                                     <br>
                                                     予算
                                                 </a>
