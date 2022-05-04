@@ -28,7 +28,7 @@ class OshiController extends Controller
         $form = $request->all();
         
         if (isset($form['oshi_image'])) {
-            $path = Storage::disk('s3')->putFile('/',$oshi_form['oshi_image'],'public');
+            $path = Storage::disk('s3')->putFile('/',$form['oshi_image'],'public');
             $oshi->image_path = Storage::disk('s3')->url($path);
         } else {
             $oshi->image_path = null;

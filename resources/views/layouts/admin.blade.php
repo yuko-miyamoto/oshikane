@@ -84,7 +84,7 @@
                                 </li>
                                 <li class="nav-item" align="center">
                                     <a class="nav-link" href="{{ action('Admin\UserController@index') }}">
-                                        <img src="friend.png" width="40" height="40">
+                                        <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/friend.png" width="40" height="40">
                                         <br>
                                         推しとも
                                     </a>
@@ -160,7 +160,7 @@
                                             </li>
                                             <li class="list-group-item" align="center">
                                                 <a class="dropdown-item" href="{{ action('Admin\BudgetController@add') }}">
-                                                    <img src="gama.png" width="50" height="50">
+                                                    <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/gama.png" width="50" height="50">
                                                     <br>
                                                     予算
                                                 </a>

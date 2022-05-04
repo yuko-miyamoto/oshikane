@@ -26,7 +26,7 @@ class MemoryController extends Controller
         $form = $request->all();
         
         if (isset($form['stage_image'])) {
-            $path = Storage::disk('s3')->putFile('/',$memory_form['stage_image'],'public');
+            $path = Storage::disk('s3')->putFile('/',$form['stage_image'],'public');
             $memory->image_path = Storage::disk('s3')->url($path);
         } else {
             $memory->image_path = null;
