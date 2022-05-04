@@ -17,36 +17,52 @@
                     </div>
                 </form>
                 <div class="box_pro">
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <label class="col-md-9" style="text-align: center;">推しとも検索結果</label>
-                    </div>
-                    <br>
                     @if($users->isEmpty())
                         <p align="center">推しともは見つかりませんでした。</p>
                     @endif
-                    <table class="table">
+                    <table class="list_table">
+                        <thead>
+                            <th scope="row" colspan="2">
+                                推しとも検索結果
+                            </th>
+                        </thead>
                         <tbody>
-                            <tr align="center">
-                                <th scope="row">推しとものなまえ</th>
-                                <th>推しとものいち推し</th>
-                                <th>ともだちになる</th>
+                            <tr>
+                                <td>
+                                    なまえ
+                                </td>
+                                <td>
+                                    いち推し
+                                </td>
                             </tr>
                             @if(Auth::check() )
                                 @foreach($users as $user)
                                     <tr>
-                                        <td scope="row" align="center">
+                                        <td>
                                             <div class="profile_icon_top">
                                                 <img src="{{ asset('/storage/image/'.$user->profile_image_path) }}">    
                                             </div>
                                             {{ \Str::limit($user->nickname, 20) }}
                                         </td>
-                                        <td align="center">{{ \Str::limit($user->oshi, 20) }}</td>
-                                        <td align="center">
+                                        <td>
+                                            {{ \Str::limit($user->oshi, 20) }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
                                             @if(in_array($user->id, $followee))
-                                                <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">さよなら</button>
+                                                <div class="d-grid gap-2 d-md-block">
+                                                    <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">
+                                                        さよなら
+                                                    </button>
+                                                </div>
                                             @else
-                                                <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">こんにちは</button>
+                                                <div class="d-grid gap-2 d-md-block">
+                                                    <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $user->id }}">
+                                                        こんにちは
+                                                    </button>
+                                                </div>
                                             @endif
                                             <div class="modal fade" id="modal1{{ $user->id }}" tabindex="-1" aria-labelledby="modal1label{{ $user->id }}">
                                                 <div class="modal-dialog modal-sm modal-dialog-centered">

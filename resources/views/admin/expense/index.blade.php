@@ -70,222 +70,228 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="row justify-content-start">
-                            <label class="col-md-3" align="center">
-                                日付
-                            </label>
-                            <label class="col-md-4" align="center">
-                                選択した推しのなまえ
-                            </label>
-                        </div>
-                        <div class="row justify-content-start">
-                            <div class="col-md-3" align="center">
-                                <p><span class="detail_content">{{ $expense->paid_at->format('Y年m月d日') }}</span></p>
-                            </div>
-                            <div class="col-md-4" align="center">
-                                <p><span class="detail_content">{{ $expense->oshi->oshi_name }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                演劇
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                コンサート
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->stage != null)
-                                    <p><span class="detail_content">{{ $expense->stage }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->stage_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->concert != null)
-                                    <p><span class="detail_content">{{ $expense->concert }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->concert_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                配信
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                映画
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->web != null)
-                                    <p><span class="detail_content">{{ $expense->web }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->web_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->movie != null)
-                                    <p><span class="detail_content">{{ $expense->movie }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->movie_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                CD
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                DVD
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->cd != null)
-                                    <p><span class="detail_content">{{ $expense->cd }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->cd_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->dvd != null)
-                                    <p><span class="detail_content">{{ $expense->dvd }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->dvd_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                雑誌
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                交通費
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->magazine != null)
-                                    <p><span class="detail_content">{{ $expense->magazine }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->magazine_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->train != null)
-                                    <p><span class="detail_content">{{ $expense->train }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->train_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                宿泊費
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                ガチャ
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->travel != null)
-                                    <p><span class="detail_content">{{ $expense->travel }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->travel_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($expense->toy != null)
-                                    <p><span class="detail_content">{{ $expense->toy }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->toy_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                その他
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($expense->others != null)
-                                    <p><span class="detail_content">{{ $expense->others }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $expense->others_memo }}</span></p>
-                            </div>
-                        </div>
+                        <table class="money_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        日付
+                                    </th>
+                                    <th>
+                                        推しのなまえ
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ $expense->paid_at->format('Y年m月d日') }}
+                                    </th>
+                                    <th>
+                                        {{ $expense->oshi->oshi_name }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        演劇
+                                    </td>
+                                    <td>
+                                        メモ
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->stage != null)
+                                            {{ $expense->stage }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->stage_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        コンサート
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->concert != null)
+                                            {{ $expense->concert }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->concert_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        配信
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->web != null)
+                                            {{ $expense->web }}円
+                                        @else
+                                            0円
+                                        @endif    
+                                    </td>
+                                    <td>
+                                        {{ $expense->web_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        映画
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->movie != null)
+                                            {{ $expense->movie }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->movie_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        CD
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->cd != null)
+                                            {{ $expense->cd }}円
+                                        @else
+                                            0円
+                                        @endif   
+                                    </td>
+                                    <td>
+                                        {{ $expense->cd_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        DVD
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->dvd != null)
+                                            {{ $expense->dvd }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->dvd_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        雑誌
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->magazine != null)
+                                            {{ $expense->magazine }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->magazine_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        交通費
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->train != null)
+                                            {{ $expense->train }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->train_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        宿泊費
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->travel != null)
+                                            {{ $expense->travel }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->travel_memo }}    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ガチャ
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->toy != null)
+                                            {{ $expense->toy }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->toy_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        その他
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($expense->others != null)
+                                            {{ $expense->others }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $expense->others_memo }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 @endforeach
                 <div class="d-flex justify-content-center">

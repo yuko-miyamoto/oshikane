@@ -25,15 +25,14 @@ class Oshi extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'oshi_name' => 'required | string | max:10',
-        'birthday' => 'date',
+        'oshi_name' => 'required | string | max:30',
         'birthday_y' => 'required',
         'birthday_m' => 'required',
         'birthday_d' => 'required',
         'blood' => 'required',
-        'oshi_height' => 'required | numeric',
-        'oshi_weight' => 'required | numeric',
-        'oshi_group' => 'required',
+        'oshi_height' => 'required | numeric | max:3',
+        'oshi_weight' => 'required | numeric | max:3',
+        'oshi_group' => 'string | max:30 |nullable',
         'history_y' => 'required',
         'history_m' => 'required',
         'history_d' => 'required',

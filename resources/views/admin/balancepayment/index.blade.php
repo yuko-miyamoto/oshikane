@@ -49,7 +49,11 @@
                         @endif
                     </div>
                 </div>
-                <canvas id="myChart1"></canvas>
+                <div class="wrap-chart">
+                    <div class="chart-container" style="position: relative; width: 100%; height: 95%;">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -227,7 +231,6 @@
                                     ]
                                 },
                                 options: {
-                                    responsive: true,
                                     title: {
                                         display: true,
                                     },
@@ -242,30 +245,33 @@
                                                 gridLines: {
                                                     color: "rgba(255, 0, 0, 0.2)"
                                                 },
-                                                scaleLabel: {         // 軸ラベル設定
-                                                    display: true,          //表示設定
+                                                scaleLabel: {                           // 軸ラベル設定
+                                                    display: window.screen.width > 414, //表示設定
                                                     fontColor: "red",
-                                                    fontSize: 14               //フォントサイズ
+                                                    fontSize: 14                       //フォントサイズ
                                                 },                 
                                                 ticks: {
                                                     fontColor: "black",             
                                                     beginAtZero: true,
                                                     suggestedMax: 50000,
                                                     suggestedMin: 1000,
-                                                    stepSize: 5000
                                                 }
                                             }
                                         ],
                                         xAxes: [
                                             {
+                                                scaleLabel: {                           // 軸ラベル設定
+                                                    display: window.screen.width > 414, //表示設定
+                                                },
                                                 ticks: {
                                                     min: 1,
                                                 }
                                             }
                                         ]
-                                    }
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: false,
                                 }
-                                
                             });
                             document.getElementById('myChart1').addEventListener('click', e => {
                                 const elements = myChart.getElementAtEvent(e);

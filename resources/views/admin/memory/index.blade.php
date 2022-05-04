@@ -111,7 +111,7 @@
                                 <img src="/storage/image/{{ $memory->image_path }}" class="img-fluid rounded mx-auto d-block">
                             @endif
                         </div>
-                        <table class="table table-borderless">
+                        <table class="memory_table">
                             <tbody>
                                 <tr>
                                     <th scope="row">

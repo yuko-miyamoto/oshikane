@@ -54,11 +54,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('saving/create', 'Admin\SavingController@add');
     Route::post('saving/create', 'Admin\SavingController@create');
-    Route::get('saving/index', 'Admin\SavingController@index');
     Route::get('saving/detail_index', 'Admin\SavingController@detail_index');
     Route::get('saving/edit', 'Admin\SavingController@edit');
     Route::post('saving/edit', 'Admin\SavingController@update');
     Route::get('saving/delete', 'Admin\SavingController@delete');
+    
+    Route::get('saving', 'Admin\SavingController@index');
     Route::get('ajax/saving', 'Admin\Ajax\SavingController@index');
     
     Route::get('budget/create', 'Admin\BudgetController@add');

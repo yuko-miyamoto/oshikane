@@ -103,7 +103,7 @@
                         <div class="image" align="center">
                             <img src="/storage/image/{{$oshi->image_path}}" class="img-fluid rounded mx-auto d-block">
                         </div>
-                        <table class="table table-borderless">
+                        <table class="oshi_table">
                             <tbody>
                                 <tr>
                                     <th scope="row">

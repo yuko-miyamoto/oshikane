@@ -59,10 +59,10 @@ class NotifyController extends Controller
     public function update(Request $request)
     {
         $this->validate($request,
-        ['text_history' => 'required |max:15',
-        'text_point' => 'required |max:15',
-        'text_input' => 'required |max:15',
-        'text_now' => 'required |max:15',]);
+        ['text_history' => 'required | string | max:15',
+        'text_point' => 'required | string | max:15',
+        'text_input' => 'required | string | max:15',
+        'text_now' => 'required | string | max:15',]);
         
         $oshi = Oshi::find($request->id);
         

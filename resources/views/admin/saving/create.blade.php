@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'オシカネ チョキントウロク')
-@section('header_sub')
-    
-@endsection
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 mx-auto">
@@ -21,14 +17,14 @@
                         <div class="form-row">
                                 <label class="col-md-3" for="date">日付</label>
                                 <div class="form-group col-md-3">
-                                    <input type="date" name="paid_at" required />
+                                    <input type="date" name="stocked_at" required />
                                 </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">推し</label>
                             <div class="form-group col-md-3">
                                 <select class="form-control" name="oshi_id" id="oshi_id">
-                                    @if(empty($oshis))
+                                    @if(!empty($oshis))
                                         <option value="">推しを選択</option>
                                         @foreach($oshis as $oshi)
                                             <option value="{{ $oshi->id }}" @if(old('oshi_name')=='oshi_name')selected @endif>{{ $oshi->oshi_name}}</option>
@@ -39,12 +35,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="row">
                             <label class="col">カテゴリ</label>
-                            <lavel class="col">金額</lavel>
-                            <lavel class="col">メモ</lavel>
                         </div>
-                        <br>
+                        <div class="row">
+                            <lavel class="col-md-6" style="text-align:center;">金額</lavel>
+                            <lavel class="col-md-6" style="text-align:center;">メモ</lavel>
+                        </div>
                         <div class="form-row">
                             <label class="col-md-3">演劇</label>
                             <div class="form-group col-md-3">

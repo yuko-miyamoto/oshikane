@@ -53,12 +53,6 @@
                                 <input type="text" class="form-control" name="email" value="{{ $user_form->email }}">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-3">パスワード</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" name="password" value="{{ $user_form->password }}">
-                            </div>
-                        </div>
                         <input type="hidden" name="id" value="{{ $user_form->id }}">
                         {{ csrf_field() }}
                         <div style="text-align: center;">

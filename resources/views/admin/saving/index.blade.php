@@ -43,10 +43,17 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-2 offset-1">
+                                <input type="button" id="draw" class="btn btn-outline-dark bg-{color} btn-sm" value="グラフ">
+                            </div>
                         @endif
                     </div>
                 </div>
-                <canvas id="savingChart"></canvas>
+                <div class="wrap-chart">
+                    <div class="chart-container" style="position: relative; width: 100%; height: 95%;">
+                        <canvas id="savingChart"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +71,7 @@
             }
             console.log(userId);
             // セレクトボックスの切り替えで
-            $('#oshi_id, #year').change(function() {
+            $('#draw').click(function() {
                 const id = $('#oshi_id').val(); // 選択した値を取得
                 const year = $('#year').val();
                 if(year == "") {
@@ -87,6 +94,7 @@
                 })
                 //通信が成功
                 .done((data) => {
+                    console.log(userId);
                     const stageData = [];
                     $.each(data['stage'], function (index, value) { 
                         stageData.push(value); 
@@ -138,7 +146,7 @@
                     window.myChart = new Chart( ctx, {
                         type: 'bar',
                         data: {
-                        labels: ['演劇', 'コンサート', '配信', '映画', 'CD', 'DVD', '雑誌', 'TV出演', 'その他'],
+                        labels: ['演劇', 'コンサート', '配信', '映画', 'CD', 'DVD', '雑誌', 'メディア出演', 'その他'],
                         datasets: [{
                             data: savingData,
                             backgroundColor: [
@@ -156,7 +164,6 @@
                         }],
                         },
                         options: {
-                            responsive: true,
                             legend: {
                                 display: false
                             },
@@ -165,6 +172,8 @@
                                 fontSize: 14,
                                 text: '推し貯金'
                             },
+                            responsive: true,
+                            maintainAspectRatio: false,
                         },
                     });
                 })

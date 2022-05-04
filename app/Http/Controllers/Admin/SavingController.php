@@ -41,12 +41,12 @@ class SavingController extends Controller
         if($user_id == ''){
             $user_id = Auth::id();
         }
+        // プルダウンに自分が登録している推しを格納
+        $oshis = User::find($user_id);
         // グラフ表示する際に取得する年度の初期値
         $years = null;
         // 貯金テーブルの貯金日を取得
         $dates = Saving::where('user_id', $user_id)->pluck('stocked_at');
-        // プルダウンに自分が登録している推しを格納
-        $oshis = User::find($user_id);
         // 貯金日が0ではない時の処理
         if(count($dates) != 0 ) {
             foreach ($dates as $date) {

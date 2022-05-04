@@ -68,186 +68,192 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="row justify-content-start">
-                            <label class="col-md-3" align="center">
-                                日付
-                            </label>
-                            <label class="col-md-4" align="center">
-                                選択した推しのなまえ
-                            </label>
-                        </div>
-                        <div class="row justify-content-start">
-                            <div class="col-md-3" align="center">
-                                <p><span class="detail_content">{{ $saving->stocked_at->format('Y年m月d日') }}</span></p>
-                            </div>
-                            <div class="col-md-4" align="center">
-                                <p><span class="detail_content">{{ $saving->oshi->oshi_name }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                演劇
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                コンサート
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($saving->stage != null)
-                                    <p><span class="detail_content">{{ $saving->stage }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->stage_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($saving->concert != null)
-                                    <p><span class="detail_content">{{ $saving->concert }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->concert_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                配信
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                映画
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($saving->web != null)
-                                    <p><span class="detail_content">{{ $saving->web }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->web_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($saving->movie != null)
-                                    <p><span class="detail_content">{{ $saving->movie }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->movie_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                CD
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                DVD
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($saving->cd != null)
-                                    <p><span class="detail_content">{{ $saving->cd }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->cd_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($saving->dvd != null)
-                                    <p><span class="detail_content">{{ $saving->dvd }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->dvd_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                雑誌
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                            <label class="col-md-2" align="center">
-                                メディア出演
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($saving->magazine != null)
-                                    <p><span class="detail_content">{{ $saving->magazine }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->magazine_memo }}</span></p>
-                            </div>
-                            <div class="col-md-2" align="right">
-                                @if($saving->media != null)
-                                    <p><span class="detail_content">{{ $saving->media }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->media_memo }}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-2" align="center">
-                                その他
-                            </label>
-                            <label class="col-md-4" align="center">
-                                メモ
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" align="right">
-                                @if($saving->others != null)
-                                    <p><span class="detail_content">{{ $saving->others }}円</span></p>
-                                @else
-                                    <p><span class="detail_content">0円</span></p>
-                                @endif
-                            </div>
-                            <div class="col-md-4">
-                                <p><span class="detail_content">{{ $saving->others_memo }}</span></p>
-                            </div>
-                        </div>
+                        <table class="money_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        日付
+                                    </th>
+                                    <th>
+                                        推しのなまえ
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ $saving->stocked_at->format('Y年m月d日') }}
+                                    </th>
+                                    <th>
+                                        {{ $saving->oshi->oshi_name }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        演劇
+                                    </td>
+                                    <td>
+                                        メモ
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->stage != null)
+                                            {{ $saving->stage }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->stage_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        コンサート
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->concert != null)
+                                            {{ $saving->concert }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->concert_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        配信
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->web != null)
+                                            {{ $saving->web }}円
+                                        @else
+                                            0円
+                                        @endif    
+                                    </td>
+                                    <td>
+                                        {{ $saving->web_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        映画
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->movie != null)
+                                            {{ $saving->movie }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->movie_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        CD
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->cd != null)
+                                            {{ $saving->cd }}円
+                                        @else
+                                            0円
+                                        @endif   
+                                    </td>
+                                    <td>
+                                        {{ $saving->cd_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        DVD
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->dvd != null)
+                                            {{ $saving->dvd }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->dvd_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        雑誌
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->magazine != null)
+                                            {{ $saving->magazine }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->magazine_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        メディア出演
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->media != null)
+                                            {{ $saving->media }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->media_memo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        その他
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if($saving->others != null)
+                                            {{ $saving->others }}円
+                                        @else
+                                            0円
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $saving->others_memo }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 @endforeach
                 <div class="d-flex justify-content-center">

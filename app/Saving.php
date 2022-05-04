@@ -19,23 +19,23 @@ class Saving extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'stage' => 'numeric | nullable',
+        'stage' => 'numeric | min:0 | nullable',
         'stage_memo' => 'string | max:20 | nullable',
-        'concert' => 'numeric | nullable',
+        'concert' => 'numeric | min:0 | nullable',
         'concert_memo' => 'string | max:20 | nullable',
-        'web' => 'numeric | nullable',
+        'web' => 'numeric | min:0 | nullable',
         'web_memo' => 'string | max:20 | nullable',
-        'movie' => 'numeric | nullable',
+        'movie' => 'numeric | min:0 | nullable',
         'movie_memo' => 'string | max:20 | nullable',
-        'cd' => 'numeric | nullable',
+        'cd' => 'numeric | min:0 | nullable',
         'cd_memo' => 'string | max:20 | nullable',
-        'dvd' => 'numeric | nullable',
+        'dvd' => 'numeric | min:0 | nullable',
         'dvd_memo' => 'string | max:20 | nullable',
-        'magazine' => 'numeric | nullable',
+        'magazine' => 'numeric | min:0 | nullable',
         'magazine_memo' => 'string | max:20 | nullable',
-        'media' => 'numeric | nullable',
+        'media' => 'numeric | min:0 | nullable',
         'media_memo' => 'string | max:20 | nullable',
-        'others' => 'numeric | nullable',
+        'others' => 'numeric | min:0 | nullable',
         'others_memo' => 'string | max:20 | nullable',
         
         );

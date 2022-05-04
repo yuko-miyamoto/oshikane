@@ -68,9 +68,11 @@
                             <div class="col justify-content-end">
                                 <form action="{{ action('Admin\OshiController@index') }}" method="get">
                                     <input type="hidden" name="user_id" value="{{ $users->id }}">
-                                    <button type="submit" class="btn btn-outline-dark bg-{color}">
-                                        推し一覧
-                                    </button>
+                                    <div class="d-grid gap-2 d-md-block"><div class="d-grid gap-2 d-md-block">
+                                        <button type="submit" class="btn btn-outline-dark bg-{color}">
+                                            推し一覧
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -110,9 +112,11 @@
                             <div class="col justify-content-end">
                                 <form action="{{ action('Admin\MemoryController@index') }}" method="get">
                                     <input type="hidden" name="user_id" value="{{ $users->id }}">
-                                    <button type="submit" class="btn btn-outline-dark bg-{color}">
-                                        メモリー一覧
-                                    </button>
+                                    <div class="d-grid gap-2 d-md-block"><div class="d-grid gap-2 d-md-block">
+                                        <button type="submit" class="btn btn-outline-dark bg-{color}">
+                                            メモリー一覧
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -152,8 +156,17 @@
                         </div>
                     </div>
                     <div class="box_mo_c">
-                        <div class="chart-container" style="position: relative; width: 100%; height: 400px;">
-                            <canvas id="myChart1"></canvas>
+                        <div class="wrap-chart">
+                            <div class="chart-container_expenseChart" style="position: relative; width: 100%; height: 95%;">
+                                <canvas id="expenseChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box_mo_c">
+                        <div class="wrap-chart">
+                            <div class="chart-container_savingCart" style="position: relative; width: 100%; height: 95%;">
+                                <canvas id="savingCart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>

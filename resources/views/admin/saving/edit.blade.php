@@ -33,12 +33,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="row">
                                 <label class="col">カテゴリ</label>
-                                <lavel class="col">金額</lavel>
-                                <lavel class="col">メモ</lavel>
                             </div>
-                            <br>
+                            <div class="row">
+                                <lavel class="col-md-6" style="text-align:center;">金額</lavel>
+                                <lavel class="col-md-6" style="text-align:center;">メモ</lavel>
+                            </div>
                             <div class="form-row">
                                 <label class="col-md-3">演劇</label>
                                 <div class="form-group col-md-3">

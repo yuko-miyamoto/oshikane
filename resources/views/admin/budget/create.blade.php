@@ -15,18 +15,19 @@
                         </ul>
                         @endif
                         <div class="box_yo">
-                            <div class="form-group">
+                            <div class="row">
                                 <label class="col-md-3">総予算</label>
-                                <div class="form-group row">
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="total_budget" id="total_budget">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
-                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-4">カテゴリ別 予算</label>
                             </div>
                             <br>
-                            <label class="col-md-4">カテゴリ別 予算</label>
-                            <br><br>
                             <div class="form-group row">
                                 <label class="col-md-3">演劇</label>
                                 <div class="col-md-4">

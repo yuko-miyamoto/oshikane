@@ -6,38 +6,45 @@
             <div class="col-md-12 mx-auto">
                 <h2>推しとも一覧</h2>
                 <div class="box_pro">
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <label class="col-md-9" style="text-align: center;">推しとも一覧</label>
-                    </div>
-                    <br>
-                    <table class="table">
+                    <table class="list_table">
+                        <thead>
+                            <th scope="row" colspan="2">
+                                推しとも一覧
+                            </th>
+                        </thead>
                         <tbody>
-                            <tr align="center">
-                                <th scope="row">推しとものなまえ</th>
-                                <th>推しとものいち推し</th>
-                                <th>ともだちのへや</th>
-                                <th>おわかれする</th>
+                            <tr>
+                                <td>なまえ</td>
+                                <td>いち推し</td>
                             </tr>
                             @foreach($followers as $follow)
                                 <tr>
-                                    <td scope="row" align="center">
+                                    <td>
                                         <div class="profile_icon_top">
-                                                <img src="{{ asset('/storage/image/'.$follow->user->profile_image_path) }}">    
+                                            <img src="{{ asset('/storage/image/'.$follow->user->profile_image_path) }}">    
                                         </div>
                                         {{ \Str::limit($follow->user->nickname, 20) }}
-                                    </td>
-                                    <td align="center">{{ \Str::limit($follow->user->oshi, 20) }}</td>
-                                    <td align="center">
+                                    </td>    
+                                    <td>
+                                        {{ \Str::limit($follow->user->oshi, 20) }}
+                                    </td>    
+                                </tr>
+                                <tr>
+                                    <td>
                                         <form action="{{ action('Admin\MainController@profile') }}" method="get">
                                             <input type="hidden" name="id" value="{{ $follow->user->id }}">
-                                            <button type="submit" class="btn btn-outline-success bg-{color} btn-sm">
-                                                おじゃまする
-                                            </button>
+                                            <div class="d-grid gap-2 d-md-block">
+                                                <button type="submit" class="btn btn-outline-success bg-{color} btn-sm">
+                                                    おじゃまする
+                                                </button>
+                                            </div>
                                         </form>
                                     </td>
-                                    <td align="center">
-                                        <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $follow->followee_id }}">さよなら</button>
+                                    <td>
+                                        <div class="d-grid gap-2 d-md-block">
+                                            <button type="button" class="btn btn-outline-dark bg-{color} btn-sm" data-bs-toggle="modal" data-bs-target="#modal1{{ $follow->followee_id }}">
+                                                さよなら
+                                            </button>
                                             <div class="modal fade" id="modal1{{ $follow->followee_id }}" tabindex="-1" aria-labelledby="modal1label{{ $follow->followee_id }}">
                                                 <div class="modal-dialog modal-sm modal-dialog-centered">
                                                     <div class="modal-content">
@@ -49,13 +56,16 @@
                                                             <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $follow->followee_id]) }}" role="botton">
                                                                 する
                                                             </a>
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">しない</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                                しない
+                                                            </button>
                                                         </div>
                                                         <div class="modal-footer"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </td>
+                                        </div>
+                                    </td>    
                                 </tr>
                             @endforeach
                         </tbody>
