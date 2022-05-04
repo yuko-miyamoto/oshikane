@@ -144,7 +144,7 @@
                                                 <input type="hidden" name="user_id" value="{{ $memory->user->id }}">
                                                 <input type="hidden" name="id" value="{{ $memory->id }}">
                                                 <button type="submit" id="heart" style="position: absolute; right: 10px; bottom: 10px">
-                                                    <img src="memo.png" width="30" height="30">
+                                                    <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/memo.png" width="30" height="30">
                                                     <br>
                                                     みる
                                                 </button>

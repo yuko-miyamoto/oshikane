@@ -178,7 +178,7 @@
                                         <form action="{{ action('Admin\NotifyController@add') }}" method="get">
                                             <input type="hidden" name="id" value="{{ $oshi->id }}">
                                             <button type="submit" id="heart">
-                                                <img src="memo2.png" width="30" height="30">
+                                                <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/memo2.png" width="30" height="30">
                                                 <br>
                                                 布教をつくる
                                             </button>
@@ -191,7 +191,7 @@
                                     <form action="{{ action('Admin\NotifyController@index') }}" method="get">
                                         <input type="hidden" name="id" value="{{ $oshi->id }}">
                                         <button type="submit" id="heart">
-                                            <img src="heart2.png" width="30" height="30">
+                                            <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/heart2.png" width="30" height="30">
                                             <br>
                                             布教をみる
                                         </button>

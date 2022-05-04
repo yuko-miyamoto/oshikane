@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'oshi' => $data['oshi'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'profile_image_path' => 'hito.png',
+            'profile_image_path' => 'https://oshikane.s3.ap-northeast-1.amazonaws.com/hito.png',
         ]);
     }
 }
