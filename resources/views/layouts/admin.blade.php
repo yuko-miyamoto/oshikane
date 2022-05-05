@@ -101,7 +101,7 @@
                                 @else
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                           <img src="star.png" width="40" height="40">
+                                           <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/star.png" width="40" height="40">
                                             <br>
                                             わたし
                                         </a>
