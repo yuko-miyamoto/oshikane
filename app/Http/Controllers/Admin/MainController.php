@@ -18,7 +18,7 @@ class MainController extends Controller
     {   //認証ユーザーがフォローしているユーザーid
         $followee = Follower::where('follower_id', Auth::id() )->pluck('followee_id')->toArray();     
         
-        $oshis = Oshi::where('user_id', '!=', Auth::id() )->where('tentacles', '>', 50)->get();
+        $oshis = Oshi::where('user_id', '!=', Auth::id() )->get();
         
         $memories = Memory::where('user_id', '!=', Auth::id() )->orderBy('created_at', 'desc')->take(6)->get();
         
