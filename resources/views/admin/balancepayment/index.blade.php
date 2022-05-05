@@ -44,7 +44,7 @@
                                 </select>
                             </div>
                             <div class="col-md-2 offset-1">
-                                <input type="button" id="draw" class="btn btn-outline-dark bg-{color} btn-sm" value="グラフ">
+                                <input type="button" id="draw" class="btn btn-outline-dark bg-{color} btn-sm" value="グラフ表示">
                             </div>
                         @endif
                     </div>
