@@ -123,31 +123,31 @@ class BalancepaymentController extends Controller
             // 
             if($user_id != '' && $oshi_id != 'all' && $years != '') {
                 
-                $stage_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("stage");
-                $concert_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("concert");
-                $web_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("web");
-                $movie_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("movie");
-                $cd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("cd");
-                $dvd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("dvd");
-                $magazine_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("magazine");
-                $train_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("train");
-                $travel_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("travel");
-                $toy_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("toy");
-                $others_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("others");
+                $stage_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("stage");
+                $concert_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("concert");
+                $web_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("web");
+                $movie_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("movie");
+                $cd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("cd");
+                $dvd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("dvd");
+                $magazine_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("magazine");
+                $train_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("train");
+                $travel_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("travel");
+                $toy_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("toy");
+                $others_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("others");
                     
             } elseif($user_id != '' && $years != '') {
                 
-                $stage_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("stage");
-                $concert_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("concert");
-                $web_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("web");
-                $movie_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("movie");
-                $cd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("cd");
-                $dvd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("dvd");
-                $magazine_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("magazine");
-                $train_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("train");
-                $travel_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("travel");
-                $toy_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("toy");
-                $others_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . $i . '%')->where('user_id', $user_id)->sum("others");
+                $stage_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("stage");
+                $concert_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("concert");
+                $web_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("web");
+                $movie_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("movie");
+                $cd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("cd");
+                $dvd_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("dvd");
+                $magazine_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("magazine");
+                $train_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("train");
+                $travel_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("travel");
+                $toy_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("toy");
+                $others_sum["sum$i"] = Expense::where('paid_at', 'Like', $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%')->where('user_id', $user_id)->sum("others");
                     
             }
             $balance_payments = [
