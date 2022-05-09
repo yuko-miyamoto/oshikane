@@ -78,7 +78,7 @@ class ExpenseController extends Controller
         }
         // 年度を選択している場合
         if($get_year != '') {
-            $query->where('paid_at', $get_year)->where('user_id', $user_id);
+            $query->where('paid_at', 'Like',  $get_year .'%')->where('user_id', $user_id);
         } 
         else {
             $query->where('user_id', $user_id);
