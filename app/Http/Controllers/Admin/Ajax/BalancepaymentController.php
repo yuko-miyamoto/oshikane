@@ -41,7 +41,7 @@ class BalancepaymentController extends Controller
         
         // 選択された年度より前で直近の予算を取得
         $beforemonth = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->first();
-       
+        
         $beforestagebudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('stage')->first();
         $beforeconcertbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('concert')->first();
         $beforewebbudgets = Budget::where('register_year', '<', $years )->where('user_id', $user_id)->orderBy('id', 'desc')->pluck('web')->first();
@@ -120,7 +120,8 @@ class BalancepaymentController extends Controller
         }
         
         for($i = 1; $i <= 12; $i++) {
-            $year_month = $years . str_pad($i, 2, 0, STR_PAD_LEFT) . '%';      
+            $year_month = $years . '-'. str_pad($i, 2, 0, STR_PAD_LEFT) . '%';      
+        
             if($user_id != '' && $oshi_id != 'all' && $years != '') {
                 
                 $stage_sum["sum$i"] = Expense::where('paid_at', 'Like', $year_month)->where('user_id', $user_id)->where('oshi_id', $oshi_id)->sum("stage");
