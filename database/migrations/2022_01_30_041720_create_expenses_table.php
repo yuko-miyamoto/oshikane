@@ -17,7 +17,7 @@ class CreateExpensesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('oshi_id')->unsigned();
-            $table->string('stage')->nullable();
+            $table->int('stage')->nullable();
             $table->string('stage_memo')->nullable();
             $table->string('concert')->nullable();
             $table->string('concert_memo')->nullable();
