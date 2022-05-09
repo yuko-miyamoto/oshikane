@@ -55,6 +55,9 @@ class Expense extends Model
         protected $dates = [
             'paid_at',
         ];
+        protected $casts = [
+          'concert' => 'integer'
+        ];
 }
     
     
