@@ -52,5 +52,6 @@ class CreateExpensesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('expenses');
+        
     }
 }
