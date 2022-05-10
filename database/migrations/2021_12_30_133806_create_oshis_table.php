@@ -24,7 +24,7 @@ class CreateOshisTable extends Migration
             $table->string('blood');
             $table->string('oshi_height');
             $table->string('oshi_weight');
-            $table->string('oshi_group');
+            $table->string('oshi_group')->nullable();
             $table->string('history');
             $table->string('history_y');
             $table->string('history_m');

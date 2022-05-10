@@ -258,7 +258,16 @@
                                                 }
                                             }
                                         ],
-                                        
+                                        xAxes: [
+                                            {
+                                                scaleLabel: {                           // 軸ラベル設定
+                                                    display: window.screen.width > 414, //表示設定
+                                                },
+                                                ticks: {
+                                                    min: 1,
+                                                }
+                                            }
+                                        ]
                                     },
                                     responsive: true,
                                     maintainAspectRatio: false,
