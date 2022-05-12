@@ -10,19 +10,19 @@ class Budget extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'total_budget' => 'required | numeric',
-        'stage' => 'numeric | nullable',
-        'concert' => 'numeric | nullable',
-        'web' => 'numeric | nullable',
-        'movie' => 'numeric | nullable',
-        'cd' => 'numeric | nullable',
-        'dvd' => 'numeric | nullable',
-        'magazine' => 'numeric | nullable',
-        'train' => 'numeric | nullable',
-        'travel' => 'numeric | nullable',
-        'toy' => 'numeric | nullable',
-        'others' => 'numeric | nullable',
-        'media' => 'numeric | nullable',
+        'total_budget' => 'required | min:0 | numeric',
+        'stage' => 'numeric | min:0 | nullable',
+        'concert' => 'numeric | min:0 | nullable',
+        'web' => 'numeric | min:0 | nullable',
+        'movie' => 'numeric | min:0 | nullable',
+        'cd' => 'numeric | min:0 | nullable',
+        'dvd' => 'numeric | min:0 | nullable',
+        'magazine' => 'numeric | min:0 | nullable',
+        'train' => 'numeric | min:0 | nullable',
+        'travel' => 'numeric | min:0 | nullable',
+        'toy' => 'numeric | min:0 | nullable',
+        'others' => 'numeric | min:0 | nullable',
+        'media' => 'numeric | min:0 | nullable',
         'register_year' => 'required',
         'register_month' => 'required'
     );

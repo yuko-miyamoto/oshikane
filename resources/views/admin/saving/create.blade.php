@@ -45,82 +45,82 @@
                         <div class="form-row">
                             <label class="col-md-3">演劇</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="stage">
+                                <input type="text" class="cat form-control" name="stage" value="{{ old('stage') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="stage_memo">
+                                <input type="text" class="form-control" name="stage_memo" value="{{ old('stage_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">コンサート</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="concert">
+                                <input type="text" class="cat form-control" name="concert" value="{{ old('concert') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="concert_memo">
+                                <input type="text" class="form-control" name="concert_memo" value="{{ old('concert_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">配信</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="web">
+                                <input type="text" class="cat form-control" name="web" value="{{ old('web') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="web_memo">
+                                <input type="text" class="form-control" name="web_memo" value="{{ old('web_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">映画</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="movie">
+                                <input type="text" class="cat form-control" name="movie" value="{{ old('movie') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="cat form-control" name="movie_memo">
+                                <input type="text" class="form-control" name="movie_memo" value="{{ old('movie_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">CD</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="cd">
+                                <input type="text" class="cat form-control" name="cd" value="{{ old('cd') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="cd_memo">
+                                <input type="text" class="form-control" name="cd_memo" value="{{ old('cd_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">DVD</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="dvd">
+                                <input type="text" class="cat form-control" name="dvd" value="{{ old('dvd') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="dvd_memo">
+                                <input type="text" class="form-control" name="dvd_memo" value="{{ old('dvd_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">雑誌</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="magazine">
+                                <input type="text" class="cat form-control" name="magazine" value="{{ old('magazine') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="magazine_memo">
+                                <input type="text" class="form-control" name="magazine_memo" value="{{ old('magazine_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">TV出演</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="media">
+                                <input type="text" class="cat form-control" name="media" value="{{ old('media') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="media_memo">
+                                <input type="text" class="form-control" name="media_memo" value="{{ old('media_memo') }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <label class="col-md-3">その他</label>
                             <div class="form-group col-md-3">
-                                <input type="text" class="cat form-control" name="others">
+                                <input type="text" class="cat form-control" name="others" value="{{ old('others') }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="others_memo">
+                                <input type="text" class="form-control" name="others_memo" value="{{ old('others_memo') }}">
                             </div>
                         </div>
                         {{ csrf_field() }}

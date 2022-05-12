@@ -39,7 +39,7 @@ class User extends Authenticatable
     
     public static $rules = array (
         'nickname' => 'required | string | max:10',
-        'oshi' => 'required | string | max:10',
+        'oshi' => 'required | string | max:30',
         'profile_image' => 'required|max:2048',
     );
     

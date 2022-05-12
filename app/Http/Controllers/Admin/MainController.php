@@ -20,7 +20,7 @@ class MainController extends Controller
         
         $oshis = Oshi::where('user_id', '!=', Auth::id() )->get();
         
-        $memories = Memory::where('user_id', '!=', Auth::id() )->orderBy('created_at', 'desc')->take(6)->get();
+        $memories = Memory::where('user_id', '!=', Auth::id() )->orderBy('created_at', 'desc')->get();
         
         return view('admin.main.index', ['oshis' => $oshis, 'memories' => $memories, 'followee' => $followee]);
     }

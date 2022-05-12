@@ -85,7 +85,7 @@ return [
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => ':attribute を :min 以上入力してください。',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
@@ -182,7 +182,13 @@ return [
         'text_now' => '推しの近況',
         'name' => 'なまえ',
         'nickname' => 'なまえ',
-        'oshi' => '推しのなまえ'
+        'oshi' => '推しのなまえ',
+        'web' => '配信',
+        'magazine' => '雑誌',
+        'train' => '交通費',
+        'travel' => '宿泊費',
+        'toy' => 'ガチャ',
+        'others' => 'その他'
         ],
 
 ];

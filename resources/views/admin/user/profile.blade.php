@@ -39,7 +39,7 @@
                                 あだな    
                             </td>
                             <td>
-                                {{ \Str::limit($user->nickname, 20) }}
+                                {{ \Str::limit($user->nickname, 10) }}
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +47,7 @@
                                 いち推し    
                             </td>
                             <td>
-                                {{ \Str::limit($user->oshi, 20) }}    
+                                {{ \Str::limit($user->oshi, 30) }}    
                             </td>
                         </tr>
                         <tr>

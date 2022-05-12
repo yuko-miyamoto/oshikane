@@ -16,7 +16,7 @@ class Memory extends Model
     public static $rules = array(
         'stage_name' => 'required | string | max:30',
         'artist' => 'required | string | max:30',
-        'place' => 'required | string | max:20',
+        'place' => 'required | string | max:30',
         'stage_memo' => 'required | string | max:255',
         'concert' => 'numeric | min:0 | max:100000',
         'stage' => 'numeric | min:0 | max:100000',
