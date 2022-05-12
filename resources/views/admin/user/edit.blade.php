@@ -17,7 +17,7 @@
                     <div class="box_pro">
                         <div align="center">
                             <span><h3>わたしのこと</h3></span>
-                            <img id="preview" src="{{ $user_form->profile_image_path) }}" width="100" height="100">
+                            <img id="preview" src="{{ $user_form->profile_image_path }}" width="100" height="100">
                             <div class="form-text text-info">
                                 設定中
                             </div>
