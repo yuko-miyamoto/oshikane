@@ -31,7 +31,7 @@ class Oshi extends Model
         'birthday_d' => 'required',
         'blood' => 'required',
         'oshi_height' => 'required | numeric | min:3',
-        'oshi_weight' => 'required | numeric | min:3',
+        'oshi_weight' => 'required | numeric | min:2',
         'oshi_group' => 'string | max:30 |nullable',
         'history_y' => 'required',
         'history_m' => 'required',

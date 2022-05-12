@@ -78,7 +78,7 @@
                                                 <input type="hidden" name="user_id" value="{{ $oshi->user->id }}">
                                                 <input type="hidden" name="id" value="{{ $oshi->id }}">
                                                 <button type="submit" id="heart" style="position: absolute; right: 10px; bottom: 10px">
-                                                    <img src="heart.png" width="30" height="30">
+                                                    <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/heart.png" width="30" height="30">
                                                     <br>
                                                     みる
                                                 </button>
@@ -131,7 +131,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modal1label{{ $memory->user->id }}">
-                                                                推しともになる？
+                                                                どうする？
                                                             </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                             </button>
@@ -141,17 +141,18 @@
                                                             <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $memory->user->id]) }}" role="botton">
                                                                 ともだち解除
                                                             </a>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">どうもしない</button>
                                                             @else
                                                             <form action="{{ action('Admin\FollowerController@store') }}" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="followee_id" value="{{ $memory->user->id }}">
                                                                 <input type="hidden" name="follower_id" value="{{ Auth::id() }}">
                                                                 <button type="submit" class="btn btn-primary">
-                                                                    なる！
+                                                                    推しともになる！
                                                                 </button>
                                                             </form>
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                                ならない
+                                                                どうもしない
                                                             </button>
                                                             @endif
                                                         </div>
@@ -167,7 +168,7 @@
                                                 <input type="hidden" name="user_id" value="{{ $memory->user->id }}">
                                                 <input type="hidden" name="id" value="{{ $memory->id }}">
                                                 <button type="submit" id="heart" style="position: absolute; right: 10px; bottom: 10px">
-                                                    <img src="memo.png" width="30" height="30">
+                                                    <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/memo.png" width="30" height="30">
                                                     <br>
                                                     みる
                                                 </button>

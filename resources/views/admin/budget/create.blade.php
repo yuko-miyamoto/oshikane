@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="total_budget" id="total_budget">
+                                    <input type="text" class="form-control" name="total_budget" id="total_budget" value="{{ old('total_budget') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
@@ -31,77 +31,77 @@
                             <div class="form-group row">
                                 <label class="col-md-3">演劇</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="stage" id="stage">
+                                    <input type="text" class="cat form-control" name="stage" id="stage" value="{{ old('stage') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">コンサート</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="concert" id="concert">
+                                    <input type="text" class="cat form-control" name="concert" id="concert" value="{{ old('concert') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">配信</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="web" id="web">
+                                    <input type="text" class="cat form-control" name="web" id="web" value="{{ old('web') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">映画</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="movie" id="movie">
+                                    <input type="text" class="cat form-control" name="movie" id="movie" value="{{ old('movie') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">CD</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="cd" id="cd">
+                                    <input type="text" class="cat form-control" name="cd" id="cd" value="{{ old('cd') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">DVD</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="dvd" id="dvd">
+                                    <input type="text" class="cat form-control" name="dvd" id="dvd" value="{{ old('dvd') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">雑誌</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="magazine" id="magazine">
+                                    <input type="text" class="cat form-control" name="magazine" id="magazine" value="{{ old('magazine') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">交通費</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="train" id="train">
+                                    <input type="text" class="cat form-control" name="train" id="train" value="{{ old('train') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">宿泊費</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="travel" id="travel">
+                                    <input type="text" class="cat form-control" name="travel" id="travel" value="{{ old('travel') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">ガチャ</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="toy" id="toy">
+                                    <input type="text" class="cat form-control" name="toy" id="toy" value="{{ old('toy') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3">その他</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="cat form-control" name="others" id="others">
+                                    <input type="text" class="cat form-control" name="others" id="others" value="{{ old('others') }}">
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">円</div>
                             </div>

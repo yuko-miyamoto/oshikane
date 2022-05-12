@@ -70,7 +70,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="modal1label{{ $oshi->user->id }}">
-                                                        推しともになる？
+                                                        どうする？
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                     </button>
@@ -80,17 +80,18 @@
                                                         <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $oshi->user->id]) }}" role="botton">
                                                             ともだち解除
                                                         </a>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">どうもしない</button>
                                                     @else
                                                         <form action="{{ action('Admin\FollowerController@store') }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="followee_id" value="{{ $oshi->user->id }}">
                                                             <input type="hidden" name="follower_id" value="{{ Auth::id() }}">
                                                             <button type="submit" class="btn btn-primary">
-                                                                なる！
+                                                                推しともになる！
                                                             </button>
                                                         </form>
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                            ならない
+                                                            どうもしない
                                                         </button>
                                                     @endif
                                                 </div>

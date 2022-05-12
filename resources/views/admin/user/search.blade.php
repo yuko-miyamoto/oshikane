@@ -68,7 +68,7 @@
                                                 <div class="modal-dialog modal-sm modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modal1label{{ $user->id }}">推しともになる？</h5>
+                                                            <h5 class="modal-title" id="modal1label{{ $user->id }}">どうする？</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
@@ -76,16 +76,17 @@
                                                                 <a class="btn btn-outline-info bg-{color}" href="{{ action('Admin\FollowerController@delete', ['id' => $user->id]) }}" role="botton">
                                                                     ともだち解除
                                                                 </a>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">どうもしない</button>
                                                             @else
                                                                 <form action="{{ action('Admin\FollowerController@store') }}" method="POST">
                                                                     @csrf
                                                                     <input type="hidden" name="followee_id" value="{{ $user->id }}">
                                                                     <input type="hidden" name="follower_id" value="{{ Auth::id() }}">
                                                                     <button type="submit" class="btn btn-primary">
-                                                                        なる！
+                                                                        推しともになる！
                                                                     </button>
                                                                 </form>
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ならない</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">どうもしない</button>
                                                             @endif
                                                         </div>
                                                         <div class="modal-footer"></div>
