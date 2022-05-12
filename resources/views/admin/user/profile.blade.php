@@ -14,10 +14,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-2 col-md-offset-5">
-                            <div class="profile_icon" align="center">
-                                <img src="{{ $user->profile_image_path }}">
-                            </div>
+                        <div class="profile_icon" align="center">
+                            <img src="{{ $user->profile_image_path }}">
                         </div>
                     </div>
                     <table class="list_table">

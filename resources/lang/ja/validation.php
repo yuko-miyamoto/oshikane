@@ -146,6 +146,9 @@ return [
     */
 
     'attributes' => [
+        'Login' => 'ログイン',
+        'Register' => '新規登録',
+        'password' => 'パスワード',
         'oshi_name' => '名前',
         'birthday' => '誕生日',
         'blood' => '血液型',

@@ -2,6 +2,7 @@
 
 return [
     'Login' => 'ログイン',
+    'Logout' => 'ログアウト',
     'E-Mail Address' => 'メールアドレス',
     'Password' => 'パスワード',
     'Confirm Password' => 'パスワードの確認',
