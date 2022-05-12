@@ -106,11 +106,7 @@
                             @endif
                         </div>
                         <div class="image" align="center">
-                            @if($memory->image_path == null)
-                                <img src="/storage/noimage.png" class="rounded mx-auto d-block">
-                            @else
-                                <img src="{{ $memory->image_path }}" class="img-fluid rounded mx-auto d-block">
-                            @endif
+                            <img src="{{ $memory->image_path }}" class="img-fluid rounded mx-auto d-block">
                         </div>
                         <table class="memory_table">
                             <tbody>
