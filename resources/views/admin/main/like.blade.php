@@ -81,15 +81,15 @@
                                                     </div>    
                                                 </li>
                                                 <li class="card_icon_li">
+                                                    {{ $oshi->id }}
                                                     <form action="{{ action('Admin\OshiLikeController@oshi_like') }}" method="post">
                                                         @csrf                                                        
                                                         <input type="hidden" name="user_id" class="user_id" value="{{ Auth::id() }}">
                                                         <input type="hidden" name="oshi_id" class="oshi_id" value="{{ $oshi->id }}">
                                                         <button type="button" class="toggle_like" id="like">
-                                                            <img src="{{ secure_asset("storage/images/like.png") }}" width="30" height="30">
+                                                            <img src="{{ secure_asset("storage/images/like.png") }}" id="likeicon" width="30" height="30">
                                                         </button>
                                                     </form>
-                                                    <span class="like-counter">{{ $oshi->likes_count }}</span>
                                                 </li>
                                                 <li class="card_icon_li">
                                                     <form action="{{ action('Admin\OshiController@index') }}" method="get">
@@ -217,34 +217,4 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(function(){
-                let like = $('.toggle_like');
-                let likeOshiId;
-                like.on('click', function() {
-                    var form = $(this).closest('form').get(0);
-                    var userId = form.elements['user_id'].value;
-                    likeOshiId = form.elements['oshi_id'].value;
-                    let $this = $(this);
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: 'like',
-                        type: 'POST',
-                        data: {
-                            'oshi_id' : likeOshiId,
-                            'user_id' : userId
-                        },
-                    })
-                    .done(function (data) {
-                        $this.toggleClass('liked');
-                        $this.next('.like-counter').html(data[1]);
-                    })
-                    .fail(function (){
-                        console.log('fail');
-                    });
-                });
-            })
-        </script>
-@endsection
+        @endsection

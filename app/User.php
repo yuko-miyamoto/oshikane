@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Saving::class);
     }
+    
+    public function oshilikes()
+    {
+        return $this->hasMany(Oshi_like::class, 'user_id');
+    }
+    
+    public function memorylikes()
+    {
+        return $this->hasMany(Memory_like::class, 'user_id');
+    }
 }

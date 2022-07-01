@@ -10,6 +10,11 @@ class Memory extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function memorylikes()
+    {
+        return $this->hasMany(Memory_like::class, 'memory_id');
+    }
     //
     protected $guarded = array('id');
     

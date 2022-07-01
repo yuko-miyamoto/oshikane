@@ -47,7 +47,7 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item" align="center">
+                                <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{ action('Admin\OshiController@index') }}">
                                         <img src="https://oshikane.s3.ap-northeast-1.amazonaws.com/heart.png" width="40" height="40">
                                         <br>

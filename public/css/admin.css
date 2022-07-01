@@ -63,6 +63,16 @@ title {
   background: transparent;
 }
 
+#like {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.liked {
+  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(358deg) brightness(95%) contrast(112%);
+}
+
 .list-group-item {
   border-color: #B2D5F2;
   background-color: #B2D5F2;
@@ -108,6 +118,15 @@ title {
 
 li:last-child {
   border-right: none;
+}
+
+ul.card_icon {
+  display: flex;
+  justify-content: space-around;
+}
+
+li.card_icon_li {
+  list-style: none;
 }
 
 a {

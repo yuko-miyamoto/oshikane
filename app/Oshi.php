@@ -21,6 +21,11 @@ class Oshi extends Model
     {
         return $this->hasMany(Saving::class);
     }
+    
+    public function oshilikes()
+    {
+        return $this->hasMany(Oshi_like::class);
+    }
     //
     protected $guarded = array('id');
     

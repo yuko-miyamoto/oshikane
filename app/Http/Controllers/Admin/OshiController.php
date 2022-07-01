@@ -8,6 +8,7 @@ use App\Oshi;
 use App\Follower;
 use App\User;
 use App\Expense;
+use App\Oshi_like;
 use Auth;
 use carbon\Carbon;
 use DateTime;
@@ -30,6 +31,8 @@ class OshiController extends Controller
         if (isset($form['oshi_image'])) {
             $path = Storage::disk('s3')->putFile('/',$form['oshi_image'],'public');
             $oshi->image_path = Storage::disk('s3')->url($path);
+            //$path = $request->file('oshi_image')->store('public/image');
+            //$oshi->image_path = basename($path);
         } else {
             $oshi->image_path = null;
         }

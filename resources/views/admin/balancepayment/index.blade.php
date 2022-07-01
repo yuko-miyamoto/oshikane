@@ -84,7 +84,7 @@
                 }
                 function getData(callback) {
                     $.ajax({
-                        typr: 'get', // HTTP通信の種類
+                        type: 'get', // HTTP通信の種類
                         url: 'ajax/balancepayment',
                         data: {
                             user_id : userId,

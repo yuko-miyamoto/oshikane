@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
     Route::get('main/index', 'Admin\MainController@index');
+    Route::post('main/like', 'Admin\OshiLikeController@oshi_like');
     Route::get('main/profile', 'Admin\MainController@profile');
     Route::get('main/profilechart', 'Admin\Ajax\MainController@profile');
     
@@ -79,9 +80,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('user/search/', 'Admin\FollowerController@store');
     Route::get('user/delete', 'Admin\FollowerController@delete');
     Route::get('user/followlist/', 'Admin\UserController@index');
-    
-    
-    
     
 });
 Auth::routes();
