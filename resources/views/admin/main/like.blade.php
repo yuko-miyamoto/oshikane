@@ -90,6 +90,7 @@
                                                             <img src="{{ secure_asset("storage/images/like.png") }}" id="likeicon" width="30" height="30">
                                                         </button>
                                                     </form>
+                                                    <span class="like-counter"></span>
                                                 </li>
                                                 <li class="card_icon_li">
                                                     <form action="{{ action('Admin\OshiController@index') }}" method="get">

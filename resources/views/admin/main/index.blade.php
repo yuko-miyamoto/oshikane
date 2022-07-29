@@ -85,11 +85,17 @@
                                                         @csrf                                                        
                                                         <input type="hidden" name="user_id" class="user_id" value="{{ Auth::id() }}">
                                                         <input type="hidden" name="oshi_id" class="oshi_id" value="{{ $oshi->id }}">
-                                                        <button type="button" class="toggle_like" id="like">
-                                                            <img src="{{ secure_asset("storage/images/like.png") }}" width="30" height="30">
-                                                        </button>
+                                                        @if(count($oshi->oshilikes) > 0)
+                                                            <button type="button" class="liked aaa" id="like">
+                                                                <img src="{{ secure_asset("storage/images/liked.png") }}" width="30" height="30">
+                                                            </button>
+                                                            <span class="like-counter">{{ $oshi->oshilikes_count }}</span>
+                                                        @else
+                                                            <button type="button" class="like aaa" id="like">
+                                                                <img src="{{ secure_asset("storage/images/liked.png") }}" width="30" height="30">
+                                                            </button>
+                                                        @endif
                                                     </form>
-                                                    <span class="like-counter">{{ $oshi->likes_count }}</span>
                                                 </li>
                                                 <li class="card_icon_li">
                                                     <form action="{{ action('Admin\OshiController@index') }}" method="get">
@@ -219,7 +225,7 @@
         </div>
         <script>
             $(function(){
-                let like = $('.toggle_like');
+                let like = $('.aaa');
                 let likeOshiId;
                 like.on('click', function() {
                     var form = $(this).closest('form').get(0);
@@ -238,8 +244,15 @@
                         },
                     })
                     .done(function (data) {
-                        $this.toggleClass('liked');
+                        if(data[0] == '1') {
+                            $this.removeClass('like');
+                            $this.toggleClass('liked');
+                        } else {
+                            $this.removeClass('liked');
+                            $this.toggleClass('like');
+                        }
                         $this.next('.like-counter').html(data[1]);
+                        console.log(data);
                     })
                     .fail(function (){
                         console.log('fail');

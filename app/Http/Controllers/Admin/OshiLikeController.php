@@ -27,8 +27,7 @@ class OshiLikeController extends Controller
         } else {
             $already_oshiliked->delete();
         }
-        $oshi_likes_count = Oshi::withCount('oshilikes')->findOrFail($oshi_id)->likes_count;
-        
+        $oshi_likes_count = Oshi_like::where('oshi_id', $oshi_id)->count();
         $oshilike_json = [$like_flg, $oshi_likes_count];
         
         return $oshilike_json;
